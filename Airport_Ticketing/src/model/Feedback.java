@@ -10,15 +10,23 @@ package model;
  * @author ASUS
  */
 public class Feedback {
-    private int id;
+    private String id;
     private String ulasan;
-    private double rating;
+    private int[] rating = new int[5];
 
-    public int getId() {
+    public Feedback() {
+    }
+
+    public Feedback(String id, String ulasan) {
+        this.id = id;
+        this.ulasan = ulasan;
+    }
+    
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -30,11 +38,11 @@ public class Feedback {
         this.ulasan = ulasan;
     }
 
-    public double getRating() {
+    public int[] getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(int[] rating) {
         this.rating = rating;
     }
     
