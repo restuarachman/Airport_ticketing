@@ -36,6 +36,7 @@ public class View_Panel_User extends javax.swing.JFrame {
     private void initComponents() {
 
         bodyPanel = new javax.swing.JPanel();
+        moveableFrame = new javax.swing.JPanel();
         menuPanel = new javax.swing.JPanel();
         btnBeliTiket = new javax.swing.JButton();
         btnDashboard = new javax.swing.JButton();
@@ -55,6 +56,32 @@ public class View_Panel_User extends javax.swing.JFrame {
         setUndecorated(true);
 
         bodyPanel.setBackground(new java.awt.Color(52, 73, 94));
+        bodyPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        moveableFrame.setOpaque(false);
+        moveableFrame.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                moveableFrameMouseDragged(evt);
+            }
+        });
+        moveableFrame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                moveableFrameMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout moveableFrameLayout = new javax.swing.GroupLayout(moveableFrame);
+        moveableFrame.setLayout(moveableFrameLayout);
+        moveableFrameLayout.setHorizontalGroup(
+            moveableFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        moveableFrameLayout.setVerticalGroup(
+            moveableFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        bodyPanel.add(moveableFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 20));
 
         menuPanel.setBackground(new java.awt.Color(48, 57, 82));
         menuPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
@@ -114,6 +141,8 @@ public class View_Panel_User extends javax.swing.JFrame {
         jLabel4.setText("Airport Ticketing");
         menuPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
+        bodyPanel.add(menuPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 185, 588));
+
         DynamicPanel.setBackground(new java.awt.Color(52, 73, 94));
         DynamicPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         DynamicPanel.setLayout(new java.awt.CardLayout());
@@ -168,26 +197,7 @@ public class View_Panel_User extends javax.swing.JFrame {
 
         DynamicPanel.add(buyTiketPanel, "card2");
 
-        javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(bodyPanel);
-        bodyPanel.setLayout(bodyPanelLayout);
-        bodyPanelLayout.setHorizontalGroup(
-            bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bodyPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DynamicPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 797, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        bodyPanelLayout.setVerticalGroup(
-            bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(DynamicPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        bodyPanel.add(DynamicPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 6, 797, 588));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,6 +259,19 @@ public class View_Panel_User extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnHome3ActionPerformed
+
+    private void moveableFrameMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moveableFrameMouseDragged
+        // TODO add your handling code here:
+        int x=evt.getXOnScreen();
+        int y=evt.getYOnScreen();
+        setLocation(x-xMouse ,y-yMouse);
+    }//GEN-LAST:event_moveableFrameMouseDragged
+
+    private void moveableFrameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moveableFrameMousePressed
+        // TODO add your handling code here:
+        xMouse=evt.getX();
+        yMouse=evt.getY();
+    }//GEN-LAST:event_moveableFrameMousePressed
     
     private int xMouse, yMouse;
     
@@ -316,6 +339,7 @@ public class View_Panel_User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel menuPanel;
+    private javax.swing.JPanel moveableFrame;
     private javax.swing.JLabel username;
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables

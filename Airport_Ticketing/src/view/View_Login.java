@@ -182,7 +182,6 @@ public class View_Login extends javax.swing.JFrame {
         btnSignup.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnSignup.setForeground(new java.awt.Color(255, 255, 255));
         btnSignup.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnSignup.setIcon(new javax.swing.ImageIcon("C:\\Users\\USER\\Pictures\\asset\\render Sign Up.png")); // NOI18N
         btnSignup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSignupMouseClicked(evt);
@@ -275,7 +274,7 @@ public class View_Login extends javax.swing.JFrame {
 
         txtPassword.setBackground(new java.awt.Color(16, 11, 46));
         txtPassword.setForeground(new java.awt.Color(255, 255, 255));
-        txtPassword.setToolTipText("sssss");
+        txtPassword.setToolTipText("");
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         panelBackground.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 308, 340, 30));
 
@@ -320,6 +319,12 @@ public class View_Login extends javax.swing.JFrame {
         boolean valid = dbuser.validate(txtUsername.getText(), txtPassword.getText());
         if (valid) {
             JOptionPane.showMessageDialog(this, "Login");
+            
+            View_Panel_User frameDashboard = new View_Panel_User();
+            frameDashboard.setVisible(valid);
+            this.dispose();
+            
+            
         } else {
              JOptionPane.showMessageDialog(this, "Username atau Password salah");
         }
