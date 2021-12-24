@@ -11,7 +11,7 @@ public class Koneksi {
         if (connection == null){
             try {
     
-                connection = DriverManager.getConnection("jdbc:mysql://localhost/airport_ticketing","root","rootme");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost/airport_ticketing","root","");
                 System.out.println("Berhasil KONAK");
             } catch (SQLException ex) {
                 Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
