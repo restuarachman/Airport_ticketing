@@ -173,14 +173,19 @@ public class View_Signup extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!txtUsername.getText().equals("") && !txtPassword.getText().equals("") && !txtPassword1.getText().equals("")) {
             if(txtPassword.getText().equals(txtPassword1.getText())) {
-                conn.insert(new User(txtUsername.getText(), txtPassword.getText()));
-                JOptionPane.showMessageDialog(this, "Berhasil daftar");
-                txtUsername.setText(null);
+                if (conn.findUser(txtUsername.getText())) {
+                    JOptionPane.showMessageDialog(this, "Username sudah digunakan");
+                } else {
+                    conn.insert(new User(txtUsername.getText(), txtPassword.getText()));
+                    JOptionPane.showMessageDialog(this, "Berhasil daftar");
+                    txtUsername.setText(null);
+                    
+                    this.dispose();
+                    View_Login frameLogin = new View_Login();
+                    frameLogin.setVisible(true);
+                }
                 txtPassword.setText(null);
                 txtPassword1.setText(null);
-                this.dispose();
-                View_Login frameLogin = new View_Login();
-                frameLogin.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Password tidak sama");
             }

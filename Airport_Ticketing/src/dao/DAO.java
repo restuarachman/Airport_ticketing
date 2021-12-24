@@ -14,5 +14,6 @@ public interface DAO {
     public void insert(User user);
     public void update(User user);
     public void delete(String username);
-    public boolean getUser(String username, String password);
+    public boolean validate(String username, String password);
+    public boolean findUser(String username);
 }
