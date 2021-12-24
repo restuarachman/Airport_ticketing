@@ -8,7 +8,7 @@ package view;
 
 import app.bolivia.swing.JCTextField;
 import dao.DAOUser;
-
+import model.User;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -317,10 +317,11 @@ public class View_Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         boolean valid = dbuser.validate(txtUsername.getText(), txtPassword.getText());
+     
         if (valid) {
             JOptionPane.showMessageDialog(this, "Login");
             
-            View_Panel_User frameDashboard = new View_Panel_User();
+            View_Panel_User frameDashboard = new View_Panel_User(new User(txtUsername.getText(), txtPassword.getText()));
             frameDashboard.setVisible(valid);
             this.dispose();
             

@@ -8,6 +8,7 @@ package view;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.User;
 
 /**
  *
@@ -18,9 +19,11 @@ public class View_Panel_User extends javax.swing.JFrame {
     /**
      * Creates new form View
      */
-    public View_Panel_User() {
+    private User user;
+    public View_Panel_User(User user) {
+        this.user = user;
         initComponents();
-        
+        username.setText(user.getUsername());
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setVisible(true);
         setResizable(false);
@@ -255,9 +258,12 @@ public class View_Panel_User extends javax.swing.JFrame {
         int dialogResult = JOptionPane.showConfirmDialog(this, "Anda yakin ingin keluar?", "PERINGATAN", dialogBtn);
 
         if (dialogResult == 0) {
-            System.exit(0);
+            View_Login frame = new View_Login();
+            frame.setVisible(true);
+            frame.getTxtUsername().setText(user.getUsername());
         }
 
+        this.dispose();
     }//GEN-LAST:event_btnHome3ActionPerformed
 
     private void moveableFrameMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moveableFrameMouseDragged
@@ -320,7 +326,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new View_Panel_User().setVisible(true);
+                new View_Panel_User(new User("username","username")).setVisible(true);
             }
         });
     }
