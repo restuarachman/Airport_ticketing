@@ -5,16 +5,21 @@
  */
 package view;
 
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
+import app.bolivia.swing.JCTextField;
+import dao.DAOUser;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 /**
  *
  * @author restu
  */
 public class View_Login extends javax.swing.JFrame {
-
+    private DAOUser dbuser = new DAOUser();
     /**
      * Creates new form View
      */
@@ -24,6 +29,130 @@ public class View_Login extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setVisible(true);
         setResizable(false);
+    }
+
+    public int getxMouse() {
+        return xMouse;
+    }
+
+    public void setxMouse(int xMouse) {
+        this.xMouse = xMouse;
+    }
+
+    public int getyMouse() {
+        return yMouse;
+    }
+
+    public void setyMouse(int yMouse) {
+        this.yMouse = yMouse;
+    }
+
+    public JLabel getBackgroundIMG() {
+        return BackgroundIMG;
+    }
+
+    public void setBackgroundIMG(JLabel BackgroundIMG) {
+        this.BackgroundIMG = BackgroundIMG;
+    }
+
+    public JLabel getLine() {
+        return Line;
+    }
+
+    public void setLine(JLabel Line) {
+        this.Line = Line;
+    }
+
+    public void setTitle(JLabel Title) {
+        this.Title = Title;
+    }
+
+    public JLabel getBtnClose() {
+        return btnClose;
+    }
+
+    public void setBtnClose(JLabel btnClose) {
+        this.btnClose = btnClose;
+    }
+
+    public JLabel getBtnLogin() {
+        return btnLogin;
+    }
+
+    public void setBtnLogin(JLabel btnLogin) {
+        this.btnLogin = btnLogin;
+    }
+
+    public JLabel getBtnSignup() {
+        return btnSignup;
+    }
+
+    public void setBtnSignup(JLabel btnSignup) {
+        this.btnSignup = btnSignup;
+    }
+
+    public JLabel getForSignup() {
+        return forSignup;
+    }
+
+    public void setForSignup(JLabel forSignup) {
+        this.forSignup = forSignup;
+    }
+
+    public JLabel getLabeQuestion() {
+        return labeQuestion;
+    }
+
+    public void setLabeQuestion(JLabel labeQuestion) {
+        this.labeQuestion = labeQuestion;
+    }
+
+    public JLabel getLabelPassword() {
+        return labelPassword;
+    }
+
+    public void setLabelPassword(JLabel labelPassword) {
+        this.labelPassword = labelPassword;
+    }
+
+    public JLabel getLabelUsername() {
+        return labelUsername;
+    }
+
+    public void setLabelUsername(JLabel labelUsername) {
+        this.labelUsername = labelUsername;
+    }
+
+    public JPanel getMoveableFrame() {
+        return moveableFrame;
+    }
+
+    public void setMoveableFrame(JPanel moveableFrame) {
+        this.moveableFrame = moveableFrame;
+    }
+
+    public JPanel getPanelBackground() {
+        return panelBackground;
+    }
+
+    public void setPanelBackground(JPanel panelBackground) {
+        this.panelBackground = panelBackground;
+    }
+
+    public JPasswordField getTxtPassword() {
+        return txtPassword;
+    }
+
+    public void setTxtPassword(JPasswordField txtPassword) {
+        this.txtPassword = txtPassword;
+    }
+
+    public JCTextField getTxtUsername() {
+        return txtUsername;
+    }
+
+    public void setTxtUsername(JCTextField txtUsername) {
+        this.txtUsername = txtUsername;
     }
 
     /**
@@ -187,7 +316,14 @@ public class View_Login extends javax.swing.JFrame {
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Login");
+        
+        boolean valid = dbuser.getUser(txtUsername.getText(), txtPassword.getText());
+        if (valid) {
+            JOptionPane.showMessageDialog(this, "Login");
+        } else {
+             JOptionPane.showMessageDialog(this, "Username atau Password salah");
+        }
+       
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void btnSignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignupMouseClicked

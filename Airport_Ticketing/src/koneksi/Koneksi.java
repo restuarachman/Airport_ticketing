@@ -10,11 +10,12 @@ public class Koneksi {
     public static Connection getConnection() throws SQLException{
         if (connection == null){
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/airport_ticketing","root","rootme");
-            } catch (ClassNotFoundException | SQLException ex) {
+    
+                connection = DriverManager.getConnection("jdbc:mysql://localhost/airport_ticketing","root","rootme");
+                System.out.println("Berhasil KONAK");
+            } catch (SQLException ex) {
                 Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
     return connection;
     }
