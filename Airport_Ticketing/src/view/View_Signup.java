@@ -124,6 +124,7 @@ public class View_Signup extends javax.swing.JFrame {
         txtPassword1.setForeground(new java.awt.Color(255, 255, 255));
         txtPassword1.setToolTipText("sssss");
         txtPassword1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txtPassword1.setCaretColor(new java.awt.Color(255, 255, 255));
         panelBackground.add(txtPassword1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 400, 340, 30));
 
         labelPassword.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -135,6 +136,7 @@ public class View_Signup extends javax.swing.JFrame {
         txtPassword.setForeground(new java.awt.Color(255, 255, 255));
         txtPassword.setToolTipText("sssss");
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txtPassword.setCaretColor(new java.awt.Color(255, 255, 255));
         panelBackground.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 308, 340, 30));
 
         labelUsername.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -145,6 +147,7 @@ public class View_Signup extends javax.swing.JFrame {
         txtUsername.setBackground(new java.awt.Color(16, 11, 46));
         txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         txtUsername.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsername.setCaretColor(new java.awt.Color(255, 255, 255));
         txtUsername.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 14)); // NOI18N
         txtUsername.setPhColor(new java.awt.Color(255, 255, 255));
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
