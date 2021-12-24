@@ -64,9 +64,7 @@ public class DAOUser implements DAO {
     }
 
     @Override
-    public boolean getUser(String username, String password) {
-        list = new ArrayList<>();
-        
+    public boolean validate(String username, String password) {      
         try {
             ResultSet result;
             try (Statement statement = Koneksi.getConnection().createStatement()) {
@@ -86,4 +84,23 @@ public class DAOUser implements DAO {
     }
     
   
+    @Override
+    public boolean findUser(String username) {
+        try {
+            ResultSet result;
+            try (Statement statement = Koneksi.getConnection().createStatement()) {
+                result = statement.executeQuery("SELECT * FROM user WHERE username = '" + username + "'");
+                while (result.next()) {     
+                    if (result.getString(2).equals(username)) {
+                        return true;
+                    }
+                }
+            }
+            result.close();
+            return false;
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 }

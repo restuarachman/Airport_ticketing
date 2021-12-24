@@ -317,7 +317,7 @@ public class View_Login extends javax.swing.JFrame {
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
         // TODO add your handling code here:
         
-        boolean valid = dbuser.getUser(txtUsername.getText(), txtPassword.getText());
+        boolean valid = dbuser.validate(txtUsername.getText(), txtPassword.getText());
         if (valid) {
             JOptionPane.showMessageDialog(this, "Login");
         } else {
