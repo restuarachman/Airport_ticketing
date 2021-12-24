@@ -13,5 +13,6 @@ import model.User;
 public interface DAO {
     public void insert(User user);
     public void update(User user);
-    public void delete(int id);
+    public void delete(String username);
+    public boolean getUser(String username, String password);
 }

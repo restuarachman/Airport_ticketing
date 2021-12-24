@@ -5,16 +5,20 @@
  */
 package view;
 
-import javax.swing.JComponent;
+
+import dao.DAOUser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.User;
+import sun.security.pkcs11.Secmod;
+
 
 /**
  *
  * @author restu
  */
 public class View_Signup extends javax.swing.JFrame {
-
+    private DAOUser conn = new DAOUser();
     /**
      * Creates new form View
      */
@@ -167,7 +171,22 @@ public class View_Signup extends javax.swing.JFrame {
 
     private void btnSignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignupMouseClicked
         // TODO add your handling code here:
-        
+        if (!txtUsername.getText().equals("") && !txtPassword.getText().equals("") && !txtPassword1.getText().equals("")) {
+            if(txtPassword.getText().equals(txtPassword1.getText())) {
+                conn.insert(new User(txtUsername.getText(), txtPassword.getText()));
+                JOptionPane.showMessageDialog(this, "Berhasil daftar");
+                txtUsername.setText(null);
+                txtPassword.setText(null);
+                txtPassword1.setText(null);
+                this.dispose();
+                View_Login frameLogin = new View_Login();
+                frameLogin.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Password tidak sama");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Field harus diisi semua");
+        }
     }//GEN-LAST:event_btnSignupMouseClicked
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
