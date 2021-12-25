@@ -36,16 +36,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         setResizable(false);
     }
 
-    public View_Panel_User() {
-        this.user = user;
-        
-        System.out.println(user);
-        initComponents();
-        username.setText(user.getUsername());
-        setExtendedState(JFrame.MAXIMIZED_HORIZ);
-        setVisible(true);
-        setResizable(false);
-    }
+    
 
     
 
