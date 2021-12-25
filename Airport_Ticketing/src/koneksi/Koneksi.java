@@ -15,6 +15,7 @@ public class Koneksi {
                 System.out.println("Berhasil KONAK");
             } catch (SQLException ex) {
                 Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
         }
     }
     return connection;

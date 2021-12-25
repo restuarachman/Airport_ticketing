@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package view.user;
 
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 /**
@@ -23,6 +24,7 @@ public class View_Panel_User_About extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setVisible(true);
         setResizable(false);
+        
     }
 
     /**
@@ -35,11 +37,34 @@ public class View_Panel_User_About extends javax.swing.JFrame {
 
         aboutPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btnClose = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        aboutPanel.setBackground(new java.awt.Color(255, 255, 255));
+        aboutPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(48, 57, 82)));
+        aboutPanel.setForeground(new java.awt.Color(255, 255, 255));
+        aboutPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                aboutPanelComponentHidden(evt);
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(48, 57, 82));
         jLabel1.setText("Copyright 2021");
+
+        btnClose.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnClose.setForeground(new java.awt.Color(48, 57, 82));
+        btnClose.setText("X");
+        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCloseMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout aboutPanelLayout = new javax.swing.GroupLayout(aboutPanel);
         aboutPanel.setLayout(aboutPanelLayout);
@@ -49,11 +74,17 @@ public class View_Panel_User_About extends javax.swing.JFrame {
                 .addContainerGap(151, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap(151, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnClose)
+                .addContainerGap())
         );
         aboutPanelLayout.setVerticalGroup(
             aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutPanelLayout.createSequentialGroup()
-                .addContainerGap(226, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(53, 53, 53))
         );
@@ -63,6 +94,18 @@ public class View_Panel_User_About extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void aboutPanelComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_aboutPanelComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aboutPanelComponentHidden
+
+    private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
+        
+        
+        
+        this.dispose();
+        
+    }//GEN-LAST:event_btnCloseMouseClicked
 
     /**
      * @param args the command line arguments
@@ -102,6 +145,14 @@ public class View_Panel_User_About extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aboutPanel;
+    private javax.swing.JLabel btnClose;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+    private View_Panel_User View_Panel_User() {
+        return null;
+        
+    }
+
+    
 }
