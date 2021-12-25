@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import view.user.View_Panel_User;
 /**
  *
  * @author restu
@@ -276,6 +277,7 @@ public class View_Login extends javax.swing.JFrame {
         txtPassword.setForeground(new java.awt.Color(255, 255, 255));
         txtPassword.setToolTipText("");
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txtPassword.setCaretColor(new java.awt.Color(255, 255, 255));
         panelBackground.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 308, 340, 30));
 
         labelUsername.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
