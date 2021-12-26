@@ -5,9 +5,12 @@
  */
 package view.user;
 
+import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.User;
@@ -23,20 +26,17 @@ public class View_Panel_User extends javax.swing.JFrame {
     /**
      * Creates new form View
      */
-    private User user;
-    public View_Panel_User(User user) {
-        this.user = user;
-        
-        System.out.println(user.getUsername());
+
+    public View_Panel_User() {
+  
         
         initComponents();
-        username.setText(user.getUsername());
+       
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setVisible(true);
         setResizable(false);
     }
 
-    
 
     
 
@@ -355,7 +355,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         if (dialogResult == 0) {
             View_Login frame = new View_Login();
             frame.setVisible(true);
-            frame.getTxtUsername().setText(user.getUsername());
+            frame.getTxtUsername().setText("TEST");
         }
 
         this.dispose();
@@ -443,7 +443,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new View_Panel_User(new User("username","username")).setVisible(true);
+                new View_Panel_User().setVisible(true);
             }
         });
     }
@@ -480,6 +480,46 @@ public class View_Panel_User extends javax.swing.JFrame {
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
 
+    public int getxMouse() {
+        return xMouse;
+    }
+
+    public void setxMouse(int xMouse) {
+        this.xMouse = xMouse;
+    }
+
+    public int getyMouse() {
+        return yMouse;
+    }
+
+    public void setyMouse(int yMouse) {
+        this.yMouse = yMouse;
+    }
+
+    public JPanel getDynamicPanel() {
+        return DynamicPanel;
+    }
+
+    public void setDynamicPanel(JPanel DynamicPanel) {
+        this.DynamicPanel = DynamicPanel;
+    }
+
+    public JLabel getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(JLabel backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
+
+    public JPanel getBodyPanel() {
+        return bodyPanel;
+    }
+
+    public void setBodyPanel(JPanel bodyPanel) {
+        this.bodyPanel = bodyPanel;
+    }
+
     public JButton getBtnAbout() {
         return btnAbout;
     }
@@ -488,23 +528,207 @@ public class View_Panel_User extends javax.swing.JFrame {
         this.btnAbout = btnAbout;
     }
 
-    public JPanel getDynamicPanel() {
-        return DynamicPanel;
+    public JButton getBtnBeliTiket() {
+        return btnBeliTiket;
+    }
+
+    public void setBtnBeliTiket(JButton btnBeliTiket) {
+        this.btnBeliTiket = btnBeliTiket;
+    }
+
+    public JButton getBtnCariPenerbangan() {
+        return btnCariPenerbangan;
+    }
+
+    public void setBtnCariPenerbangan(JButton btnCariPenerbangan) {
+        this.btnCariPenerbangan = btnCariPenerbangan;
+    }
+
+    public JButton getBtnDashboard() {
+        return btnDashboard;
+    }
+
+    public void setBtnDashboard(JButton btnDashboard) {
+        this.btnDashboard = btnDashboard;
+    }
+
+    public JButton getBtnDashboard1() {
+        return btnDashboard1;
+    }
+
+    public void setBtnDashboard1(JButton btnDashboard1) {
+        this.btnDashboard1 = btnDashboard1;
+    }
+
+    public JButton getBtnHome3() {
+        return btnHome3;
+    }
+
+    public void setBtnHome3(JButton btnHome3) {
+        this.btnHome3 = btnHome3;
+    }
+
+    public JPanel getBuyTiketPanel() {
+        return buyTiketPanel;
+    }
+
+    public void setBuyTiketPanel(JPanel buyTiketPanel) {
+        this.buyTiketPanel = buyTiketPanel;
     }
 
     public JPanel getDashboardPanel() {
         return dashboardPanel;
     }
 
-    public User getUser() {
-        return user;
+    public void setDashboardPanel(JPanel dashboardPanel) {
+        this.dashboardPanel = dashboardPanel;
+    }
+
+    public JComboBox<String> getjComboBox1() {
+        return jComboBox1;
+    }
+
+    public void setjComboBox1(JComboBox<String> jComboBox1) {
+        this.jComboBox1 = jComboBox1;
+    }
+
+    public JComboBox<String> getjComboBox2() {
+        return jComboBox2;
+    }
+
+    public void setjComboBox2(JComboBox<String> jComboBox2) {
+        this.jComboBox2 = jComboBox2;
+    }
+
+    public JComboBox<String> getjComboBox3() {
+        return jComboBox3;
+    }
+
+    public void setjComboBox3(JComboBox<String> jComboBox3) {
+        this.jComboBox3 = jComboBox3;
+    }
+
+    public JComboBox<String> getjComboBox4() {
+        return jComboBox4;
+    }
+
+    public void setjComboBox4(JComboBox<String> jComboBox4) {
+        this.jComboBox4 = jComboBox4;
+    }
+
+    public JDateChooser getjDateChooser1() {
+        return jDateChooser1;
+    }
+
+    public void setjDateChooser1(JDateChooser jDateChooser1) {
+        this.jDateChooser1 = jDateChooser1;
+    }
+
+    public JLabel getjLabel10() {
+        return jLabel10;
+    }
+
+    public void setjLabel10(JLabel jLabel10) {
+        this.jLabel10 = jLabel10;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public void setjLabel6(JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public void setjLabel7(JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public void setjLabel8(JLabel jLabel8) {
+        this.jLabel8 = jLabel8;
+    }
+
+    public JLabel getjLabel9() {
+        return jLabel9;
+    }
+
+    public void setjLabel9(JLabel jLabel9) {
+        this.jLabel9 = jLabel9;
+    }
+
+    public JPanel getMenuPanel() {
+        return menuPanel;
+    }
+
+    public void setMenuPanel(JPanel menuPanel) {
+        this.menuPanel = menuPanel;
+    }
+
+    public JPanel getMoveableFrame() {
+        return moveableFrame;
+    }
+
+    public void setMoveableFrame(JPanel moveableFrame) {
+        this.moveableFrame = moveableFrame;
+    }
+
+    public JLabel getUsername() {
+        return username;
+    }
+
+    public void setUsername(JLabel username) {
+        this.username = username;
+    }
+
+    public JLabel getWelcome() {
+        return welcome;
+    }
+
+    public void setWelcome(JLabel welcome) {
+        this.welcome = welcome;
     }
 
     
-    
-    private Object View_Panel_User_ListPenerbangan() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     
 
