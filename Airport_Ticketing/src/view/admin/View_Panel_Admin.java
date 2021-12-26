@@ -279,7 +279,7 @@ public class View_Panel_Admin extends javax.swing.JFrame {
         btnCariPenerbangan1.setBackground(new java.awt.Color(47, 54, 64));
         btnCariPenerbangan1.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
         btnCariPenerbangan1.setForeground(new java.awt.Color(255, 255, 255));
-        btnCariPenerbangan1.setText("CARI PENERBANGAN");
+        btnCariPenerbangan1.setText("Tambah Penerbangan");
         btnCariPenerbangan1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCariPenerbangan1MouseClicked(evt);
@@ -374,7 +374,7 @@ public class View_Panel_Admin extends javax.swing.JFrame {
         btnCariPenerbangan.setBackground(new java.awt.Color(47, 54, 64));
         btnCariPenerbangan.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
         btnCariPenerbangan.setForeground(new java.awt.Color(255, 255, 255));
-        btnCariPenerbangan.setText("Tambah Penerbangan");
+        btnCariPenerbangan.setText("Edit Penerbangan");
         btnCariPenerbangan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCariPenerbanganMouseClicked(evt);
