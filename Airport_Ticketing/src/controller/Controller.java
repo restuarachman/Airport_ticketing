@@ -14,6 +14,7 @@ import model.User;
 import view.View_Login;
 import view.View_Signup;
 import view.user.View_Panel_User;
+import view.user.dialog.dialogFrame_Penerbangan_notFound;
 
 /**
  *
@@ -25,8 +26,10 @@ public class Controller {
     View_Login frame_login;
     View_Panel_User frame_pUser = new View_Panel_User();
     View_Signup frame_signup = new View_Signup();
+    dialogFrame_Penerbangan_notFound frame_notfound = new dialogFrame_Penerbangan_notFound();
     
     public Controller(View_Login v_login) {
+        frame_notfound.setVisible(false);
         frame_signup.setVisible(false);
         frame_pUser.setVisible(false);
         
@@ -37,13 +40,15 @@ public class Controller {
         listener Listener = new listener();
         frame_login.addListener(Listener); 
         frame_signup.addListener(Listener);
+        frame_pUser.addListener(Listener);
+        frame_notfound.addListener(Listener);
     }
     
     class listener implements MouseListener {
         
         @Override
         public void mouseClicked(MouseEvent e) {
-           
+            System.out.println("KONAKENKOK");
         // FRAME LOGIN
             // BTN LOGIN
             if (e.getComponent() == frame_login.getBtnLogin()) {
@@ -93,6 +98,16 @@ public class Controller {
                 } else {
                     JOptionPane.showMessageDialog(frame_signup, "Field harus diisi semua");
                 }
+            }
+            
+        // frame Panel User
+            if (e.getComponent() == frame_pUser.getBtnCariPenerbangan()) {
+                move(frame_pUser, frame_notfound);
+            }
+            
+        // DIALOG NOTFOUND
+            if (e.getComponent() == frame_notfound.getBtnGantiPencarian()) {
+                move(frame_notfound, frame_pUser);
             }
         }
 

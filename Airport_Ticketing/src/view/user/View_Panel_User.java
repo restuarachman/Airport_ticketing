@@ -6,6 +6,7 @@
 package view.user;
 
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -378,12 +379,6 @@ public class View_Panel_User extends javax.swing.JFrame {
 
     private void btnCariPenerbanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariPenerbanganActionPerformed
         // TODO add your handling code here:
-//        this.setVisible(false);
-//        View_Panel_User_ListPenerbangan frameListPenerbangan = new View_Panel_User_ListPenerbangan();
-//        frameListPenerbangan.setVisible(true);
-        
-        dialogFrame_Penerbangan_notFound frame = new dialogFrame_Penerbangan_notFound();
-        frame.setVisible(true);
         
     }//GEN-LAST:event_btnCariPenerbanganActionPerformed
 
@@ -724,5 +719,9 @@ public class View_Panel_User extends javax.swing.JFrame {
 
     public void setWelcome(JLabel welcome) {
         this.welcome = welcome;
+    }
+    
+    public void addListener(MouseListener listener) {
+        btnCariPenerbangan.addMouseListener(listener);
     }
 }
