@@ -10,9 +10,7 @@ public class Koneksi {
     public static Connection getConnection() throws SQLException{
         if (connection == null){
             try {
-    
                 connection = DriverManager.getConnection("jdbc:mysql://localhost/airport_ticketing","root","rootme");
-                System.out.println("Berhasil KONAK");
             } catch (SQLException ex) {
                 Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
                 ex.printStackTrace();
