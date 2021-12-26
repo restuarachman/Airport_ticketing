@@ -8,16 +8,20 @@ package controller;
 import com.toedter.calendar.JDateChooser;
 import dao.DAOBuyTicket;
 import dao.DAOUser;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import model.Pesawat;
 import model.User;
 import view.View_Login;
 import view.View_Signup;
 import view.user.View_Panel_User;
+import view.user.View_Panel_User_IsiDataPenumpang;
 import view.user.View_Panel_User_ListPenerbangan;
 import view.user.dialog.dialogFrame_Penerbangan_notFound;
 
@@ -34,8 +38,10 @@ public class Controller {
     View_Signup frame_signup = new View_Signup();
     View_Panel_User_ListPenerbangan frame_listPenerbangan = new View_Panel_User_ListPenerbangan();
     dialogFrame_Penerbangan_notFound frame_notfound = new dialogFrame_Penerbangan_notFound();
+    View_Panel_User_IsiDataPenumpang frame_isidata = new View_Panel_User_IsiDataPenumpang();
     
     public Controller(View_Login v_login) {
+        frame_isidata.setVisible(false);
         frame_listPenerbangan.setVisible(false);
         frame_notfound.setVisible(false);
         frame_signup.setVisible(false);
@@ -50,6 +56,7 @@ public class Controller {
         frame_signup.addListener(Listener);
         frame_pUser.addListener(Listener);
         frame_notfound.addListener(Listener);
+        frame_listPenerbangan.addListener(Listener);
     }
     
     class listener implements MouseListener {
@@ -114,22 +121,32 @@ public class Controller {
             // btn cari penerbangan
             if (e.getComponent() == frame_pUser.getBtnCariPenerbangan()) {
                 Date utilDate = frame_pUser.getTxt_tanggal().getDate();
-                System.out.println((String)frame_pUser.getTxt_dari().getSelectedItem()+(String)frame_pUser.getTxt_ke().getSelectedItem()+utilDate);
                 
                 List<String> list_pesawat = daoBuyTicket.cariPesawat((String)frame_pUser.getTxt_dari().getSelectedItem(), (String)frame_pUser.getTxt_ke().getSelectedItem(), utilDate);
                 if (list_pesawat.isEmpty()) {
                     move(frame_pUser, frame_notfound);
                 } else {
-                    daoBuyTicket.fillJlistPesawat(frame_listPenerbangan.getList_pesawat(), list_pesawat);
+                   daoBuyTicket.fillTabelPesawat(frame_listPenerbangan,list_pesawat);
+                    
                 }
              
                 
                 move(frame_pUser, frame_listPenerbangan);
             }
             
+        // FRAME LIST PENERBANGAN
+            if (e.getComponent() == frame_listPenerbangan.getBtnCariPenerbangan()) {
+                move(frame_listPenerbangan, frame_isidata);
+            }
+            
         // DIALOG NOTFOUND
             // btn ganti pencarian
             if (e.getComponent() == frame_notfound.getBtnGantiPencarian()) {
+                move(frame_notfound, frame_pUser);
+            }
+            
+        // FRAME ISI DATA
+            if (e.getComponent() == frame_isidata.getBtnSimpanData()) {
                 move(frame_notfound, frame_pUser);
             }
         }
