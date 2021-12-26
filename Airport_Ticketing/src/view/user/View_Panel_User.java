@@ -8,12 +8,10 @@ package view.user;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import model.User;
 import view.View_Login;
 import view.user.dialog.dialogFrame_Penerbangan_notFound;
 
@@ -727,9 +725,4 @@ public class View_Panel_User extends javax.swing.JFrame {
     public void setWelcome(JLabel welcome) {
         this.welcome = welcome;
     }
-
-    
-
-    
-
 }
