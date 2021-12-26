@@ -8,6 +8,7 @@ package view;
 
 import app.bolivia.swing.JCTextField;
 import dao.DAOUser;
+import java.awt.event.MouseListener;
 import model.User;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -319,19 +320,7 @@ public class View_Login extends javax.swing.JFrame {
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
         // TODO add your handling code here:
         
-        boolean valid = dbuser.validate(txtUsername.getText(), txtPassword.getText());
-     
-        if (valid) {
-            JOptionPane.showMessageDialog(this, "Login");
-            
-            View_Panel_User frameDashboard = new View_Panel_User(new User(txtUsername.getText(), txtPassword.getText()));
-            frameDashboard.setVisible(valid);
-            this.dispose();
-            
-            
-        } else {
-             JOptionPane.showMessageDialog(this, "Username atau Password salah");
-        }
+        
        
     }//GEN-LAST:event_btnLoginMouseClicked
 
@@ -343,10 +332,7 @@ public class View_Login extends javax.swing.JFrame {
     private void forSignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forSignupMouseClicked
         // TODO add your handling code here:
         
-        View_Signup frameSignup = new View_Signup();
-        frameSignup.setVisible(true);
         
-        this.dispose();
         
     }//GEN-LAST:event_forSignupMouseClicked
     
@@ -401,6 +387,12 @@ public class View_Login extends javax.swing.JFrame {
                 new View_Login().setVisible(true);
             }
         });
+    }
+    
+    public void addListener(MouseListener listener) {
+        btnLogin.addMouseListener(listener);
+        forSignup.addMouseListener(listener);
+        btnClose.addMouseListener(listener);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
