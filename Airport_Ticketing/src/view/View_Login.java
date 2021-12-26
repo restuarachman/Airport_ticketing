@@ -9,7 +9,6 @@ package view;
 import app.bolivia.swing.JCTextField;
 import dao.DAOUser;
 import java.awt.event.MouseListener;
-import model.User;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
