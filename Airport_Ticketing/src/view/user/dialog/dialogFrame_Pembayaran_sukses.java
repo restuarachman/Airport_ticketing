@@ -5,6 +5,8 @@
  */
 package view.user.dialog;
 
+import java.awt.Color;
+
 /**
  *
  * @author USER
@@ -16,6 +18,8 @@ public class dialogFrame_Pembayaran_sukses extends javax.swing.JFrame {
      */
     public dialogFrame_Pembayaran_sukses() {
         initComponents();
+        
+        setBackground(new Color(0,0,0,0));
     }
 
     /**
@@ -26,21 +30,61 @@ public class dialogFrame_Pembayaran_sukses extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnContinue = new javax.swing.JButton();
+        label_pembayaran_berhasil = new javax.swing.JLabel();
+        icon_sukses = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        btnContinue.setBackground(new java.awt.Color(47, 54, 64));
+        btnContinue.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
+        btnContinue.setForeground(new java.awt.Color(255, 255, 255));
+        btnContinue.setText("Continue");
+        btnContinue.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnContinueMouseClicked(evt);
+            }
+        });
+        btnContinue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinueActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnContinue, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 120, 40));
 
-        pack();
+        label_pembayaran_berhasil.setBackground(new java.awt.Color(48, 57, 82));
+        label_pembayaran_berhasil.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 18)); // NOI18N
+        label_pembayaran_berhasil.setForeground(new java.awt.Color(48, 57, 82));
+        label_pembayaran_berhasil.setText("Pembayaran Berhasil !");
+        getContentPane().add(label_pembayaran_berhasil, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, 30));
+
+        icon_sukses.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        icon_sukses.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/img/ceklis.gif"))); // NOI18N
+        getContentPane().add(icon_sukses, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 100, 90));
+
+        background.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/img/BackgroundDialog.png"))); // NOI18N
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 400, 250));
+
+        setSize(new java.awt.Dimension(606, 365));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnContinueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinueMouseClicked
+        // TODO add your handling code here:
+
+        //        this.setVisible(false);
+    }//GEN-LAST:event_btnContinueMouseClicked
+
+    private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
+        // TODO add your handling code here:
+
+        this.setVisible(false);
+
+    }//GEN-LAST:event_btnContinueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +122,9 @@ public class dialogFrame_Pembayaran_sukses extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
+    private javax.swing.JButton btnContinue;
+    private javax.swing.JLabel icon_sukses;
+    private javax.swing.JLabel label_pembayaran_berhasil;
     // End of variables declaration//GEN-END:variables
 }

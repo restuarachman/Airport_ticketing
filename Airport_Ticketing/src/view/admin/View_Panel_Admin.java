@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.user;
+package view.admin;
 
+import view.user.*;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -18,13 +19,13 @@ import view.user.dialog.dialogFrame_Penerbangan_notFound;
  *
  * @author restu
  */
-public class View_Panel_User extends javax.swing.JFrame {
+public class View_Panel_Admin extends javax.swing.JFrame {
 
     /**
      * Creates new form View
      */
     private User user;
-    public View_Panel_User(User user) {
+    public View_Panel_Admin(User user) {
         this.user = user;
         
         System.out.println(user.getUsername());
@@ -54,32 +55,51 @@ public class View_Panel_User extends javax.swing.JFrame {
         bodyPanel = new javax.swing.JPanel();
         moveableFrame = new javax.swing.JPanel();
         menuPanel = new javax.swing.JPanel();
-        btnBeliTiket = new javax.swing.JButton();
+        btnAddPlane = new javax.swing.JButton();
         btnDashboard = new javax.swing.JButton();
         btnAbout = new javax.swing.JButton();
         btnHome3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnDashboard1 = new javax.swing.JButton();
+        btnEditPanel = new javax.swing.JButton();
         DynamicPanel = new javax.swing.JPanel();
         dashboardPanel = new javax.swing.JPanel();
         welcome = new javax.swing.JLabel();
         username = new javax.swing.JLabel();
         backgroundImage = new javax.swing.JLabel();
-        buyTiketPanel = new javax.swing.JPanel();
+        AddPanel = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        btnCariPenerbangan1 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jComboBox9 = new javax.swing.JComboBox<>();
+        jComboBox10 = new javax.swing.JComboBox<>();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel19 = new javax.swing.JLabel();
+        jComboBox11 = new javax.swing.JComboBox<>();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        EditPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabel10 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
         btnCariPenerbangan = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jComboBox5 = new javax.swing.JComboBox<>();
+        jComboBox6 = new javax.swing.JComboBox<>();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel13 = new javax.swing.JLabel();
+        jComboBox7 = new javax.swing.JComboBox<>();
+        jTextField3 = new javax.swing.JTextField();
+        jComboBox8 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -117,16 +137,16 @@ public class View_Panel_User extends javax.swing.JFrame {
         menuPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         menuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnBeliTiket.setBackground(new java.awt.Color(47, 54, 64));
-        btnBeliTiket.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
-        btnBeliTiket.setForeground(new java.awt.Color(255, 255, 255));
-        btnBeliTiket.setText("BUY TICKET");
-        btnBeliTiket.addActionListener(new java.awt.event.ActionListener() {
+        btnAddPlane.setBackground(new java.awt.Color(47, 54, 64));
+        btnAddPlane.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
+        btnAddPlane.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddPlane.setText("ADD PLANE");
+        btnAddPlane.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBeliTiketActionPerformed(evt);
+                btnAddPlaneActionPerformed(evt);
             }
         });
-        menuPanel.add(btnBeliTiket, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 164, 53));
+        menuPanel.add(btnAddPlane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 164, 53));
 
         btnDashboard.setBackground(new java.awt.Color(47, 54, 64));
         btnDashboard.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
@@ -182,6 +202,17 @@ public class View_Panel_User extends javax.swing.JFrame {
         });
         menuPanel.add(btnDashboard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 164, 53));
 
+        btnEditPanel.setBackground(new java.awt.Color(47, 54, 64));
+        btnEditPanel.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
+        btnEditPanel.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditPanel.setText("EDIT");
+        btnEditPanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditPanelActionPerformed(evt);
+            }
+        });
+        menuPanel.add(btnEditPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 164, 53));
+
         bodyPanel.add(menuPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 185, 588));
 
         DynamicPanel.setBackground(new java.awt.Color(52, 73, 94));
@@ -212,72 +243,138 @@ public class View_Panel_User extends javax.swing.JFrame {
 
         DynamicPanel.add(dashboardPanel, "card2");
 
-        buyTiketPanel.setBackground(new java.awt.Color(255, 255, 255));
-        buyTiketPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        AddPanel.setBackground(new java.awt.Color(255, 255, 255));
+        AddPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel9.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel9.setText("EDIT ");
+        AddPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 21, -1, -1));
+
+        jLabel10.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel10.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel10.setText("Detail Penerbangan");
+        AddPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 83, -1, -1));
+
+        jLabel14.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel14.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel14.setText("Nama Pesawat");
+        AddPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 149, -1, -1));
+
+        jLabel15.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel15.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel15.setText("Ke");
+        AddPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, -1, -1));
+
+        jLabel16.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel16.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel16.setText("Slot Kursi");
+        AddPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 150, -1, -1));
+
+        btnCariPenerbangan1.setBackground(new java.awt.Color(47, 54, 64));
+        btnCariPenerbangan1.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
+        btnCariPenerbangan1.setForeground(new java.awt.Color(255, 255, 255));
+        btnCariPenerbangan1.setText("Tambah Penerbangan");
+        btnCariPenerbangan1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCariPenerbangan1MouseClicked(evt);
+            }
+        });
+        btnCariPenerbangan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariPenerbangan1ActionPerformed(evt);
+            }
+        });
+        AddPanel.add(btnCariPenerbangan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 190, 60));
+
+        jLabel17.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel17.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel17.setText("Kelas Pesawat");
+        AddPanel.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
+
+        jLabel18.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel18.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel18.setText("Dari");
+        AddPanel.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, -1, -1));
+
+        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        AddPanel.add(jComboBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 110, -1));
+
+        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        AddPanel.add(jComboBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 70, -1));
+        AddPanel.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, 150, -1));
+
+        jLabel19.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel19.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel19.setText("Jadwal Penerbangan");
+        AddPanel.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, -1, -1));
+
+        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        AddPanel.add(jComboBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 70, -1));
+
+        jTextField2.setText("jTextField1");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        AddPanel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+
+        jTextField4.setText("jTextField1");
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        AddPanel.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, -1, -1));
+
+        DynamicPanel.add(AddPanel, "card2");
+
+        EditPanel.setBackground(new java.awt.Color(255, 255, 255));
+        EditPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(48, 57, 82));
         jLabel2.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel2.setText("BUY TICKET");
-        buyTiketPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 21, -1, -1));
+        jLabel2.setText("EDIT ");
+        EditPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 21, -1, -1));
 
         jLabel5.setBackground(new java.awt.Color(48, 57, 82));
         jLabel5.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(48, 57, 82));
         jLabel5.setText("Detail Penerbangan");
-        buyTiketPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 83, -1, -1));
+        EditPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 83, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(48, 57, 82));
         jLabel6.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel6.setText("Dari");
-        buyTiketPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 149, -1, -1));
+        jLabel6.setText("Nama Pesawat");
+        EditPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 149, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(48, 57, 82));
         jLabel7.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(48, 57, 82));
         jLabel7.setText("Ke");
-        buyTiketPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
+        EditPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(48, 57, 82));
         jLabel8.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel8.setText("Tanggal Keberangkatan");
-        buyTiketPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, -1, -1));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        buyTiketPanel.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 170, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Jakarta", "Surabaya", "Bali / Denpasar", "Semarang", "Balikpapan" }));
-        buyTiketPanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 150, -1));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Jakarta", "Surabaya", "Bali / Denpasar", "Semarang", "Balikpapan" }));
-        buyTiketPanel.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 150, -1));
-
-        jLabel9.setBackground(new java.awt.Color(48, 57, 82));
-        jLabel9.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel9.setText("Jumlah Penumpang");
-        buyTiketPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 244, -1, -1));
-
-        jDateChooser1.setBackground(new java.awt.Color(255, 255, 255));
-        jDateChooser1.setForeground(new java.awt.Color(255, 51, 51));
-        jDateChooser1.setMinSelectableDate(new java.util.Date(-62135791105000L));
-        buyTiketPanel.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 160, 30));
-
-        jLabel10.setBackground(new java.awt.Color(48, 57, 82));
-        jLabel10.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel10.setText("Kelas Penerbangan");
-        buyTiketPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Economy", "Business", "Fist Class", " " }));
-        buyTiketPanel.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 170, -1));
+        jLabel8.setText("Slot Kursi");
+        EditPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 150, -1, -1));
 
         btnCariPenerbangan.setBackground(new java.awt.Color(47, 54, 64));
         btnCariPenerbangan.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
         btnCariPenerbangan.setForeground(new java.awt.Color(255, 255, 255));
-        btnCariPenerbangan.setText("CARI PENERBANGAN");
+        btnCariPenerbangan.setText("Edit Penerbangan");
         btnCariPenerbangan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCariPenerbanganMouseClicked(evt);
@@ -288,9 +385,43 @@ public class View_Panel_User extends javax.swing.JFrame {
                 btnCariPenerbanganActionPerformed(evt);
             }
         });
-        buyTiketPanel.add(btnCariPenerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 430, 190, 60));
+        EditPanel.add(btnCariPenerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 190, 60));
 
-        DynamicPanel.add(buyTiketPanel, "card2");
+        jLabel11.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel11.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel11.setText("Kelas Pesawat");
+        EditPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
+
+        jLabel12.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel12.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel12.setText("Dari");
+        EditPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, -1, -1));
+
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        EditPanel.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 110, -1));
+
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        EditPanel.add(jComboBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 70, -1));
+        EditPanel.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, 150, -1));
+
+        jLabel13.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel13.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel13.setText("Jadwal Penerbangan");
+        EditPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, -1, -1));
+
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        EditPanel.add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 70, -1));
+
+        jTextField3.setText("jTextField1");
+        EditPanel.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, -1, -1));
+
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        EditPanel.add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 110, -1));
+
+        DynamicPanel.add(EditPanel, "card2");
 
         bodyPanel.add(DynamicPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 6, 797, 588));
 
@@ -309,7 +440,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBeliTiketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBeliTiketActionPerformed
+    private void btnAddPlaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPlaneActionPerformed
         // TODO add your handling code here:
 
         // remove panel
@@ -318,10 +449,10 @@ public class View_Panel_User extends javax.swing.JFrame {
         DynamicPanel.revalidate();
 
         // add panel
-        DynamicPanel.add(buyTiketPanel);
+        DynamicPanel.add(AddPanel);
         DynamicPanel.repaint();
         DynamicPanel.revalidate();
-    }//GEN-LAST:event_btnBeliTiketActionPerformed
+    }//GEN-LAST:event_btnAddPlaneActionPerformed
 
     private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
         // TODO add your handling code here:
@@ -356,9 +487,9 @@ public class View_Panel_User extends javax.swing.JFrame {
             View_Login frame = new View_Login();
             frame.setVisible(true);
             frame.getTxtUsername().setText(user.getUsername());
-        }else{
-            System.out.println("batal logout");
         }
+
+        this.dispose();
     }//GEN-LAST:event_btnHome3ActionPerformed
 
     private void moveableFrameMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moveableFrameMouseDragged
@@ -380,7 +511,7 @@ public class View_Panel_User extends javax.swing.JFrame {
 
     private void btnCariPenerbanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariPenerbanganActionPerformed
         // TODO add your handling code here:
-//        this.setVisible(false);
+        this.setVisible(false);
 //        View_Panel_User_ListPenerbangan frameListPenerbangan = new View_Panel_User_ListPenerbangan();
 //        frameListPenerbangan.setVisible(true);
         
@@ -395,6 +526,35 @@ public class View_Panel_User extends javax.swing.JFrame {
         
 //        this.setVisible(false);
     }//GEN-LAST:event_btnCariPenerbanganMouseClicked
+
+    private void btnEditPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPanelActionPerformed
+        // TODO add your handling code here:
+         // remove panel
+        DynamicPanel.removeAll();
+        DynamicPanel.repaint();
+        DynamicPanel.revalidate();
+
+        // add panel
+        DynamicPanel.add(EditPanel);
+        DynamicPanel.repaint();
+        DynamicPanel.revalidate();
+    }//GEN-LAST:event_btnEditPanelActionPerformed
+
+    private void btnCariPenerbangan1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCariPenerbangan1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCariPenerbangan1MouseClicked
+
+    private void btnCariPenerbangan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariPenerbangan1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCariPenerbangan1ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
     
     private int xMouse, yMouse;
     
@@ -415,14 +575,30 @@ public class View_Panel_User extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View_Panel_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View_Panel_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View_Panel_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View_Panel_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -443,29 +619,45 @@ public class View_Panel_User extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new View_Panel_User(new User("username","username")).setVisible(true);
+                new View_Panel_Admin(new User("username","username")).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AddPanel;
     private javax.swing.JPanel DynamicPanel;
+    private javax.swing.JPanel EditPanel;
     private javax.swing.JLabel backgroundImage;
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JButton btnAbout;
-    private javax.swing.JButton btnBeliTiket;
+    private javax.swing.JButton btnAddPlane;
     private javax.swing.JButton btnCariPenerbangan;
+    private javax.swing.JButton btnCariPenerbangan1;
     private javax.swing.JButton btnDashboard;
     private javax.swing.JButton btnDashboard1;
+    private javax.swing.JButton btnEditPanel;
     private javax.swing.JButton btnHome3;
-    private javax.swing.JPanel buyTiketPanel;
     private javax.swing.JPanel dashboardPanel;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox10;
+    private javax.swing.JComboBox<String> jComboBox11;
+    private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> jComboBox6;
+    private javax.swing.JComboBox<String> jComboBox7;
+    private javax.swing.JComboBox<String> jComboBox8;
+    private javax.swing.JComboBox<String> jComboBox9;
     private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -474,6 +666,9 @@ public class View_Panel_User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JPanel moveableFrame;
     private javax.swing.JLabel username;

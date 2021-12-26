@@ -91,7 +91,7 @@ public class dialogFrame_Penerbangan_notFound extends javax.swing.JFrame {
     private void btnGantiPencarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGantiPencarianActionPerformed
         // TODO add your handling code here:
         
-        
+        this.setVisible(false);
 
         
 

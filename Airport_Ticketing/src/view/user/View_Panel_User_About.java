@@ -36,8 +36,12 @@ public class View_Panel_User_About extends javax.swing.JFrame {
     private void initComponents() {
 
         aboutPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        copyright1 = new javax.swing.JLabel();
+        copyright = new javax.swing.JLabel();
         btnClose = new javax.swing.JLabel();
+        copyright2 = new javax.swing.JLabel();
+        copyright3 = new javax.swing.JLabel();
+        copyright4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -52,10 +56,17 @@ public class View_Panel_User_About extends javax.swing.JFrame {
                 aboutPanelComponentHidden(evt);
             }
         });
+        aboutPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel1.setText("Copyright 2021");
+        copyright1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        copyright1.setForeground(new java.awt.Color(48, 57, 82));
+        copyright1.setText("Irwan Reza Firmansyah  -  1301194018");
+        aboutPanel.add(copyright1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
+
+        copyright.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        copyright.setForeground(new java.awt.Color(48, 57, 82));
+        copyright.setText("About Us");
+        aboutPanel.add(copyright, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, -1, -1));
 
         btnClose.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnClose.setForeground(new java.awt.Color(48, 57, 82));
@@ -65,31 +76,24 @@ public class View_Panel_User_About extends javax.swing.JFrame {
                 btnCloseMouseClicked(evt);
             }
         });
+        aboutPanel.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, 20));
 
-        javax.swing.GroupLayout aboutPanelLayout = new javax.swing.GroupLayout(aboutPanel);
-        aboutPanel.setLayout(aboutPanelLayout);
-        aboutPanelLayout.setHorizontalGroup(
-            aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutPanelLayout.createSequentialGroup()
-                .addContainerGap(151, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(151, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnClose)
-                .addContainerGap())
-        );
-        aboutPanelLayout.setVerticalGroup(
-            aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(53, 53, 53))
-        );
+        copyright2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        copyright2.setForeground(new java.awt.Color(48, 57, 82));
+        copyright2.setText("Restu Aditya Rachman   -  1301190433");
+        aboutPanel.add(copyright2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
-        getContentPane().add(aboutPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        copyright3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        copyright3.setForeground(new java.awt.Color(48, 57, 82));
+        copyright3.setText("Ramadito Ferdian Assa  -  1301194005");
+        aboutPanel.add(copyright3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
+
+        copyright4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        copyright4.setForeground(new java.awt.Color(48, 57, 82));
+        copyright4.setText("Copyright 2021");
+        aboutPanel.add(copyright4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+
+        getContentPane().add(aboutPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
         setLocationRelativeTo(null);
@@ -146,7 +150,11 @@ public class View_Panel_User_About extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aboutPanel;
     private javax.swing.JLabel btnClose;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel copyright;
+    private javax.swing.JLabel copyright1;
+    private javax.swing.JLabel copyright2;
+    private javax.swing.JLabel copyright3;
+    private javax.swing.JLabel copyright4;
     // End of variables declaration//GEN-END:variables
 
     private View_Panel_User View_Panel_User() {
