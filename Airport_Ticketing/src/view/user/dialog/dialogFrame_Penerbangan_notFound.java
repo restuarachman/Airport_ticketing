@@ -5,6 +5,11 @@
  */
 package view.user.dialog;
 
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author USER
@@ -90,11 +95,7 @@ public class dialogFrame_Penerbangan_notFound extends javax.swing.JFrame {
 
     private void btnGantiPencarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGantiPencarianActionPerformed
         // TODO add your handling code here:
-        
-        this.setVisible(false);
-
-        
-
+       
     }//GEN-LAST:event_btnGantiPencarianActionPerformed
 
     /**
@@ -132,6 +133,45 @@ public class dialogFrame_Penerbangan_notFound extends javax.swing.JFrame {
         });
     }
 
+    public void setBackground(JPanel Background) {
+        this.Background = Background;
+    }
+
+    public JButton getBtnGantiPencarian() {
+        return btnGantiPencarian;
+    }
+
+    public void setBtnGantiPencarian(JButton btnGantiPencarian) {
+        this.btnGantiPencarian = btnGantiPencarian;
+    }
+
+    public JLabel getjLabel11() {
+        return jLabel11;
+    }
+
+    public void setjLabel11(JLabel jLabel11) {
+        this.jLabel11 = jLabel11;
+    }
+
+    public JLabel getjLabel12() {
+        return jLabel12;
+    }
+
+    public void setjLabel12(JLabel jLabel12) {
+        this.jLabel12 = jLabel12;
+    }
+
+    public JLabel getjLabel13() {
+        return jLabel13;
+    }
+
+    public void setjLabel13(JLabel jLabel13) {
+        this.jLabel13 = jLabel13;
+    }
+
+    public void addListener(MouseListener listener) {
+        btnGantiPencarian.addMouseListener(listener);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JButton btnGantiPencarian;
