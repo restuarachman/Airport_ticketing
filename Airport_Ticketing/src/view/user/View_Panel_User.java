@@ -353,8 +353,6 @@ public class View_Panel_User extends javax.swing.JFrame {
         if (dialogResult == 0) {
             View_Login frame = new View_Login();
             frame.setVisible(true);
-
-            frame.getTxtUsername().setText(user.getUsername());
         }else{
             System.out.println("batal logout");
 
