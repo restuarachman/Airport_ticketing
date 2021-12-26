@@ -5,15 +5,20 @@
  */
 package controller;
 
+import com.toedter.calendar.JDateChooser;
+import dao.DAOBuyTicket;
 import dao.DAOUser;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.User;
 import view.View_Login;
 import view.View_Signup;
 import view.user.View_Panel_User;
+import view.user.View_Panel_User_ListPenerbangan;
 import view.user.dialog.dialogFrame_Penerbangan_notFound;
 
 /**
@@ -22,13 +27,16 @@ import view.user.dialog.dialogFrame_Penerbangan_notFound;
  */
 public class Controller {
     DAOUser da = new DAOUser();
+    DAOBuyTicket daoBuyTicket = new DAOBuyTicket();
     User user = new User();
     View_Login frame_login;
     View_Panel_User frame_pUser = new View_Panel_User();
     View_Signup frame_signup = new View_Signup();
+    View_Panel_User_ListPenerbangan frame_listPenerbangan = new View_Panel_User_ListPenerbangan();
     dialogFrame_Penerbangan_notFound frame_notfound = new dialogFrame_Penerbangan_notFound();
     
     public Controller(View_Login v_login) {
+        frame_listPenerbangan.setVisible(false);
         frame_notfound.setVisible(false);
         frame_signup.setVisible(false);
         frame_pUser.setVisible(false);
@@ -50,7 +58,7 @@ public class Controller {
         public void mouseClicked(MouseEvent e) {
             System.out.println("KONAKENKOK");
         // FRAME LOGIN
-            // BTN LOGIN
+            // btn login
             if (e.getComponent() == frame_login.getBtnLogin()) {
                 boolean valid = da.validate(frame_login.getTxtUsername().getText(), frame_login.getTxtPassword().getText());
                 if (valid) {
@@ -61,11 +69,13 @@ public class Controller {
 
                     frame_pUser.getUsername().setText(user.getUsername());
                     move(frame_login, frame_pUser);
+                    daoBuyTicket.fillCombobox(frame_pUser.getTxt_ke());
+                    daoBuyTicket.fillCombobox(frame_pUser.getTxt_dari());
                 } else {
                     JOptionPane.showMessageDialog(frame_login, "Username atau Password salah");
                 }
             } 
-            // BTN SIGNUP
+            // btn signup
             if (e.getComponent() == frame_login.getForSignup()){
                 move(frame_login, frame_signup);
             } 
@@ -100,12 +110,25 @@ public class Controller {
                 }
             }
             
-        // frame Panel User
+        // FRAME PANEL USER
+            // btn cari penerbangan
             if (e.getComponent() == frame_pUser.getBtnCariPenerbangan()) {
-                move(frame_pUser, frame_notfound);
+                Date utilDate = frame_pUser.getTxt_tanggal().getDate();
+                System.out.println((String)frame_pUser.getTxt_dari().getSelectedItem()+(String)frame_pUser.getTxt_ke().getSelectedItem()+utilDate);
+                
+                List<String> list_pesawat = daoBuyTicket.cariPesawat((String)frame_pUser.getTxt_dari().getSelectedItem(), (String)frame_pUser.getTxt_ke().getSelectedItem(), utilDate);
+                if (list_pesawat.isEmpty()) {
+                    move(frame_pUser, frame_notfound);
+                } else {
+                    daoBuyTicket.fillJlistPesawat(frame_listPenerbangan.getList_pesawat(), list_pesawat);
+                }
+             
+                
+                move(frame_pUser, frame_listPenerbangan);
             }
             
         // DIALOG NOTFOUND
+            // btn ganti pencarian
             if (e.getComponent() == frame_notfound.getBtnGantiPencarian()) {
                 move(frame_notfound, frame_pUser);
             }
@@ -137,4 +160,7 @@ public class Controller {
         from.setVisible(false);
     }
  
+    public void getDate(JDateChooser gdate) {
+        gdate.getDate();
+    }
 }
