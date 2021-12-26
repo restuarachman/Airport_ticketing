@@ -105,7 +105,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JList" name="jList1">
+                <Component class="javax.swing.JList" name="list_pesawat">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="52" green="39" red="30" type="rgb"/>
@@ -114,28 +114,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                      <StringArray count="20">
-                        <StringItem index="0" value="Pesawat 1"/>
-                        <StringItem index="1" value="Pesawat 2"/>
-                        <StringItem index="2" value="Pesawat 3"/>
-                        <StringItem index="3" value="Pesawat 4"/>
-                        <StringItem index="4" value="Pesawat 5"/>
-                        <StringItem index="5" value="Pesawat 1"/>
-                        <StringItem index="6" value="Pesawat 2"/>
-                        <StringItem index="7" value="Pesawat 3"/>
-                        <StringItem index="8" value="Pesawat 4"/>
-                        <StringItem index="9" value="Pesawat 5"/>
-                        <StringItem index="10" value="Pesawat 1"/>
-                        <StringItem index="11" value="Pesawat 2"/>
-                        <StringItem index="12" value="Pesawat 3"/>
-                        <StringItem index="13" value="Pesawat 4"/>
-                        <StringItem index="14" value="Pesawat 5"/>
-                        <StringItem index="15" value="Pesawat 1"/>
-                        <StringItem index="16" value="Pesawat 2"/>
-                        <StringItem index="17" value="Pesawat 3"/>
-                        <StringItem index="18" value="Pesawat 4"/>
-                        <StringItem index="19" value="Pesawat 5"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
                   </Properties>
                   <AuxValues>

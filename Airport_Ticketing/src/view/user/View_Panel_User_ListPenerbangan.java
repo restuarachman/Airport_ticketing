@@ -5,6 +5,13 @@
  */
 package view.user;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author USER
@@ -30,7 +37,7 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         moveableFrame1 = new javax.swing.JPanel();
         borderList = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        list_pesawat = new javax.swing.JList<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -80,14 +87,9 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(48, 57, 82));
 
-        jList1.setBackground(new java.awt.Color(48, 57, 82));
-        jList1.setForeground(new java.awt.Color(255, 255, 255));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Pesawat 1", "Pesawat 2", "Pesawat 3", "Pesawat 4", "Pesawat 5", "Pesawat 1", "Pesawat 2", "Pesawat 3", "Pesawat 4", "Pesawat 5", "Pesawat 1", "Pesawat 2", "Pesawat 3", "Pesawat 4", "Pesawat 5", "Pesawat 1", "Pesawat 2", "Pesawat 3", "Pesawat 4", "Pesawat 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        list_pesawat.setBackground(new java.awt.Color(48, 57, 82));
+        list_pesawat.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(list_pesawat);
 
         borderList.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 420, 280));
 
@@ -248,6 +250,136 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         });
     }
 
+    public int getxMouse() {
+        return xMouse;
+    }
+
+    public void setxMouse(int xMouse) {
+        this.xMouse = xMouse;
+    }
+
+    public int getyMouse() {
+        return yMouse;
+    }
+
+    public void setyMouse(int yMouse) {
+        this.yMouse = yMouse;
+    }
+
+    public JPanel getBackground() {
+        return Background;
+    }
+
+    public void setBackground(JPanel Background) {
+        this.Background = Background;
+    }
+
+    public JPanel getPanel_List_Penerbangan() {
+        return Panel_List_Penerbangan;
+    }
+
+    public void setPanel_List_Penerbangan(JPanel Panel_List_Penerbangan) {
+        this.Panel_List_Penerbangan = Panel_List_Penerbangan;
+    }
+
+    public JPanel getBorderList() {
+        return borderList;
+    }
+
+    public void setBorderList(JPanel borderList) {
+        this.borderList = borderList;
+    }
+
+    public JButton getBtnCariPenerbangan() {
+        return btnCariPenerbangan;
+    }
+
+    public void setBtnCariPenerbangan(JButton btnCariPenerbangan) {
+        this.btnCariPenerbangan = btnCariPenerbangan;
+    }
+
+    public JLabel getjLabel11() {
+        return jLabel11;
+    }
+
+    public void setjLabel11(JLabel jLabel11) {
+        this.jLabel11 = jLabel11;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public void setjLabel6(JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public void setjLabel7(JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public void setjLabel8(JLabel jLabel8) {
+        this.jLabel8 = jLabel8;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JTextField getjTextField1() {
+        return jTextField1;
+    }
+
+    public void setjTextField1(JTextField jTextField1) {
+        this.jTextField1 = jTextField1;
+    }
+
+    public JTextField getjTextField2() {
+        return jTextField2;
+    }
+
+    public void setjTextField2(JTextField jTextField2) {
+        this.jTextField2 = jTextField2;
+    }
+
+    public JList<String> getList_pesawat() {
+        return list_pesawat;
+    }
+
+    public void setList_pesawat(JList<String> list_pesawat) {
+        this.list_pesawat = list_pesawat;
+    }
+
+    public JPanel getMoveableFrame1() {
+        return moveableFrame1;
+    }
+
+    public void setMoveableFrame1(JPanel moveableFrame1) {
+        this.moveableFrame1 = moveableFrame1;
+    }
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Panel_List_Penerbangan;
@@ -258,10 +390,10 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JList<String> list_pesawat;
     private javax.swing.JPanel moveableFrame1;
     // End of variables declaration//GEN-END:variables
 }

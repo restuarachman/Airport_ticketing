@@ -7,6 +7,8 @@ package view.user;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -25,21 +27,17 @@ public class View_Panel_User extends javax.swing.JFrame {
     /**
      * Creates new form View
      */
-
+ 
     public View_Panel_User() {
-  
+        
         
         initComponents();
        
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setVisible(true);
-        setResizable(false);
+        setResizable(false);   
     }
 
-
-    
-
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,13 +69,13 @@ public class View_Panel_User extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        txt_penumpang = new javax.swing.JComboBox<>();
+        txt_ke = new javax.swing.JComboBox<>();
+        txt_dari = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        txt_tanggal = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        txt_kelas = new javax.swing.JComboBox<>();
         btnCariPenerbangan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -244,14 +242,17 @@ public class View_Panel_User extends javax.swing.JFrame {
         jLabel8.setText("Tanggal Keberangkatan");
         buyTiketPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, -1, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        buyTiketPanel.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 170, -1));
+        txt_penumpang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        buyTiketPanel.add(txt_penumpang, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 170, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Jakarta", "Surabaya", "Bali / Denpasar", "Semarang", "Balikpapan" }));
-        buyTiketPanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 150, -1));
+        buyTiketPanel.add(txt_ke, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 150, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Jakarta", "Surabaya", "Bali / Denpasar", "Semarang", "Balikpapan" }));
-        buyTiketPanel.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 150, -1));
+        txt_dari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_dariActionPerformed(evt);
+            }
+        });
+        buyTiketPanel.add(txt_dari, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 150, -1));
 
         jLabel9.setBackground(new java.awt.Color(48, 57, 82));
         jLabel9.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
@@ -259,10 +260,10 @@ public class View_Panel_User extends javax.swing.JFrame {
         jLabel9.setText("Jumlah Penumpang");
         buyTiketPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 244, -1, -1));
 
-        jDateChooser1.setBackground(new java.awt.Color(255, 255, 255));
-        jDateChooser1.setForeground(new java.awt.Color(255, 51, 51));
-        jDateChooser1.setMinSelectableDate(new java.util.Date(-62135791105000L));
-        buyTiketPanel.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 160, 30));
+        txt_tanggal.setBackground(new java.awt.Color(255, 255, 255));
+        txt_tanggal.setForeground(new java.awt.Color(255, 51, 51));
+        txt_tanggal.setMinSelectableDate(new java.util.Date(-62135791105000L));
+        buyTiketPanel.add(txt_tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 160, 30));
 
         jLabel10.setBackground(new java.awt.Color(48, 57, 82));
         jLabel10.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
@@ -270,8 +271,8 @@ public class View_Panel_User extends javax.swing.JFrame {
         jLabel10.setText("Kelas Penerbangan");
         buyTiketPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Economy", "Business", "Fist Class", " " }));
-        buyTiketPanel.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 170, -1));
+        txt_kelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Economy", "Business", "Fist Class", " " }));
+        buyTiketPanel.add(txt_kelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 170, -1));
 
         btnCariPenerbangan.setBackground(new java.awt.Color(47, 54, 64));
         btnCariPenerbangan.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
@@ -388,6 +389,10 @@ public class View_Panel_User extends javax.swing.JFrame {
         
 //        this.setVisible(false);
     }//GEN-LAST:event_btnCariPenerbanganMouseClicked
+
+    private void txt_dariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dariActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_dariActionPerformed
     
     private int xMouse, yMouse;
     
@@ -453,11 +458,6 @@ public class View_Panel_User extends javax.swing.JFrame {
     private javax.swing.JButton btnHome3;
     private javax.swing.JPanel buyTiketPanel;
     private javax.swing.JPanel dashboardPanel;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -469,6 +469,11 @@ public class View_Panel_User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JPanel moveableFrame;
+    private javax.swing.JComboBox<String> txt_dari;
+    private javax.swing.JComboBox<String> txt_ke;
+    private javax.swing.JComboBox<String> txt_kelas;
+    private javax.swing.JComboBox<String> txt_penumpang;
+    private com.toedter.calendar.JDateChooser txt_tanggal;
     private javax.swing.JLabel username;
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
@@ -577,45 +582,47 @@ public class View_Panel_User extends javax.swing.JFrame {
         this.dashboardPanel = dashboardPanel;
     }
 
-    public JComboBox<String> getjComboBox1() {
-        return jComboBox1;
+    public JComboBox<String> getTxt_dari() {
+        return txt_dari;
     }
 
-    public void setjComboBox1(JComboBox<String> jComboBox1) {
-        this.jComboBox1 = jComboBox1;
+    public void setTxt_dari(JComboBox<String> txt_dari) {
+        this.txt_dari = txt_dari;
     }
 
-    public JComboBox<String> getjComboBox2() {
-        return jComboBox2;
+    public JComboBox<String> getTxt_ke() {
+        return txt_ke;
     }
 
-    public void setjComboBox2(JComboBox<String> jComboBox2) {
-        this.jComboBox2 = jComboBox2;
+    public void setTxt_ke(JComboBox<String> txt_ke) {
+        this.txt_ke = txt_ke;
     }
 
-    public JComboBox<String> getjComboBox3() {
-        return jComboBox3;
+    public JComboBox<String> getTxt_kelas() {
+        return txt_kelas;
     }
 
-    public void setjComboBox3(JComboBox<String> jComboBox3) {
-        this.jComboBox3 = jComboBox3;
+    public void setTxt_kelas(JComboBox<String> txt_kelas) {
+        this.txt_kelas = txt_kelas;
     }
 
-    public JComboBox<String> getjComboBox4() {
-        return jComboBox4;
+    public JComboBox<String> getTxt_penumpang() {
+        return txt_penumpang;
     }
 
-    public void setjComboBox4(JComboBox<String> jComboBox4) {
-        this.jComboBox4 = jComboBox4;
+    public void setTxt_penumpang(JComboBox<String> txt_penumpang) {
+        this.txt_penumpang = txt_penumpang;
     }
 
-    public JDateChooser getjDateChooser1() {
-        return jDateChooser1;
+    public JDateChooser getTxt_tanggal() {
+        return txt_tanggal;
     }
 
-    public void setjDateChooser1(JDateChooser jDateChooser1) {
-        this.jDateChooser1 = jDateChooser1;
+    public void setTxt_tanggal(JDateChooser txt_tanggal) {
+        this.txt_tanggal = txt_tanggal;
     }
+
+    
 
     public JLabel getjLabel10() {
         return jLabel10;

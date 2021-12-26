@@ -10,22 +10,22 @@ package model;
  * @author ASUS
  */
 public class Bandara {
-    private int kodeBandara;
+    private String kodeBandara;
     private String namaBandara;
 
     public Bandara() {
     }
 
-    public Bandara(int kodeBandara, String namaBandara) {
+    public Bandara(String kodeBandara, String namaBandara) {
         this.kodeBandara = kodeBandara;
         this.namaBandara = namaBandara;
     }
 
-    public int getKodeBandara() {
+    public String getKodeBandara() {
         return kodeBandara;
     }
 
-    public void setKodeBandara(int kodeBandara) {
+    public void setKodeBandara(String kodeBandara) {
         this.kodeBandara = kodeBandara;
     }
 
