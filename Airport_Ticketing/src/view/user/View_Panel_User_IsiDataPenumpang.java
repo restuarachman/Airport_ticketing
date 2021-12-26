@@ -9,12 +9,12 @@ package view.user;
  *
  * @author USER
  */
-public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
+public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
 
     /**
-     * Creates new form View_Panel_User_ListPenerbangan
+     * Creates new form View_Panel_User_IsiDataPenumpang
      */
-    public View_Panel_User_ListPenerbangan() {
+    public View_Panel_User_IsiDataPenumpang() {
         initComponents();
     }
 
@@ -28,22 +28,18 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
 
         Panel_List_Penerbangan = new javax.swing.JPanel();
         moveableFrame1 = new javax.swing.JPanel();
-        borderList = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        btnCariPenerbangan = new javax.swing.JButton();
+        btnSimpanData = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         Background = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(48, 57, 82));
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel_List_Penerbangan.setBackground(new java.awt.Color(255, 255, 255));
@@ -75,87 +71,67 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
 
         Panel_List_Penerbangan.add(moveableFrame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 40));
 
-        borderList.setBackground(new java.awt.Color(48, 57, 82));
-        borderList.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jScrollPane1.setBackground(new java.awt.Color(48, 57, 82));
-
-        jList1.setBackground(new java.awt.Color(48, 57, 82));
-        jList1.setForeground(new java.awt.Color(255, 255, 255));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Pesawat 1", "Pesawat 2", "Pesawat 3", "Pesawat 4", "Pesawat 5", "Pesawat 1", "Pesawat 2", "Pesawat 3", "Pesawat 4", "Pesawat 5", "Pesawat 1", "Pesawat 2", "Pesawat 3", "Pesawat 4", "Pesawat 5", "Pesawat 1", "Pesawat 2", "Pesawat 3", "Pesawat 4", "Pesawat 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        borderList.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 420, 280));
-
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("List Pesawat");
-        borderList.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, -1));
-
-        Panel_List_Penerbangan.add(borderList, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 440, 350));
-
-        jLabel11.setBackground(new java.awt.Color(48, 57, 82));
-        jLabel11.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel11.setText("Penerbangan yang tersedia");
-        Panel_List_Penerbangan.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
-
         jLabel6.setBackground(new java.awt.Color(48, 57, 82));
         jLabel6.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel6.setText("Nama  :");
-        Panel_List_Penerbangan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
-
-        jLabel7.setBackground(new java.awt.Color(48, 57, 82));
-        jLabel7.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel7.setText("Detail Pesawat");
-        Panel_List_Penerbangan.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 90, -1, -1));
+        jLabel6.setText("Alamat  :");
+        Panel_List_Penerbangan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(48, 57, 82));
         jLabel8.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel8.setText("Kode   :");
-        Panel_List_Penerbangan.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, -1, -1));
+        jLabel8.setText("Nama   :");
+        Panel_List_Penerbangan.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
 
         jTextField1.setText("Garuda Indonesia");
-        jTextField1.setEnabled(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 160, 30));
+        Panel_List_Penerbangan.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 160, 30));
 
         jTextField2.setText("GA-101");
-        jTextField2.setEnabled(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 160, 30));
+        Panel_List_Penerbangan.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 160, 30));
 
-        btnCariPenerbangan.setBackground(new java.awt.Color(47, 54, 64));
-        btnCariPenerbangan.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
-        btnCariPenerbangan.setForeground(new java.awt.Color(255, 255, 255));
-        btnCariPenerbangan.setText("Pilih Penerbangan");
-        btnCariPenerbangan.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSimpanData.setBackground(new java.awt.Color(47, 54, 64));
+        btnSimpanData.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
+        btnSimpanData.setForeground(new java.awt.Color(255, 255, 255));
+        btnSimpanData.setText("Pilih Penerbangan");
+        btnSimpanData.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCariPenerbanganMouseClicked(evt);
+                btnSimpanDataMouseClicked(evt);
             }
         });
-        btnCariPenerbangan.addActionListener(new java.awt.event.ActionListener() {
+        btnSimpanData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCariPenerbanganActionPerformed(evt);
+                btnSimpanDataActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(btnCariPenerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, 180, 50));
+        Panel_List_Penerbangan.add(btnSimpanData, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, 180, 50));
+
+        jLabel7.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel7.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel7.setText("No HP   :");
+        Panel_List_Penerbangan.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
+
+        jLabel11.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel11.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel11.setText("Isi Data Penumpang");
+        Panel_List_Penerbangan.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, -1, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        Panel_List_Penerbangan.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
 
         getContentPane().add(Panel_List_Penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 580));
 
@@ -176,9 +152,7 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
     private int xMouse, yMouse;
     private void moveableFrame1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moveableFrame1MouseDragged
         // TODO add your handling code here:
@@ -201,17 +175,15 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void btnCariPenerbanganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCariPenerbanganMouseClicked
+    private void btnSimpanDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanDataMouseClicked
         // TODO add your handling code here:
 
         //        this.setVisible(false);
-    }//GEN-LAST:event_btnCariPenerbanganMouseClicked
+    }//GEN-LAST:event_btnSimpanDataMouseClicked
 
-    private void btnCariPenerbanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariPenerbanganActionPerformed
-        // TODO add your handling code here:
+    private void btnSimpanDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanDataActionPerformed
         
-
-    }//GEN-LAST:event_btnCariPenerbanganActionPerformed
+    }//GEN-LAST:event_btnSimpanDataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,20 +202,20 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_ListPenerbangan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View_Panel_User_IsiDataPenumpang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_ListPenerbangan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View_Panel_User_IsiDataPenumpang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_ListPenerbangan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View_Panel_User_IsiDataPenumpang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_ListPenerbangan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View_Panel_User_IsiDataPenumpang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new View_Panel_User_ListPenerbangan().setVisible(true);
+                new View_Panel_User_IsiDataPenumpang().setVisible(true);
             }
         });
     }
@@ -251,15 +223,13 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Panel_List_Penerbangan;
-    private javax.swing.JPanel borderList;
-    private javax.swing.JButton btnCariPenerbangan;
+    private javax.swing.JButton btnSimpanData;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel moveableFrame1;
