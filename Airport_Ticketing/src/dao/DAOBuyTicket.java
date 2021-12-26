@@ -16,14 +16,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.control.ComboBox;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import koneksi.Koneksi;
 import model.Bandara;
+import model.Pesawat;
 import model.User;
+import view.user.View_Panel_User_ListPenerbangan;
 
 /**
  *
@@ -75,16 +79,18 @@ public class DAOBuyTicket {
         }
    
     }
-    
+ 
     public List<String> cariPesawat(String from,String to, Date date) {
+        
         List<String> pesawat = new ArrayList();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         
         System.out.println(from + " DFDFDF ");
         try (Statement statement = Koneksi.getConnection().createStatement()) {
             ResultSet result = statement.executeQuery("SELECT * FROM jadwalpenerbangan WHERE bandaraAsal = '"+from+"'");
-            System.out.println(result);
-            while (result.next()) {    
+            
+            while (result.next()) {  
+                
                 pesawat.add(result.getString(5));
             }
             
@@ -95,12 +101,46 @@ public class DAOBuyTicket {
         return pesawat;
     }
     
-    public void fillJlistPesawat(JList list_pesawat, List<String> pesawat) {
-        final DefaultListModel model = new DefaultListModel();
-        pesawat.forEach((str) -> {
-            model.addElement(str);
-        });
+    private ArrayList<Pesawat> arrPesawat = new ArrayList<>();
+    public ArrayList<Pesawat> fillTabelPesawat(View_Panel_User_ListPenerbangan frame, List<String> list_pesawat) {
+        String in = list_pesawat.get(0);
+        for (int i = 1; i< list_pesawat.size(); i++) {
+            in+=", "+list_pesawat.get(i);
+        }
+       
+        DefaultListModel addlist = new DefaultListModel();
 
-        list_pesawat.setModel(model);
+        try {
+            ResultSet result;
+            
+            try (Statement stmt = Koneksi.getConnection().createStatement()) {
+                result = stmt.executeQuery("SELECT * FROM pesawat WHERE id IN ("+in+")");
+                while(result.next()) {
+
+                    
+                    arrPesawat.add(new Pesawat(result.getString(2), result.getString(3)));
+                    addlist.addElement(result.getString(2)+"    "+result.getString(3));
+                }
+            }
+
+            result.close();
+            frame.getList_pesawat().setModel(addlist);
+            
+            frame.getList_pesawat().addListSelectionListener(new ListSelectionListener() {
+                @Override
+                public void valueChanged(ListSelectionEvent e) {
+                    if (!e.getValueIsAdjusting()) {
+                        Pesawat selected = arrPesawat.get(frame.getList_pesawat().getSelectedIndex());
+                        frame.getTxtKodePesawat().setText(selected.getKodePesawat());
+                        frame.getTxtNamaPesawat().setText(selected.getNamaPesawat());
+                     
+                    }
+                }
+            });
+            return arrPesawat;
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 }

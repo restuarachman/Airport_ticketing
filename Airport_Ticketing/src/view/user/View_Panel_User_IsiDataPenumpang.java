@@ -5,6 +5,13 @@
  */
 package view.user;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author USER
@@ -218,6 +225,118 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
                 new View_Panel_User_IsiDataPenumpang().setVisible(true);
             }
         });
+    }
+
+    public int getxMouse() {
+        return xMouse;
+    }
+
+    public void setxMouse(int xMouse) {
+        this.xMouse = xMouse;
+    }
+
+    public int getyMouse() {
+        return yMouse;
+    }
+
+    public void setyMouse(int yMouse) {
+        this.yMouse = yMouse;
+    }
+
+    public JPanel getBackground() {
+        return Background;
+    }
+
+    public void setBackground(JPanel Background) {
+        this.Background = Background;
+    }
+
+    public JPanel getPanel_List_Penerbangan() {
+        return Panel_List_Penerbangan;
+    }
+
+    public void setPanel_List_Penerbangan(JPanel Panel_List_Penerbangan) {
+        this.Panel_List_Penerbangan = Panel_List_Penerbangan;
+    }
+
+    public JButton getBtnSimpanData() {
+        return btnSimpanData;
+    }
+
+    public void setBtnSimpanData(JButton btnSimpanData) {
+        this.btnSimpanData = btnSimpanData;
+    }
+
+    public JLabel getjLabel11() {
+        return jLabel11;
+    }
+
+    public void setjLabel11(JLabel jLabel11) {
+        this.jLabel11 = jLabel11;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public void setjLabel6(JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public void setjLabel7(JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public void setjLabel8(JLabel jLabel8) {
+        this.jLabel8 = jLabel8;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JTextArea getjTextArea1() {
+        return jTextArea1;
+    }
+
+    public void setjTextArea1(JTextArea jTextArea1) {
+        this.jTextArea1 = jTextArea1;
+    }
+
+    public JTextField getjTextField1() {
+        return jTextField1;
+    }
+
+    public void setjTextField1(JTextField jTextField1) {
+        this.jTextField1 = jTextField1;
+    }
+
+    public JTextField getjTextField2() {
+        return jTextField2;
+    }
+
+    public void setjTextField2(JTextField jTextField2) {
+        this.jTextField2 = jTextField2;
+    }
+
+    public JPanel getMoveableFrame1() {
+        return moveableFrame1;
+    }
+
+    public void setMoveableFrame1(JPanel moveableFrame1) {
+        this.moveableFrame1 = moveableFrame1;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

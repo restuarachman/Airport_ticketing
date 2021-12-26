@@ -5,12 +5,18 @@
  */
 package view.user;
 
+import dao.DAOBuyTicket;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import model.Pesawat;
 
 /**
  *
@@ -43,8 +49,8 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtNamaPesawat = new javax.swing.JTextField();
+        txtKodePesawat = new javax.swing.JTextField();
         btnCariPenerbangan = new javax.swing.JButton();
         Background = new javax.swing.JPanel();
 
@@ -73,11 +79,11 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         moveableFrame1.setLayout(moveableFrame1Layout);
         moveableFrame1Layout.setHorizontalGroup(
             moveableFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 960, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         moveableFrame1Layout.setVerticalGroup(
             moveableFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         Panel_List_Penerbangan.add(moveableFrame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 40));
@@ -89,6 +95,11 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
 
         list_pesawat.setBackground(new java.awt.Color(48, 57, 82));
         list_pesawat.setForeground(new java.awt.Color(255, 255, 255));
+        list_pesawat.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                list_pesawatValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(list_pesawat);
 
         borderList.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 420, 280));
@@ -99,7 +110,7 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         jLabel5.setText("List Pesawat");
         borderList.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, -1));
 
-        Panel_List_Penerbangan.add(borderList, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 440, 350));
+        Panel_List_Penerbangan.add(borderList, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 460, 350));
 
         jLabel11.setBackground(new java.awt.Color(48, 57, 82));
         jLabel11.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
@@ -125,23 +136,23 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         jLabel8.setText("Kode   :");
         Panel_List_Penerbangan.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, -1, -1));
 
-        jTextField1.setText("Garuda Indonesia");
-        jTextField1.setEnabled(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtNamaPesawat.setText("Garuda Indonesia");
+        txtNamaPesawat.setEnabled(false);
+        txtNamaPesawat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtNamaPesawatActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 160, 30));
+        Panel_List_Penerbangan.add(txtNamaPesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 160, 30));
 
-        jTextField2.setText("GA-101");
-        jTextField2.setEnabled(false);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtKodePesawat.setText("GA-101");
+        txtKodePesawat.setEnabled(false);
+        txtKodePesawat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtKodePesawatActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 160, 30));
+        Panel_List_Penerbangan.add(txtKodePesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 160, 30));
 
         btnCariPenerbangan.setBackground(new java.awt.Color(47, 54, 64));
         btnCariPenerbangan.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
@@ -157,7 +168,7 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
                 btnCariPenerbanganActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(btnCariPenerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, 180, 50));
+        Panel_List_Penerbangan.add(btnCariPenerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 380, 180, 50));
 
         getContentPane().add(Panel_List_Penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 580));
 
@@ -195,14 +206,6 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         yMouse=evt.getY();
     }//GEN-LAST:event_moveableFrame1MousePressed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void btnCariPenerbanganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCariPenerbanganMouseClicked
         // TODO add your handling code here:
 
@@ -214,6 +217,19 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_btnCariPenerbanganActionPerformed
+
+    private void txtNamaPesawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaPesawatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNamaPesawatActionPerformed
+
+    private void txtKodePesawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKodePesawatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKodePesawatActionPerformed
+
+    private void list_pesawatValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_pesawatValueChanged
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_list_pesawatValueChanged
 
     /**
      * @param args the command line arguments
@@ -264,10 +280,6 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
 
     public void setyMouse(int yMouse) {
         this.yMouse = yMouse;
-    }
-
-    public JPanel getBackground() {
-        return Background;
     }
 
     public void setBackground(JPanel Background) {
@@ -346,22 +358,6 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         this.jScrollPane1 = jScrollPane1;
     }
 
-    public JTextField getjTextField1() {
-        return jTextField1;
-    }
-
-    public void setjTextField1(JTextField jTextField1) {
-        this.jTextField1 = jTextField1;
-    }
-
-    public JTextField getjTextField2() {
-        return jTextField2;
-    }
-
-    public void setjTextField2(JTextField jTextField2) {
-        this.jTextField2 = jTextField2;
-    }
-
     public JList<String> getList_pesawat() {
         return list_pesawat;
     }
@@ -378,6 +374,27 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         this.moveableFrame1 = moveableFrame1;
     }
 
+    public JTextField getTxtKodePesawat() {
+        return txtKodePesawat;
+    }
+
+    public void setTxtKodePesawat(JTextField txtKodePesawat) {
+        this.txtKodePesawat = txtKodePesawat;
+    }
+
+    public JTextField getTxtNamaPesawat() {
+        return txtNamaPesawat;
+    }
+
+    public void setTxtNamaPesawat(JTextField txtNamaPesawat) {
+        this.txtNamaPesawat = txtNamaPesawat;
+    }
+
+ 
+    public void addListener(MouseListener mouseListener) {
+        btnCariPenerbangan.addMouseListener(mouseListener);
+        
+    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -391,9 +408,9 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JList<String> list_pesawat;
     private javax.swing.JPanel moveableFrame1;
+    private javax.swing.JTextField txtKodePesawat;
+    private javax.swing.JTextField txtNamaPesawat;
     // End of variables declaration//GEN-END:variables
 }
