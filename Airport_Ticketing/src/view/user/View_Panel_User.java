@@ -49,6 +49,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         bodyPanel = new javax.swing.JPanel();
         moveableFrame = new javax.swing.JPanel();
         menuPanel = new javax.swing.JPanel();
+        btnMyTicket = new javax.swing.JButton();
         btnBeliTiket = new javax.swing.JButton();
         btnDashboard = new javax.swing.JButton();
         btnAbout = new javax.swing.JButton();
@@ -75,6 +76,21 @@ public class View_Panel_User extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txt_kelas = new javax.swing.JComboBox<>();
         btnCariPenerbangan = new javax.swing.JButton();
+        myTiket = new javax.swing.JPanel();
+        moveableFrame1 = new javax.swing.JPanel();
+        txt_keberangkatan2 = new javax.swing.JLabel();
+        txt_tujuan2 = new javax.swing.JLabel();
+        txt_asal2 = new javax.swing.JLabel();
+        txt_jumlahKursi2 = new javax.swing.JLabel();
+        txt_namaPemesan2 = new javax.swing.JLabel();
+        txt_kelasPenerbangan = new javax.swing.JLabel();
+        txt_keberangkatan = new javax.swing.JLabel();
+        txt_jumlahKursi = new javax.swing.JLabel();
+        txt_namaPemesan = new javax.swing.JLabel();
+        txt_tujuan = new javax.swing.JLabel();
+        txt_asal = new javax.swing.JLabel();
+        JUDUL = new javax.swing.JLabel();
+        TiketImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -111,6 +127,17 @@ public class View_Panel_User extends javax.swing.JFrame {
         menuPanel.setBackground(new java.awt.Color(48, 57, 82));
         menuPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         menuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnMyTicket.setBackground(new java.awt.Color(47, 54, 64));
+        btnMyTicket.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
+        btnMyTicket.setForeground(new java.awt.Color(255, 255, 255));
+        btnMyTicket.setText("MY TICKET");
+        btnMyTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMyTicketActionPerformed(evt);
+            }
+        });
+        menuPanel.add(btnMyTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 164, 53));
 
         btnBeliTiket.setBackground(new java.awt.Color(47, 54, 64));
         btnBeliTiket.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
@@ -290,6 +317,105 @@ public class View_Panel_User extends javax.swing.JFrame {
 
         DynamicPanel.add(buyTiketPanel, "card2");
 
+        myTiket.setBackground(new java.awt.Color(255, 255, 255));
+        myTiket.setForeground(new java.awt.Color(255, 255, 255));
+        myTiket.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        moveableFrame1.setOpaque(false);
+        moveableFrame1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                moveableFrame1MouseDragged(evt);
+            }
+        });
+        moveableFrame1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                moveableFrame1MousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout moveableFrame1Layout = new javax.swing.GroupLayout(moveableFrame1);
+        moveableFrame1.setLayout(moveableFrame1Layout);
+        moveableFrame1Layout.setHorizontalGroup(
+            moveableFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        moveableFrame1Layout.setVerticalGroup(
+            moveableFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        myTiket.add(moveableFrame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 40));
+
+        txt_keberangkatan2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        txt_keberangkatan2.setForeground(new java.awt.Color(0, 0, 0));
+        txt_keberangkatan2.setText("Joe Taslim");
+        myTiket.add(txt_keberangkatan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, -1, -1));
+
+        txt_tujuan2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        txt_tujuan2.setForeground(new java.awt.Color(0, 0, 0));
+        txt_tujuan2.setText("Joe Taslim");
+        myTiket.add(txt_tujuan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 310, -1, -1));
+
+        txt_asal2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        txt_asal2.setForeground(new java.awt.Color(0, 0, 0));
+        txt_asal2.setText("Joe Taslim");
+        myTiket.add(txt_asal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 280, -1, -1));
+
+        txt_jumlahKursi2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        txt_jumlahKursi2.setForeground(new java.awt.Color(0, 0, 0));
+        txt_jumlahKursi2.setText("Joe Taslim");
+        myTiket.add(txt_jumlahKursi2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, -1, -1));
+
+        txt_namaPemesan2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        txt_namaPemesan2.setForeground(new java.awt.Color(0, 0, 0));
+        txt_namaPemesan2.setText("Joe Taslim");
+        myTiket.add(txt_namaPemesan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, -1, -1));
+
+        txt_kelasPenerbangan.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        txt_kelasPenerbangan.setForeground(new java.awt.Color(0, 0, 0));
+        txt_kelasPenerbangan.setText("Joe Taslim");
+        myTiket.add(txt_kelasPenerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, -1, -1));
+
+        txt_keberangkatan.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        txt_keberangkatan.setForeground(new java.awt.Color(0, 0, 0));
+        txt_keberangkatan.setText("Joe Taslim");
+        myTiket.add(txt_keberangkatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
+
+        txt_jumlahKursi.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        txt_jumlahKursi.setForeground(new java.awt.Color(0, 0, 0));
+        txt_jumlahKursi.setText("Joe Taslim");
+        myTiket.add(txt_jumlahKursi, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, -1, -1));
+
+        txt_namaPemesan.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        txt_namaPemesan.setForeground(new java.awt.Color(0, 0, 0));
+        txt_namaPemesan.setText("Joe Taslim");
+        myTiket.add(txt_namaPemesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, -1));
+
+        txt_tujuan.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        txt_tujuan.setForeground(new java.awt.Color(0, 0, 0));
+        txt_tujuan.setText("Joe Taslim");
+        myTiket.add(txt_tujuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
+
+        txt_asal.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        txt_asal.setForeground(new java.awt.Color(0, 0, 0));
+        txt_asal.setText("Joe Taslim");
+        myTiket.add(txt_asal, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, -1, -1));
+
+        JUDUL.setBackground(new java.awt.Color(48, 57, 82));
+        JUDUL.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
+        JUDUL.setForeground(new java.awt.Color(48, 57, 82));
+        JUDUL.setText("My Ticket");
+        myTiket.add(JUDUL, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, -1, -1));
+
+        TiketImage.setBackground(new java.awt.Color(48, 57, 82));
+        TiketImage.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        TiketImage.setForeground(new java.awt.Color(48, 57, 82));
+        TiketImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/img/Tiket.png"))); // NOI18N
+        TiketImage.setBorder(new javax.swing.border.MatteBorder(null));
+        myTiket.add(TiketImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, 260));
+
+        DynamicPanel.add(myTiket, "card4");
+
         bodyPanel.add(DynamicPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 6, 797, 588));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -391,6 +517,32 @@ public class View_Panel_User extends javax.swing.JFrame {
     private void txt_dariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dariActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_dariActionPerformed
+
+    private void btnMyTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyTicketActionPerformed
+        // TODO add your handling code here:
+        // remove panel
+        DynamicPanel.removeAll();
+        DynamicPanel.repaint();
+        DynamicPanel.revalidate();
+
+        // add panel
+        DynamicPanel.add(myTiket);
+        DynamicPanel.repaint();
+        DynamicPanel.revalidate();
+    }//GEN-LAST:event_btnMyTicketActionPerformed
+
+    private void moveableFrame1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moveableFrame1MouseDragged
+        // TODO add your handling code here:
+        int x=evt.getXOnScreen();
+        int y=evt.getYOnScreen();
+        setLocation(x-xMouse ,y-yMouse);
+    }//GEN-LAST:event_moveableFrame1MouseDragged
+
+    private void moveableFrame1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moveableFrame1MousePressed
+        // TODO add your handling code here:
+        xMouse=evt.getX();
+        yMouse=evt.getY();
+    }//GEN-LAST:event_moveableFrame1MousePressed
     
     private int xMouse, yMouse;
     
@@ -446,6 +598,8 @@ public class View_Panel_User extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
+    private javax.swing.JLabel JUDUL;
+    private javax.swing.JLabel TiketImage;
     private javax.swing.JLabel backgroundImage;
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JButton btnAbout;
@@ -454,6 +608,7 @@ public class View_Panel_User extends javax.swing.JFrame {
     private javax.swing.JButton btnDashboard;
     private javax.swing.JButton btnDashboard1;
     private javax.swing.JButton btnHome3;
+    private javax.swing.JButton btnMyTicket;
     private javax.swing.JPanel buyTiketPanel;
     private javax.swing.JPanel dashboardPanel;
     private javax.swing.JLabel jLabel10;
@@ -467,11 +622,24 @@ public class View_Panel_User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JPanel moveableFrame;
+    private javax.swing.JPanel moveableFrame1;
+    private javax.swing.JPanel myTiket;
+    private javax.swing.JLabel txt_asal;
+    private javax.swing.JLabel txt_asal2;
     private javax.swing.JComboBox<String> txt_dari;
+    private javax.swing.JLabel txt_jumlahKursi;
+    private javax.swing.JLabel txt_jumlahKursi2;
     private javax.swing.JComboBox<String> txt_ke;
+    private javax.swing.JLabel txt_keberangkatan;
+    private javax.swing.JLabel txt_keberangkatan2;
     private javax.swing.JComboBox<String> txt_kelas;
+    private javax.swing.JLabel txt_kelasPenerbangan;
+    private javax.swing.JLabel txt_namaPemesan;
+    private javax.swing.JLabel txt_namaPemesan2;
     private javax.swing.JComboBox<String> txt_penumpang;
     private com.toedter.calendar.JDateChooser txt_tanggal;
+    private javax.swing.JLabel txt_tujuan;
+    private javax.swing.JLabel txt_tujuan2;
     private javax.swing.JLabel username;
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
