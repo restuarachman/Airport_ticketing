@@ -7,6 +7,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,5 +38,23 @@ public class DAOBooking {
             Logger.getLogger(DAOBooking.class.getName()).log(Level.SEVERE, null, ex);
         }
        
+    }
+    
+    public int jumlahbooking() {
+         try {
+            Connection connection = Koneksi.getConnection();
+            String sql = "SELECT id FROM booking ORDER BY id DESC";
+            
+            try (PreparedStatement stmt = connection.prepareStatement(sql)){
+                ResultSet rs = stmt.executeQuery(sql);
+                while (rs.next()) {
+                    return rs.getInt(1);
+                }
+               
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOBooking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 }

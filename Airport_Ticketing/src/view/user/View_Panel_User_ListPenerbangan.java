@@ -48,6 +48,7 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtHarga = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        btnBack2 = new javax.swing.JLabel();
         Background = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -192,6 +193,17 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         jLabel10.setText("Harga  :");
         Panel_List_Penerbangan.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 270, -1, -1));
 
+        btnBack2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnBack2.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnBack2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/img/btnBack2.png"))); // NOI18N
+        btnBack2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBack2MouseClicked(evt);
+            }
+        });
+        Panel_List_Penerbangan.add(btnBack2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, 40, 40));
+
         getContentPane().add(Panel_List_Penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 580));
 
         Background.setBackground(new java.awt.Color(48, 57, 82));
@@ -260,6 +272,10 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
     private void txtHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHargaActionPerformed
+
+    private void btnBack2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack2MouseClicked
+
+    }//GEN-LAST:event_btnBack2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -347,12 +363,14 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
    
     public void addListener(MouseListener mouseListener) {
         btnPilihPenerbangan.addMouseListener(mouseListener);
+        btnBack2.addMouseListener(mouseListener);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Panel_List_Penerbangan;
     private javax.swing.JPanel borderList;
+    private javax.swing.JLabel btnBack2;
     private javax.swing.JButton btnPilihPenerbangan;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

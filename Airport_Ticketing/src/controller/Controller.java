@@ -25,12 +25,13 @@ import model.Booking;
 import model.TabelPenerbangan;
 import model.Tiket;
 import model.User;
-import ramaditoferdian.aplikasidynamicpanel.view.View_Panel_User_RincianHarga;
 import view.View_Login;
 import view.View_Signup;
 import view.user.View_Panel_User;
+import view.user.View_Panel_User_About;
 import view.user.View_Panel_User_IsiDataPenumpang;
 import view.user.View_Panel_User_ListPenerbangan;
+import view.user.View_Panel_User_RincianHarga;
 import view.user.dialog.dialogFrame_Pembayaran_sukses;
 import view.user.dialog.dialogFrame_Penerbangan_notFound;
 
@@ -50,22 +51,25 @@ public class Controller {
     View_Panel_User_ListPenerbangan frame_listPenerbangan = new View_Panel_User_ListPenerbangan();
     View_Panel_User_IsiDataPenumpang frame_isidata = new View_Panel_User_IsiDataPenumpang();
     View_Panel_User_RincianHarga frame_rincianHarga = new View_Panel_User_RincianHarga();
+    View_Panel_User_About frame_pAbout = new View_Panel_User_About();
     
     dialogFrame_Penerbangan_notFound dialog_notfound = new dialogFrame_Penerbangan_notFound();
     dialogFrame_Pembayaran_sukses dialog_bayarSukses = new dialogFrame_Pembayaran_sukses();
     
     private User user = new User();
     private JadwalPenerbangan jadwal = new JadwalPenerbangan();
+    private Booking booking = new Booking();
     
     private int tiketcount = daoTiket.getnotiket();
+    private int bookingcount = daoBooking.jumlahbooking();
     public Controller(View_Login v_login) {
-        
+        frame_pAbout.setVisible(false);
         frame_rincianHarga.setVisible(false);
         frame_isidata.setVisible(false);
         frame_listPenerbangan.setVisible(false);
-        
         frame_signup.setVisible(false);
         frame_pUser.setVisible(false);
+                
         dialog_bayarSukses.setVisible(false);
         dialog_notfound.setVisible(false);
         
@@ -80,6 +84,7 @@ public class Controller {
         frame_listPenerbangan.addListener(Listener);
         frame_isidata.addListener(Listener);
         frame_rincianHarga.addListener(Listener);
+        frame_pAbout.addListener(Listener);
         
         dialog_notfound.addListener(Listener);
         dialog_bayarSukses.addListener(Listener);
@@ -100,9 +105,15 @@ public class Controller {
                     JOptionPane.showMessageDialog(frame_login, "Login sebagai "+user.getUsername());
 
                     frame_pUser.getUsername().setText(user.getUsername());
+                    if(da.havetiket(user)) {
+                        frame_pUser.getBtnMyTicket().setEnabled(true);
+                    }
                     move(frame_login, frame_pUser);
                     daoBuyTicket.fillCombobox(frame_pUser.getTxt_ke());
                     daoBuyTicket.fillCombobox(frame_pUser.getTxt_dari());
+                    
+                    
+                    
                 } else {
                     JOptionPane.showMessageDialog(frame_login, "Username atau Password salah");
                 }
@@ -111,6 +122,7 @@ public class Controller {
             if (e.getComponent() == frame_login.getForSignup()){
                 move(frame_login, frame_signup);
             } 
+           
            
         // FRAME SIGNUP
             // btn back
@@ -178,6 +190,39 @@ public class Controller {
                     
                     move(frame_pUser, frame_listPenerbangan);   
                 }
+               
+            }
+            // btn my tiket
+            if (e.getComponent() == frame_pUser.getBtnMyTicket()) {
+                da.getMyTiket(user, frame_pUser);
+            }
+            // btn about
+            if (e.getComponent() == frame_pUser.getBtnAbout()) {
+                //frame_pUser.setEnabled(false);
+                frame_pAbout.setVisible(true);
+                frame_pAbout.setAlwaysOnTop(true);
+            }
+            
+            // btn logout
+            if (e.getComponent() == frame_pUser.getBtnHome3()) {
+                int dialogBtn = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(frame_pUser, "Anda yakin ingin keluar?", "PERINGATAN", dialogBtn);
+                if (dialogResult == 0) {
+                    frame_pUser.getDynamicPanel().removeAll();
+                    frame_pUser.getDynamicPanel().repaint();
+                    frame_pUser.getDynamicPanel().revalidate();
+
+                    // add panel
+                    frame_pUser.getDynamicPanel().add(frame_pUser.getDashboardPanel());
+                    frame_pUser.getDynamicPanel().repaint();
+                    frame_pUser.getDynamicPanel().revalidate();
+                    move(frame_pUser, frame_login);
+                    
+                    frame_login.getTxtPassword().setText(null);
+                }else{
+                    System.out.println("batal logout");
+
+        }
             }
             
         // FRAME LIST PENERBANGAN
@@ -195,7 +240,8 @@ public class Controller {
             
         // FRAME ISI DATA
             if (e.getComponent() == frame_isidata.getBtnSimpanData()) {
-                Booking booking = new Booking(jadwal, user, Integer.parseInt((String)frame_pUser.getTxt_penumpang().getSelectedItem()), frame_isidata.getTxt_namaPenumpang().getText(), frame_isidata.getTxt_noHP().getText(), frame_isidata.getTxt_Alamat().getText(), 
+                bookingcount++;
+                booking = new Booking(bookingcount, jadwal, user, Integer.parseInt((String)frame_pUser.getTxt_penumpang().getSelectedItem()), frame_isidata.getTxt_namaPenumpang().getText(), frame_isidata.getTxt_noHP().getText(), frame_isidata.getTxt_Alamat().getText(), 
                       Integer.parseInt(frame_listPenerbangan.getTxtHarga().getText()));
                 daoBooking.insert(booking);
                 
@@ -218,7 +264,7 @@ public class Controller {
                 System.out.println(Integer.parseInt(frame_rincianHarga.getTxtUangAnda().getText()) - Integer.parseInt(frame_rincianHarga.getTxtSubTotal().getText()));
                 if (Integer.parseInt(frame_rincianHarga.getTxtUangAnda().getText()) - Integer.parseInt(frame_rincianHarga.getTxtSubTotal().getText()) > 0) {
                     tiketcount++;
-                    Tiket tiket = new Tiket(tiketcount, user, jadwal);
+                    Tiket tiket = new Tiket(tiketcount, user, booking);
                     System.out.println(tiket.getId()+" "+ tiket.getKodeTiket());
                     daoTiket.insert(tiket);
                 
@@ -235,7 +281,11 @@ public class Controller {
                 
                 dialog_bayarSukses.setVisible(false);
                 frame_rincianHarga.setEnabled(true);
+                if(da.havetiket(user)) {
+                    frame_pUser.getBtnMyTicket().setEnabled(true);
+                }
                 move(frame_rincianHarga, frame_pUser);
+                
                 frame_pUser.getDynamicPanel().removeAll();
                 frame_pUser.getDynamicPanel().repaint();
                 frame_pUser.getDynamicPanel().revalidate();
@@ -245,6 +295,12 @@ public class Controller {
                 frame_pUser.getDynamicPanel().repaint();
                 frame_pUser.getDynamicPanel().revalidate();
             }
+            
+        // FRAME ABOUT USER
+            if (e.getComponent() == frame_pAbout.getBtnClose()) {
+                frame_pAbout.setVisible(false);
+                frame_pUser.setEnabled(true);     
+            } 
         }
         
       
