@@ -30,7 +30,6 @@ public class View_Signup extends javax.swing.JFrame {
         initComponents();
         
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
-        setVisible(true);
         setResizable(false);
     }
 

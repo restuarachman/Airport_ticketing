@@ -47,6 +47,7 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         btnSimpanData = new javax.swing.JButton();
+        btnBack2 = new javax.swing.JLabel();
         Background = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -153,6 +154,17 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
         });
         Panel_List_Penerbangan.add(btnSimpanData, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, 180, 50));
 
+        btnBack2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnBack2.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnBack2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/img/btnBack2.png"))); // NOI18N
+        btnBack2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBack2MouseClicked(evt);
+            }
+        });
+        Panel_List_Penerbangan.add(btnBack2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, 40, 40));
+
         getContentPane().add(Panel_List_Penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 580));
 
         Background.setBackground(new java.awt.Color(48, 57, 82));
@@ -203,6 +215,10 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
     private void btnSimpanDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanDataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSimpanDataActionPerformed
+
+    private void btnBack2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack2MouseClicked
+
+    }//GEN-LAST:event_btnBack2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -280,11 +296,13 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
 
     public void addListener(MouseListener mouseListener) {
         btnSimpanData.addMouseListener(mouseListener);
+        btnBack2.addMouseListener(mouseListener);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Panel_List_Penerbangan;
+    private javax.swing.JLabel btnBack2;
     private javax.swing.JButton btnSimpanData;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

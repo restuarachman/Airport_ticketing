@@ -12,13 +12,23 @@ package model;
 public class Tiket {
     private int id;
     private String kodeTiket;
+    private Booking booking;
 
     public Tiket() {
     }
 
-    public Tiket(int id, User user, JadwalPenerbangan jadwal) {
+    public Tiket(int id, User user, Booking booking) {
         this.id = id;
-        this.kodeTiket = Integer.toString(this.id)+Integer.toString(jadwal.getId())+Integer.toString(user.getId());
+        this.kodeTiket = Integer.toString(this.id)+Integer.toString(booking.getId())+Integer.toString(user.getId());
+        this.booking = booking;
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 
     public int getId() {

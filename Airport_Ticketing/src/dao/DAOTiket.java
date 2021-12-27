@@ -5,7 +5,6 @@
  */
 package dao;
 
-import com.mysql.cj.xdevapi.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import koneksi.Koneksi;
+import model.Booking;
 import model.Tiket;
 
 /**
@@ -21,15 +21,16 @@ import model.Tiket;
  */
 public class DAOTiket {
     public void insert(Tiket tiket) {
-        System.out.println("NGENTOD");
+        
         try {
-            System.out.println("NGENTOD2");
+           
             Connection connection = Koneksi.getConnection();
-            String sql = "INSERT INTO tiket VALUES(?,?)";
-
+            String sql = "INSERT INTO tiket VALUES(?,?,?)";
+            System.out.println(tiket.getId()+" "+tiket.getKodeTiket()+" "+tiket.getBooking().getId());
             try (PreparedStatement stmt = connection.prepareStatement(sql)){
                 stmt.setInt(1, tiket.getId());
                 stmt.setString(2, tiket.getKodeTiket());
+                stmt.setInt(3, tiket.getBooking().getId());
                 
                 stmt.executeUpdate();
             }
@@ -48,11 +49,13 @@ public class DAOTiket {
                 while (rs.next()) {
                     return rs.getInt(1);
                 }
-               
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOBooking.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
+    
+    
 }

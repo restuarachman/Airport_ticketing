@@ -5,8 +5,10 @@
  */
 package view.user;
 
+import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
@@ -22,7 +24,6 @@ public class View_Panel_User_About extends javax.swing.JFrame {
 
 //        Set Fixed ukuran Panel
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
-        setVisible(true);
         setResizable(false);
         
     }
@@ -104,49 +105,21 @@ public class View_Panel_User_About extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutPanelComponentHidden
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
-        
-        
-        
-        this.dispose();
-        
+
     }//GEN-LAST:event_btnCloseMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_About.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_About.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_About.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_About.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new View_Panel_User_About().setVisible(true);
-            }
-        });
+    public JLabel getBtnClose() {
+        return btnClose;
     }
 
+    public void setBtnClose(JLabel btnClose) {
+        this.btnClose = btnClose;
+    }
+
+    public void addListener(MouseListener mouseListener) {
+        btnClose.addMouseListener(mouseListener);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aboutPanel;
     private javax.swing.JLabel btnClose;

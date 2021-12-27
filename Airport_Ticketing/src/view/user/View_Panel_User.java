@@ -31,8 +31,8 @@ public class View_Panel_User extends javax.swing.JFrame {
         
         initComponents();
        
+        btnMyTicket.setEnabled(false);
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
-        setVisible(true);
         setResizable(false);   
     }
 
@@ -73,8 +73,6 @@ public class View_Panel_User extends javax.swing.JFrame {
         txt_dari = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         txt_tanggal = new com.toedter.calendar.JDateChooser();
-        jLabel10 = new javax.swing.JLabel();
-        txt_kelas = new javax.swing.JComboBox<>();
         btnCariPenerbangan = new javax.swing.JButton();
         myTiket = new javax.swing.JPanel();
         moveableFrame1 = new javax.swing.JPanel();
@@ -290,15 +288,6 @@ public class View_Panel_User extends javax.swing.JFrame {
         txt_tanggal.setMinSelectableDate(new java.util.Date(-62135791105000L));
         buyTiketPanel.add(txt_tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 160, 30));
 
-        jLabel10.setBackground(new java.awt.Color(48, 57, 82));
-        jLabel10.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel10.setText("Kelas Penerbangan");
-        buyTiketPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
-
-        txt_kelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Economy", "Business", "Fist Class", " " }));
-        buyTiketPanel.add(txt_kelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 170, -1));
-
         btnCariPenerbangan.setBackground(new java.awt.Color(47, 54, 64));
         btnCariPenerbangan.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
         btnCariPenerbangan.setForeground(new java.awt.Color(255, 255, 255));
@@ -463,9 +452,8 @@ public class View_Panel_User extends javax.swing.JFrame {
 
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
         // TODO add your handling code here:
-        View_Panel_User_About view_about = new View_Panel_User_About();
-        view_about.setVisible(true);
-        view_about.setAlwaysOnTop(true);
+        
+                
         
 //        btnAbout.setEnabled(false);
     }//GEN-LAST:event_btnAboutActionPerformed
@@ -473,16 +461,9 @@ public class View_Panel_User extends javax.swing.JFrame {
     private void btnHome3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome3ActionPerformed
         // TODO add your handling code here:
 
-        int dialogBtn = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(this, "Anda yakin ingin keluar?", "PERINGATAN", dialogBtn);
+        
 
-        if (dialogResult == 0) {
-            View_Login frame = new View_Login();
-            frame.setVisible(true);
-        }else{
-            System.out.println("batal logout");
-
-        }
+        
     }//GEN-LAST:event_btnHome3ActionPerformed
 
     private void moveableFrameMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moveableFrameMouseDragged
@@ -611,7 +592,6 @@ public class View_Panel_User extends javax.swing.JFrame {
     private javax.swing.JButton btnMyTicket;
     private javax.swing.JPanel buyTiketPanel;
     private javax.swing.JPanel dashboardPanel;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -632,7 +612,6 @@ public class View_Panel_User extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> txt_ke;
     private javax.swing.JLabel txt_keberangkatan;
     private javax.swing.JLabel txt_keberangkatan2;
-    private javax.swing.JComboBox<String> txt_kelas;
     private javax.swing.JLabel txt_kelasPenerbangan;
     private javax.swing.JLabel txt_namaPemesan;
     private javax.swing.JLabel txt_namaPemesan2;
@@ -764,14 +743,6 @@ public class View_Panel_User extends javax.swing.JFrame {
         this.txt_ke = txt_ke;
     }
 
-    public JComboBox<String> getTxt_kelas() {
-        return txt_kelas;
-    }
-
-    public void setTxt_kelas(JComboBox<String> txt_kelas) {
-        this.txt_kelas = txt_kelas;
-    }
-
     public JComboBox<String> getTxt_penumpang() {
         return txt_penumpang;
     }
@@ -788,15 +759,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         this.txt_tanggal = txt_tanggal;
     }
 
-    
-
-    public JLabel getjLabel10() {
-        return jLabel10;
-    }
-
-    public void setjLabel10(JLabel jLabel10) {
-        this.jLabel10 = jLabel10;
-    }
+   
 
     public JLabel getjLabel2() {
         return jLabel2;
@@ -896,6 +859,105 @@ public class View_Panel_User extends javax.swing.JFrame {
     
     public void addListener(MouseListener listener) {
         btnCariPenerbangan.addMouseListener(listener);
+        btnMyTicket.addMouseListener(listener);
+        btnAbout.addMouseListener(listener);
+        btnHome3.addMouseListener(listener);
+    }
+
+    public JLabel getTxt_asal() {
+        return txt_asal;
+    }
+
+    public void setTxt_asal(JLabel txt_asal) {
+        this.txt_asal = txt_asal;
+    }
+
+    public JLabel getTxt_asal2() {
+        return txt_asal2;
+    }
+
+    public void setTxt_asal2(JLabel txt_asal2) {
+        this.txt_asal2 = txt_asal2;
+    }
+
+    public JLabel getTxt_jumlahKursi() {
+        return txt_jumlahKursi;
+    }
+
+    public void setTxt_jumlahKursi(JLabel txt_jumlahKursi) {
+        this.txt_jumlahKursi = txt_jumlahKursi;
+    }
+
+    public JLabel getTxt_jumlahKursi2() {
+        return txt_jumlahKursi2;
+    }
+
+    public void setTxt_jumlahKursi2(JLabel txt_jumlahKursi2) {
+        this.txt_jumlahKursi2 = txt_jumlahKursi2;
+    }
+
+    public JLabel getTxt_keberangkatan() {
+        return txt_keberangkatan;
+    }
+
+    public void setTxt_keberangkatan(JLabel txt_keberangkatan) {
+        this.txt_keberangkatan = txt_keberangkatan;
+    }
+
+    public JLabel getTxt_keberangkatan2() {
+        return txt_keberangkatan2;
+    }
+
+    public void setTxt_keberangkatan2(JLabel txt_keberangkatan2) {
+        this.txt_keberangkatan2 = txt_keberangkatan2;
+    }
+
+    public JLabel getTxt_kelasPenerbangan() {
+        return txt_kelasPenerbangan;
+    }
+
+    public void setTxt_kelasPenerbangan(JLabel txt_kelasPenerbangan) {
+        this.txt_kelasPenerbangan = txt_kelasPenerbangan;
+    }
+
+    public JLabel getTxt_namaPemesan() {
+        return txt_namaPemesan;
+    }
+
+    public void setTxt_namaPemesan(JLabel txt_namaPemesan) {
+        this.txt_namaPemesan = txt_namaPemesan;
+    }
+
+    public JLabel getTxt_namaPemesan2() {
+        return txt_namaPemesan2;
+    }
+
+    public void setTxt_namaPemesan2(JLabel txt_namaPemesan2) {
+        this.txt_namaPemesan2 = txt_namaPemesan2;
+    }
+
+    public JLabel getTxt_tujuan() {
+        return txt_tujuan;
+    }
+
+    public void setTxt_tujuan(JLabel txt_tujuan) {
+        this.txt_tujuan = txt_tujuan;
+    }
+
+    public JLabel getTxt_tujuan2() {
+        return txt_tujuan2;
+    }
+
+    public void setTxt_tujuan2(JLabel txt_tujuan2) {
+        this.txt_tujuan2 = txt_tujuan2;
+    }
+
+    public JButton getBtnMyTicket() {
+        return btnMyTicket;
+    }
+
+    public void setBtnMyTicket(JButton btnMyTicket) {
+        this.btnMyTicket = btnMyTicket;
     }
     
     

@@ -22,7 +22,8 @@ public class Booking {
       
     }
 
-    public Booking(JadwalPenerbangan jadwal, User user, int jumlahPenumpang, String nama_penumpang, String nomor_hp, String alamat, int harga) {
+    public Booking(int id, JadwalPenerbangan jadwal, User user, int jumlahPenumpang, String nama_penumpang, String nomor_hp, String alamat, int harga) {
+        this.id = id;
         this.jadwal = jadwal;
         this.user = user;
         this.jumlahPenumpang = jumlahPenumpang;
