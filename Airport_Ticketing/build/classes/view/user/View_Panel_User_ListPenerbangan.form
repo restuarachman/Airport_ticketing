@@ -225,7 +225,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtKelas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Economy"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -239,7 +238,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtKodePesawat">
           <Properties>
-            <Property name="text" type="java.lang.String" value="GA-101"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -251,7 +249,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCariPenerbangan">
+        <Component class="javax.swing.JButton" name="btnPilihPenerbangan">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="40" green="36" red="2f" type="rgb"/>
@@ -265,8 +263,8 @@
             <Property name="text" type="java.lang.String" value="Pilih Penerbangan"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCariPenerbanganMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCariPenerbanganActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPilihPenerbanganMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPilihPenerbanganActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -308,7 +306,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtHarga">
           <Properties>
-            <Property name="text" type="java.lang.String" value="10000"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>

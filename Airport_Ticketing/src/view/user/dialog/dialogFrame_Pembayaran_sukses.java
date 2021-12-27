@@ -6,6 +6,9 @@
 package view.user.dialog;
 
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
 
 /**
  *
@@ -121,6 +124,18 @@ public class dialogFrame_Pembayaran_sukses extends javax.swing.JFrame {
         });
     }
 
+    public JButton getBtnContinue() {
+        return btnContinue;
+    }
+
+    public void setBtnContinue(JButton btnContinue) {
+        this.btnContinue = btnContinue;
+    }
+
+    public void addListener(MouseListener mouseListener) {
+        btnContinue.addMouseListener(mouseListener);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
     private javax.swing.JButton btnContinue;
