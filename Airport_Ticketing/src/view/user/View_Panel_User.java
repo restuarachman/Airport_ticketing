@@ -7,8 +7,6 @@ package view.user;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -16,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import view.View_Login;
-import view.user.dialog.dialogFrame_Penerbangan_notFound;
+
 
 /**
  *
@@ -731,4 +729,6 @@ public class View_Panel_User extends javax.swing.JFrame {
     public void addListener(MouseListener listener) {
         btnCariPenerbangan.addMouseListener(listener);
     }
+    
+    
 }

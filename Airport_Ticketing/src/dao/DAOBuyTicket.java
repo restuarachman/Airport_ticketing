@@ -16,16 +16,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import koneksi.Koneksi;
 import model.Bandara;
-import model.Pesawat;
+import model.TabelPenerbangan;
 import model.User;
 import view.user.View_Panel_User_ListPenerbangan;
 
@@ -47,7 +42,7 @@ public class DAOBuyTicket {
                 stmt.executeUpdate();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOBuyTicket.class.getName()).log(Level.SEVERE, null, ex);
         }
        
     }
@@ -80,67 +75,34 @@ public class DAOBuyTicket {
    
     }
  
-    public List<String> cariPesawat(String from,String to, Date date) {
+    public List<TabelPenerbangan> cariPesawat(View_Panel_User_ListPenerbangan frame, String from,String to, Date date) {
         
-        List<String> pesawat = new ArrayList();
+        List<TabelPenerbangan> tabel_penerbangan = new ArrayList();
+        
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         
         System.out.println(from + " DFDFDF ");
         try (Statement statement = Koneksi.getConnection().createStatement()) {
-            ResultSet result = statement.executeQuery("SELECT * FROM jadwalpenerbangan WHERE bandaraAsal = '"+from+"'");
+            ResultSet result = statement.executeQuery("SELECT p.kodePesawat, p.namaPesawat, j.kelas, j.harga, j.id FROM jadwalpenerbangan AS j INNER JOIN pesawat AS p ON p.id = j.pesawat_id "
+                    + "WHERE j.bandaraAsal = '"+from+"' AND j.bandaraTujuan = '"+to+"' AND j.date = '"+sqlDate+"'");
+            // ResultSet result = statement.executeQuery("SELECT pesawat.jadwalpenerbangan FROM jadwalpenerbangan WHERE bandaraAsal = '"+from+"'");
             
             while (result.next()) {  
+                System.out.println(result.getString(1)+ result.getString(2)+ result.getString(3)+ result.getInt(4));
+                TabelPenerbangan jadwal = new TabelPenerbangan(result.getInt(5), result.getString(1), result.getString(2), result.getString(3), result.getInt(4));
                 
-                pesawat.add(result.getString(5));
+                
+                tabel_penerbangan.add(jadwal);
             }
             
             result.close();
+            
+            
         } catch ( SQLException ex) {
             Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return pesawat;
+        return tabel_penerbangan;
     }
     
-    private ArrayList<Pesawat> arrPesawat = new ArrayList<>();
-    public ArrayList<Pesawat> fillTabelPesawat(View_Panel_User_ListPenerbangan frame, List<String> list_pesawat) {
-        String in = list_pesawat.get(0);
-        for (int i = 1; i< list_pesawat.size(); i++) {
-            in+=", "+list_pesawat.get(i);
-        }
-       
-        DefaultListModel addlist = new DefaultListModel();
-
-        try {
-            ResultSet result;
-            
-            try (Statement stmt = Koneksi.getConnection().createStatement()) {
-                result = stmt.executeQuery("SELECT * FROM pesawat WHERE id IN ("+in+")");
-                while(result.next()) {
-
-                    
-                    arrPesawat.add(new Pesawat(result.getString(2), result.getString(3)));
-                    addlist.addElement(result.getString(2)+"    "+result.getString(3));
-                }
-            }
-
-            result.close();
-            frame.getList_pesawat().setModel(addlist);
-            
-            frame.getList_pesawat().addListSelectionListener(new ListSelectionListener() {
-                @Override
-                public void valueChanged(ListSelectionEvent e) {
-                    if (!e.getValueIsAdjusting()) {
-                        Pesawat selected = arrPesawat.get(frame.getList_pesawat().getSelectedIndex());
-                        frame.getTxtKodePesawat().setText(selected.getKodePesawat());
-                        frame.getTxtNamaPesawat().setText(selected.getNamaPesawat());
-                     
-                    }
-                }
-            });
-            return arrPesawat;
-        } catch (SQLException ex) {
-            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
+   
 }

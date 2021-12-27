@@ -10,7 +10,6 @@ public class Airport_Ticketing {
     
     public static void main(String[] args) {
         
-        System.out.println("helooa");
         
         View_Login frame = new View_Login();
         Controller controller = new Controller(frame);

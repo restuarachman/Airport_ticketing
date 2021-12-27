@@ -5,6 +5,7 @@
  */
 package view.user;
 
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,8 +24,6 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
      */
     public View_Panel_User_IsiDataPenumpang() {
         initComponents();
-        
-        
     }
 
     /**
@@ -35,7 +34,6 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnSelesai = new javax.swing.JButton();
         Panel_List_Penerbangan = new javax.swing.JPanel();
         moveableFrame1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -50,21 +48,6 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         btnSimpanData = new javax.swing.JButton();
         Background = new javax.swing.JPanel();
-
-        btnSelesai.setBackground(new java.awt.Color(47, 54, 64));
-        btnSelesai.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
-        btnSelesai.setForeground(new java.awt.Color(255, 255, 255));
-        btnSelesai.setText("Selesai");
-        btnSelesai.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSelesaiMouseClicked(evt);
-            }
-        });
-        btnSelesai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelesaiActionPerformed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -213,28 +196,12 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_namaPenumpangActionPerformed
 
-    private void btnSelesaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSelesaiMouseClicked
-        // TODO add your handling code here:
-
-        //        this.setVisible(false);
-    }//GEN-LAST:event_btnSelesaiMouseClicked
-
-    private void btnSelesaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelesaiActionPerformed
-        
-    }//GEN-LAST:event_btnSelesaiActionPerformed
-
     private void btnSimpanDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanDataMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSimpanDataMouseClicked
 
     private void btnSimpanDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanDataActionPerformed
         // TODO add your handling code here:
-        
-        this.setVisible(false);
-        System.out.println(txt_Counter);
-        System.out.println(txt_namaPenumpang);
-        System.out.println(txt_noHP);
-        System.out.println(txt_Alamat);
     }//GEN-LAST:event_btnSimpanDataActionPerformed
 
     /**
@@ -264,9 +231,7 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
         }
         //</editor-fold>
         
-        
-//        View_Panel_User_IsiDataPenumpang frame = new View_Panel_User_IsiDataPenumpang();
-//        frame.setVisible(true);
+     
         
         
         
@@ -279,120 +244,47 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
         });
     }
 
-    public int getxMouse() {
-        return xMouse;
-    }
-
-    public void setxMouse(int xMouse) {
-        this.xMouse = xMouse;
-    }
-
-    public int getyMouse() {
-        return yMouse;
-    }
-
-    public void setyMouse(int yMouse) {
-        this.yMouse = yMouse;
-    }
-
-    
-
-    public void setBackground(JPanel Background) {
-        this.Background = Background;
-    }
-
-    public JPanel getPanel_List_Penerbangan() {
-        return Panel_List_Penerbangan;
-    }
-
-    public void setPanel_List_Penerbangan(JPanel Panel_List_Penerbangan) {
-        this.Panel_List_Penerbangan = Panel_List_Penerbangan;
-    }
-
     public JButton getBtnSimpanData() {
-        return btnSelesai;
+        return btnSimpanData;
     }
 
     public void setBtnSimpanData(JButton btnSimpanData) {
-        this.btnSelesai = btnSimpanData;
+        this.btnSimpanData = btnSimpanData;
     }
 
-    public JLabel getjLabel11() {
-        return txt_Counter;
-    }
-
-    public void setjLabel11(JLabel jLabel11) {
-        this.txt_Counter = jLabel11;
-    }
-
-    public JLabel getjLabel6() {
-        return jLabel6;
-    }
-
-    public void setjLabel6(JLabel jLabel6) {
-        this.jLabel6 = jLabel6;
-    }
-
-    public JLabel getjLabel7() {
-        return jLabel7;
-    }
-
-    public void setjLabel7(JLabel jLabel7) {
-        this.jLabel7 = jLabel7;
-    }
-
-    public JLabel getjLabel8() {
-        return jLabel8;
-    }
-
-    public void setjLabel8(JLabel jLabel8) {
-        this.jLabel8 = jLabel8;
-    }
-
-    public JScrollPane getjScrollPane1() {
-        return jScrollPane1;
-    }
-
-    public void setjScrollPane1(JScrollPane jScrollPane1) {
-        this.jScrollPane1 = jScrollPane1;
-    }
-
-    public JTextArea getjTextArea1() {
+    public JTextArea getTxt_Alamat() {
         return txt_Alamat;
     }
 
-    public void setjTextArea1(JTextArea jTextArea1) {
-        this.txt_Alamat = jTextArea1;
+    public void setTxt_Alamat(JTextArea txt_Alamat) {
+        this.txt_Alamat = txt_Alamat;
     }
 
-    public JTextField getjTextField1() {
-        return txt_noHP;
-    }
-
-    public void setjTextField1(JTextField jTextField1) {
-        this.txt_noHP = jTextField1;
-    }
-
-    public JTextField getjTextField2() {
+    public JTextField getTxt_namaPenumpang() {
         return txt_namaPenumpang;
     }
 
-    public void setjTextField2(JTextField jTextField2) {
-        this.txt_namaPenumpang = jTextField2;
+    public void setTxt_namaPenumpang(JTextField txt_namaPenumpang) {
+        this.txt_namaPenumpang = txt_namaPenumpang;
     }
 
-    public JPanel getMoveableFrame1() {
-        return moveableFrame1;
+    public JTextField getTxt_noHP() {
+        return txt_noHP;
     }
 
-    public void setMoveableFrame1(JPanel moveableFrame1) {
-        this.moveableFrame1 = moveableFrame1;
+    public void setTxt_noHP(JTextField txt_noHP) {
+        this.txt_noHP = txt_noHP;
+    }
+    
+    
+
+    public void addListener(MouseListener mouseListener) {
+        btnSimpanData.addMouseListener(mouseListener);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Panel_List_Penerbangan;
-    private javax.swing.JButton btnSelesai;
     private javax.swing.JButton btnSimpanData;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -406,24 +298,5 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
     private javax.swing.JTextField txt_namaPenumpang;
     private javax.swing.JTextField txt_noHP;
     // End of variables declaration//GEN-END:variables
-
-
-    
-    public static void ulang(int count){
-        
-        
-        
-        for (int i = 1; i <= count; i++) {
-            
-            View_Panel_User_IsiDataPenumpang frame = new View_Panel_User_IsiDataPenumpang();
-            
-            frame.setVisible(true);
-            frame.txt_Counter.setText(String.valueOf(i));
-            
-            
-            
-        }
-    }
-
-
+       
 }
