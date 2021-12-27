@@ -21,8 +21,12 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
     /**
      * Creates new form View_Panel_User_IsiDataPenumpang
      */
-    public View_Panel_User_IsiDataPenumpang() {
+    public View_Panel_User_IsiDataPenumpang(int jumlah_penumpang) {
         initComponents();
+        JTextField txtField[] = new JTextField[jumlah_penumpang];
+        for (int i = 0; i < jumlah_penumpang; i++) {
+            txtField[i] = new JTextField();
+        }
     }
 
     /**
@@ -241,10 +245,6 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
 
     public void setyMouse(int yMouse) {
         this.yMouse = yMouse;
-    }
-
-    public JPanel getBackground() {
-        return Background;
     }
 
     public void setBackground(JPanel Background) {

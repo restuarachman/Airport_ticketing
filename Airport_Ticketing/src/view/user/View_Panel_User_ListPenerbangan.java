@@ -49,9 +49,13 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtNamaPesawat = new javax.swing.JTextField();
+        txtKelas = new javax.swing.JTextField();
         txtKodePesawat = new javax.swing.JTextField();
         btnCariPenerbangan = new javax.swing.JButton();
+        txtNamaPesawat = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtHarga = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
         Background = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,8 +125,8 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(48, 57, 82));
         jLabel6.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel6.setText("Nama  :");
-        Panel_List_Penerbangan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
+        jLabel6.setText("Kelas  :");
+        Panel_List_Penerbangan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(48, 57, 82));
         jLabel7.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
@@ -136,14 +140,14 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         jLabel8.setText("Kode   :");
         Panel_List_Penerbangan.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, -1, -1));
 
-        txtNamaPesawat.setText("Garuda Indonesia");
-        txtNamaPesawat.setEnabled(false);
-        txtNamaPesawat.addActionListener(new java.awt.event.ActionListener() {
+        txtKelas.setText("Economy");
+        txtKelas.setEnabled(false);
+        txtKelas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNamaPesawatActionPerformed(evt);
+                txtKelasActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(txtNamaPesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 160, 30));
+        Panel_List_Penerbangan.add(txtKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 320, 160, 30));
 
         txtKodePesawat.setText("GA-101");
         txtKodePesawat.setEnabled(false);
@@ -152,7 +156,7 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
                 txtKodePesawatActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(txtKodePesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 160, 30));
+        Panel_List_Penerbangan.add(txtKodePesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, 160, 30));
 
         btnCariPenerbangan.setBackground(new java.awt.Color(47, 54, 64));
         btnCariPenerbangan.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
@@ -168,7 +172,36 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
                 btnCariPenerbanganActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(btnCariPenerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 380, 180, 50));
+        Panel_List_Penerbangan.add(btnCariPenerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 390, 180, 50));
+
+        txtNamaPesawat.setEnabled(false);
+        txtNamaPesawat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNamaPesawatActionPerformed(evt);
+            }
+        });
+        Panel_List_Penerbangan.add(txtNamaPesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, 160, 30));
+
+        jLabel9.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel9.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel9.setText("Nama  :");
+        Panel_List_Penerbangan.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
+
+        txtHarga.setText("10000");
+        txtHarga.setEnabled(false);
+        txtHarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHargaActionPerformed(evt);
+            }
+        });
+        Panel_List_Penerbangan.add(txtHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 160, 30));
+
+        jLabel10.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel10.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel10.setText("Harga  :");
+        Panel_List_Penerbangan.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 270, -1, -1));
 
         getContentPane().add(Panel_List_Penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 580));
 
@@ -218,9 +251,9 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCariPenerbanganActionPerformed
 
-    private void txtNamaPesawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaPesawatActionPerformed
+    private void txtKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKelasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNamaPesawatActionPerformed
+    }//GEN-LAST:event_txtKelasActionPerformed
 
     private void txtKodePesawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKodePesawatActionPerformed
         // TODO add your handling code here:
@@ -230,6 +263,14 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         // TODO add your handling code here:
        
     }//GEN-LAST:event_list_pesawatValueChanged
+
+    private void txtNamaPesawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaPesawatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNamaPesawatActionPerformed
+
+    private void txtHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHargaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -389,11 +430,26 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
     public void setTxtNamaPesawat(JTextField txtNamaPesawat) {
         this.txtNamaPesawat = txtNamaPesawat;
     }
-
  
     public void addListener(MouseListener mouseListener) {
         btnCariPenerbangan.addMouseListener(mouseListener);
         
+    }
+
+    public JTextField getTxtHarga() {
+        return txtHarga;
+    }
+
+    public void setTxtHarga(JTextField txtHarga) {
+        this.txtHarga = txtHarga;
+    }
+
+    public JTextField getTxtKelas() {
+        return txtKelas;
+    }
+
+    public void setTxtKelas(JTextField txtKelas) {
+        this.txtKelas = txtKelas;
     }
     
     
@@ -402,14 +458,18 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_List_Penerbangan;
     private javax.swing.JPanel borderList;
     private javax.swing.JButton btnCariPenerbangan;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> list_pesawat;
     private javax.swing.JPanel moveableFrame1;
+    private javax.swing.JTextField txtHarga;
+    private javax.swing.JTextField txtKelas;
     private javax.swing.JTextField txtKodePesawat;
     private javax.swing.JTextField txtNamaPesawat;
     // End of variables declaration//GEN-END:variables
