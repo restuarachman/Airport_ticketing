@@ -10,31 +10,31 @@ package model;
  * @author ASUS
  */
 public class Tiket {
-    private int idTiket;
-    private String namaTiket;
+    private int id;
+    private String kodeTiket;
 
     public Tiket() {
     }
 
-    public Tiket(int idTiket, String namaTiket) {
-        this.idTiket = idTiket;
-        this.namaTiket = namaTiket;
+    public Tiket(int id, User user, JadwalPenerbangan jadwal) {
+        this.id = id;
+        this.kodeTiket = Integer.toString(this.id)+Integer.toString(jadwal.getId())+Integer.toString(user.getId());
     }
 
-    public int getIdTiket() {
-        return idTiket;
+    public int getId() {
+        return id;
     }
 
-    public void setIdTiket(int idTiket) {
-        this.idTiket = idTiket;
+    public void setId(int idTiket) {
+        this.id = idTiket;
     }
 
-    public String getNamaTiket() {
-        return namaTiket;
+    public String getKodeTiket() {
+        return kodeTiket;
     }
 
-    public void setNamaTiket(String namaTiket) {
-        this.namaTiket = namaTiket;
+    public void setKodeTiket(String namaTiket) {
+        this.kodeTiket = namaTiket;
     }
     
     public void addTiket(){

@@ -11,9 +11,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import koneksi.Koneksi;
 import model.User;
-public class DAOUser implements DAO {
+public class DAOUser {
     private List<User> list;
-    @Override
+
     public void insert(User user) {
         try {
             Connection connection = Koneksi.getConnection();
@@ -26,11 +26,11 @@ public class DAOUser implements DAO {
                 statement.executeUpdate();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    @Override
+
     public void update(User user) {
         try {
             Connection connection = Koneksi.getConnection();
@@ -43,11 +43,11 @@ public class DAOUser implements DAO {
                 statement.executeUpdate();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    @Override
+
     public void delete(String username) {
          try {
             Connection connection = Koneksi.getConnection();
@@ -58,18 +58,21 @@ public class DAOUser implements DAO {
                 statement.executeUpdate();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    @Override
-    public boolean validate(String username, String password) {      
+
+    public boolean validate(String username, String password, User user) {      
         try {
             ResultSet result;
             try (Statement statement = Koneksi.getConnection().createStatement()) {
                 result = statement.executeQuery("SELECT * FROM user WHERE username = '" + username + "' AND password = '"+password+"'");
                 while (result.next()) {     
                     if (result.getString(2).equals(username)  && result.getString(3).equals(password)) {
+                        user.setId(result.getInt(1));
+                        user.setUsername(result.getString(2));
+                        user.setPassword(result.getString(3));
                         return true;
                     }
                 }
@@ -83,7 +86,7 @@ public class DAOUser implements DAO {
     }
     
   
-    @Override
+
     public boolean findUser(String username) {
         try {
             ResultSet result;
@@ -91,6 +94,7 @@ public class DAOUser implements DAO {
                 result = statement.executeQuery("SELECT * FROM user WHERE username = '" + username + "'");
                 while (result.next()) {     
                     if (result.getString(2).equals(username)) {
+                        
                         return true;
                     }
                 }

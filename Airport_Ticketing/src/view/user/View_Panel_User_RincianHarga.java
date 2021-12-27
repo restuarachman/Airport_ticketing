@@ -5,6 +5,11 @@
  */
 package ramaditoferdian.aplikasidynamicpanel.view;
 
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author USER
@@ -52,7 +57,7 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         btnBack2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnBack2.setForeground(new java.awt.Color(255, 255, 255));
         btnBack2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnBack2.setIcon(new javax.swing.ImageIcon("C:\\Users\\USER\\Pictures\\asset\\btnBack2.png")); // NOI18N
+        btnBack2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/img/btnBack2.png"))); // NOI18N
         btnBack2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBack2MouseClicked(evt);
@@ -264,11 +269,62 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         });
     }
 
+    public JLabel getBtnBack2() {
+        return btnBack2;
+    }
+
+    public void setBtnBack2(JLabel btnBack2) {
+        this.btnBack2 = btnBack2;
+    }
+
+    public JButton getBtnBayar() {
+        return btnBayar;
+    }
+
+    public void setBtnBayar(JButton btnBayar) {
+        this.btnBayar = btnBayar;
+    }
+
+    public JTextField getTxtHargaTiket() {
+        return txtHargaTiket;
+    }
+
+    public void setTxtHargaTiket(JTextField txtHargaTiket) {
+        this.txtHargaTiket = txtHargaTiket;
+    }
+
+    public JTextField getTxtSubTotal() {
+        return txtSubTotal;
+    }
+
+    public void setTxtSubTotal(JTextField txtSubTotal) {
+        this.txtSubTotal = txtSubTotal;
+    }
+
+    public JTextField getTxtTotalPenumpang() {
+        return txtTotalPenumpang;
+    }
+
+    public void setTxtTotalPenumpang(JTextField txtTotalPenumpang) {
+        this.txtTotalPenumpang = txtTotalPenumpang;
+    }
+
+    public JTextField getTxtUangAnda() {
+        return txtUangAnda;
+    }
+
+    public void setTxtUangAnda(JTextField txtUangAnda) {
+        this.txtUangAnda = txtUangAnda;
+    }
+    
+    public void addListener(MouseListener mouseListener) {
+        btnBack2.addMouseListener(mouseListener);
+        btnBayar.addMouseListener(mouseListener);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Panel_List_Penerbangan;
-    private javax.swing.JLabel btnBack;
-    private javax.swing.JLabel btnBack1;
     private javax.swing.JLabel btnBack2;
     private javax.swing.JButton btnBayar;
     private javax.swing.JLabel jLabel11;
