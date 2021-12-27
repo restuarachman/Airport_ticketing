@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import model.Pesawat;
+import model.TabelPenerbangan;
 import model.User;
 import view.View_Login;
 import view.View_Signup;
@@ -38,7 +39,7 @@ public class Controller {
     View_Signup frame_signup = new View_Signup();
     View_Panel_User_ListPenerbangan frame_listPenerbangan = new View_Panel_User_ListPenerbangan();
     dialogFrame_Penerbangan_notFound frame_notfound = new dialogFrame_Penerbangan_notFound();
-    View_Panel_User_IsiDataPenumpang frame_isidata = new View_Panel_User_IsiDataPenumpang();
+    View_Panel_User_IsiDataPenumpang frame_isidata = new View_Panel_User_IsiDataPenumpang(0);
     
     public Controller(View_Login v_login) {
         frame_isidata.setVisible(false);
@@ -122,11 +123,11 @@ public class Controller {
             if (e.getComponent() == frame_pUser.getBtnCariPenerbangan()) {
                 Date utilDate = frame_pUser.getTxt_tanggal().getDate();
                 
-                List<String> list_pesawat = daoBuyTicket.cariPesawat((String)frame_pUser.getTxt_dari().getSelectedItem(), (String)frame_pUser.getTxt_ke().getSelectedItem(), utilDate);
-                if (list_pesawat.isEmpty()) {
+                List<TabelPenerbangan> list_penerbangan = daoBuyTicket.cariPesawat(frame_listPenerbangan, (String)frame_pUser.getTxt_dari().getSelectedItem(), (String)frame_pUser.getTxt_ke().getSelectedItem(), utilDate);
+                if (list_penerbangan.isEmpty()) {
                     move(frame_pUser, frame_notfound);
                 } else {
-                   daoBuyTicket.fillTabelPesawat(frame_listPenerbangan,list_pesawat);
+                   
                     
                 }
              
