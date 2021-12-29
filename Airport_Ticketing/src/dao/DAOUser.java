@@ -64,38 +64,29 @@ public class DAOUser {
     }
 
 
-    public boolean validate(String username, String password, User user) {      
+    public boolean validate(User user) {      
         try {
             ResultSet result;
             try (Statement statement = Koneksi.getConnection().createStatement()) {
-                result = statement.executeQuery("SELECT * FROM user WHERE username = '" + username + "' AND password = '"+password+"'");
-                while (result.next()) {     
-                    if (result.getString(2).equals(username)  && result.getString(3).equals(password)) {
-                        user.setId(result.getInt(1));
-                        user.setUsername(result.getString(2));
-                        user.setPassword(result.getString(3));
-                        return true;
-                    }
+                result = statement.executeQuery("SELECT * FROM user WHERE username = '" + user.getUsername() + "' AND password = '"+user.getPassword()+"'");
+                while (result.next()) {  
+                    return true;
                 }
             }
             result.close();
-            return false;
         } catch (SQLException ex) {
             Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
         }
+        return false;
     }
     
-  
-
-    public boolean findUser(String username) {
+    public boolean findUser(User user) {
         try {
             ResultSet result;
             try (Statement statement = Koneksi.getConnection().createStatement()) {
-                result = statement.executeQuery("SELECT * FROM user WHERE username = '" + username + "'");
+                result = statement.executeQuery("SELECT * FROM user WHERE username = '" + user.getUsername() + "'");
                 while (result.next()) {     
-                    if (result.getString(2).equals(username)) {
-                        
+                    if (result.getString(2).equals(user.getUsername())) {
                         return true;
                     }
                 }
@@ -135,7 +126,6 @@ public class DAOUser {
             String sql = "SELECT b.nama_penumpang, b.jumlah_penumpang, j.date, j.bandaraAsal, j.bandaraTujuan, j.kelas FROM tiket AS t "
                     + "INNER JOIN booking AS b ON b.id = t.booking_id "
                     + "INNER JOIN jadwalpenerbangan AS j ON j.id = b.jadwalpenerbangan_id WHERE b.user_id = '"+user.getId()+"'";
-            
             try (PreparedStatement stmt = connection.prepareStatement(sql)){
                 ResultSet rs = stmt.executeQuery(sql);
                 while (rs.next()) {
@@ -152,7 +142,6 @@ public class DAOUser {
                     frame.getTxt_asal2().setText(rs.getString(4));
                     frame.getTxt_tujuan2().setText(rs.getString(5));
                 }
-
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOBooking.class.getName()).log(Level.SEVERE, null, ex);
