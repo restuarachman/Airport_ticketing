@@ -31,6 +31,8 @@ public class Booking {
         this.nomor_hp = nomor_hp;
         this.alamat = alamat;
         this.harga = harga*jumlahPenumpang;
+        
+        getInfo();
     }
 
     public int getHarga() {
@@ -97,6 +99,15 @@ public class Booking {
         this.jumlahPenumpang = jumlahPenumpang;
     }
 
-    
+    public void getInfo() {
+        System.out.println(id);
+        System.out.println(jadwal.getId());
+        System.out.println(user.getId());
+        System.out.println(jumlahPenumpang);
+        System.out.println(nama_penumpang);
+        System.out.println(nomor_hp);
+        System.out.println(alamat);
+        System.out.println(harga);
+    }
     
 }
