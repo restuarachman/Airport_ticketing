@@ -18,11 +18,12 @@ public class DAOUser {
     public void insert(User user) {
         try {
             Connection connection = Koneksi.getConnection();
-            String sql = "INSERT INTO user (id, username, password) VALUES (?,?,?)";
+            String sql = "INSERT INTO user (id, username, password, role) VALUES (?,?,?,?)";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, null);
                 statement.setString(2, user.getUsername());
                 statement.setString(3, user.getPassword());
+                statement.setInt(4, user.getRole());
                 
                 statement.executeUpdate();
             }
@@ -64,20 +65,20 @@ public class DAOUser {
     }
 
 
-    public boolean validate(User user) {      
+    public int getRole(User user) {      
         try {
             ResultSet result;
             try (Statement statement = Koneksi.getConnection().createStatement()) {
                 result = statement.executeQuery("SELECT * FROM user WHERE username = '" + user.getUsername() + "' AND password = '"+user.getPassword()+"'");
                 while (result.next()) {  
-                    return true;
+                    return result.getInt("role");
                 }
             }
             result.close();
         } catch (SQLException ex) {
             Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return -1;
     }
     
     public int findUser(User user) {

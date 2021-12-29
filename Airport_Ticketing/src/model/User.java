@@ -5,13 +5,23 @@ public class User {
     private int id;
     private String username;
     private String password;
+    private int role;
 
-    public User(String username, String password) {
+    public User(String username, String password, int role) {
         this.username = username;
         this.password = password;
+        this.role = role;
     }
     
     public User() {
+    }
+
+    public int getRole() {
+        return role;
+    }
+    
+    public void setRole(int role) {
+        this.role = role;
     }
     
     public int getId() {

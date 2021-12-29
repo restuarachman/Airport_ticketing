@@ -5,13 +5,19 @@
  */
 package view.admin.menu;
 
+import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import view.admin.*;
 import view.user.*;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import model.User;
 import view.View_Login;
 import view.user.dialog.dialogFrame_Penerbangan_notFound;
@@ -26,19 +32,111 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
      * Creates new form View
      */
     
-    public Admin_Atur_Data_Bandara(User user) {
+    public Admin_Atur_Data_Bandara() {
         
         
         initComponents();
         
     }
 
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
+    public JButton getBtnBatal() {
+        return btnBatal;
+    }
+
+    public JButton getBtnCari() {
+        return btnCari;
+    }
+
+    public JButton getBtnHapus() {
+        return btnHapus;
+    }
+
+    public JButton getBtnRefresh() {
+        return btnRefresh;
+    }
+
+    public JButton getBtnSimpan() {
+        return btnSimpan;
+    }
+
+    public JButton getBtn_Ubah() {
+        return btn_Ubah;
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public JTextField getTxt_cari_nama_bandara() {
+        return txt_cari_nama_bandara;
+    }
+
+    public JTextField getTxt_kode_bandara() {
+        return txt_kode_bandara;
+    }
+
+    public JTextField getTxt_nama_bandara() {
+        return txt_nama_bandara;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTable1 = jTable1;
+    }
+
+    public JLabel getKodeBandara() {
+        return kodeBandara;
+    }
+
+    public JLabel getNamaBandara() {
+        return namaBandara;
+    }
+
+    public void setKodeBandara(JLabel kodeBandara) {
+        this.kodeBandara = kodeBandara;
+    }
+
+    public void setNamaBandara(JLabel namaBandara) {
+        this.namaBandara = namaBandara;
+    }
     
-
     
+    
+    public void addListener(MouseListener mouseListener) {
+        btnBack.addMouseListener(mouseListener);
+        btnBatal.addMouseListener(mouseListener);
+        btnCari.addMouseListener(mouseListener);
+        btnHapus.addMouseListener(mouseListener);
+        btnRefresh.addMouseListener(mouseListener);
+        btnSimpan.addMouseListener(mouseListener);
+        btn_Ubah.addMouseListener(mouseListener);
+    }
+    
+    public void clearTextField() {
+        txt_kode_bandara.setText(null);
+        txt_nama_bandara.setText(null);
+    }
 
-  
-
+    public int getTableBandaraRow() { return jTable1.getSelectedRow(); }
+    
+    public void setDataField(){
+        int row;
+        row = getTableBandaraRow();
+        System.out.println("KONTO "+(String)jTable1.getModel().getValueAt(row, 0));
+        
+        if (row != -1){
+            try {
+                txt_kode_bandara.setText((String)jTable1.getModel().getValueAt(row, 0));
+                txt_nama_bandara.setText((String)jTable1.getModel().getValueAt(row, 1));
+                kodeBandara.setText((String)jTable1.getModel().getValueAt(row, 0));
+            } catch (SecurityException ex) {
+                Logger.getLogger(Admin_Atur_Data_Bandara.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,6 +167,8 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
         btnCari = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        kodeBandara = new javax.swing.JLabel();
+        namaBandara = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -93,11 +193,11 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
         moveableFrame.setLayout(moveableFrameLayout);
         moveableFrameLayout.setHorizontalGroup(
             moveableFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         moveableFrameLayout.setVerticalGroup(
             moveableFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         bodyPanel.add(moveableFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 20));
@@ -152,7 +252,7 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
                 txt_cari_nama_bandaraActionPerformed(evt);
             }
         });
-        bodyPanel.add(txt_cari_nama_bandara, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 160, 30));
+        bodyPanel.add(txt_cari_nama_bandara, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 150, 30));
 
         btnRefresh.setBackground(new java.awt.Color(47, 54, 64));
         btnRefresh.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
@@ -163,7 +263,7 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
                 btnRefreshActionPerformed(evt);
             }
         });
-        bodyPanel.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 140, 90, 30));
+        bodyPanel.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 140, 100, 30));
 
         btnSimpan.setBackground(new java.awt.Color(0, 153, 102));
         btnSimpan.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
@@ -209,7 +309,6 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
         jLabel7.setText("Kode Bandara        :");
         bodyPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 140, 30));
 
-        txt_kode_bandara.setText("TES");
         txt_kode_bandara.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_kode_bandaraActionPerformed(evt);
@@ -237,7 +336,7 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
                 btnCariActionPerformed(evt);
             }
         });
-        bodyPanel.add(btnCari, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 90, 30));
+        bodyPanel.add(btnCari, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 140, 90, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -274,9 +373,27 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         bodyPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 430, 340));
+
+        kodeBandara.setForeground(new java.awt.Color(255, 255, 255));
+        kodeBandara.setText("jLabel1");
+        bodyPanel.add(kodeBandara, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, -1, -1));
+
+        namaBandara.setForeground(new java.awt.Color(255, 255, 255));
+        namaBandara.setText("jLabel1");
+        bodyPanel.add(namaBandara, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -345,6 +462,11 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCariActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        setDataField();
+    }//GEN-LAST:event_jTable1MouseClicked
     
     private int xMouse, yMouse;
     
@@ -352,160 +474,9 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin_Atur_Data_Bandara.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin_Atur_Data_Bandara.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin_Atur_Data_Bandara.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin_Atur_Data_Bandara.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Admin_Atur_Data_Bandara(new User("username","username")).setVisible(true);
+                
             }
         });
     }
@@ -528,7 +499,9 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel kodeBandara;
     private javax.swing.JPanel moveableFrame;
+    private javax.swing.JLabel namaBandara;
     private javax.swing.JTextField txt_cari_nama_bandara;
     private javax.swing.JTextField txt_kode_bandara;
     private javax.swing.JTextField txt_nama_bandara;
