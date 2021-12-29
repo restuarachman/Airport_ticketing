@@ -80,23 +80,22 @@ public class DAOUser {
         return false;
     }
     
-    public boolean findUser(User user) {
+    public int findUser(User user) {
         try {
             ResultSet result;
             try (Statement statement = Koneksi.getConnection().createStatement()) {
                 result = statement.executeQuery("SELECT * FROM user WHERE username = '" + user.getUsername() + "'");
                 while (result.next()) {     
                     if (result.getString(2).equals(user.getUsername())) {
-                        return true;
+                        return result.getInt(1);
                     }
                 }
             }
             result.close();
-            return false;
         } catch (SQLException ex) {
             Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
         }
+        return -1;
     }
     
     public boolean havetiket(User user) {
@@ -148,4 +147,5 @@ public class DAOUser {
         }
         return 0;
     }
+    
 }
