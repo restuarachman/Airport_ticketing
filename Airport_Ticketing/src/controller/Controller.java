@@ -6,6 +6,7 @@
 package controller;
 
 import com.toedter.calendar.JDateChooser;
+import dao.DAOBandara;
 import dao.DAOBooking;
 import dao.DAOBuyTicket;
 import dao.DAOTiket;
@@ -20,13 +21,18 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import model.Bandara;
 import model.JadwalPenerbangan;
 import model.Booking;
 import model.TabelPenerbangan;
 import model.Tiket;
 import model.User;
+import tabel.TabelBandaraModel;
 import view.View_Login;
 import view.View_Signup;
+import view.admin.View_Panel_Admin_NEW;
+import view.admin.menu.Admin_Atur_Data_Bandara;
+import view.admin.menu.Admin_Atur_Data_Pesawat;
 import view.user.View_Panel_User;
 import view.user.View_Panel_User_About;
 import view.user.View_Panel_User_IsiDataPenumpang;
@@ -44,6 +50,7 @@ public class Controller {
     DAOBuyTicket daoBuyTicket = new DAOBuyTicket();
     DAOBooking daoBooking = new DAOBooking();
     DAOTiket daoTiket = new DAOTiket();
+    DAOBandara daoBandara = new DAOBandara();
     
     View_Login frame_login;
     View_Panel_User frame_pUser = new View_Panel_User();
@@ -55,6 +62,10 @@ public class Controller {
     
     dialogFrame_Penerbangan_notFound dialog_notfound = new dialogFrame_Penerbangan_notFound();
     dialogFrame_Pembayaran_sukses dialog_bayarSukses = new dialogFrame_Pembayaran_sukses();
+    
+    View_Panel_Admin_NEW frame_admin = new View_Panel_Admin_NEW();
+    Admin_Atur_Data_Bandara frame_bandara = new Admin_Atur_Data_Bandara();
+    Admin_Atur_Data_Pesawat frame_pesawat = new Admin_Atur_Data_Pesawat();
     
     private User user = new User();
     private JadwalPenerbangan jadwal = new JadwalPenerbangan();
@@ -78,6 +89,9 @@ public class Controller {
         
         dialog_notfound.addListener(Listener);
         dialog_bayarSukses.addListener(Listener);
+        
+        frame_admin.addListener(Listener);
+        frame_bandara.addListener(Listener);
     }
     
     class listener implements MouseListener {
@@ -278,6 +292,66 @@ public class Controller {
                 frame_pAbout.setVisible(false);
                 frame_pUser.setEnabled(true);     
             } 
+         // ========================== ADMIN ===========================
+         // FRAME ADMIN
+            // btn atur bandara
+            if (e.getComponent() == frame_admin.getMenu_Atur_Data_Bandara()) {
+                fillTabelBandara();
+                move(frame_admin, frame_bandara);
+            }
+            
+            // btn atur pesawat
+            if (e.getComponent() == frame_admin.getMenu_Atur_Data_Pesawat()) {
+                move(frame_admin, frame_pesawat);
+            }
+            
+            /*// btn atur jadwal penerbagan
+            if (e.getComponent() == frame_jadwalPenerbangan.) {
+                move(frame_admin, frame_jadwalPenerbangan);
+            }
+            */
+            
+            if (e.getComponent() == frame_admin.getBtnLogout()) {
+                move(frame_admin, frame_login);
+            }
+            
+        // FRAME BANDARA
+            // btn back
+            if (e.getComponent() == frame_bandara.getBtnBack()) {
+                move(frame_bandara, frame_admin);
+            }
+            // btn batal
+            if (e.getComponent() == frame_bandara.getBtnBatal()) {
+                frame_bandara.clearTextField();
+            }
+            // btn cari
+            if (e.getComponent() == frame_bandara.getBtnCari()) {
+                fillTabelBandara2(frame_bandara.getTxt_cari_nama_bandara().getText());
+            }
+            // btn hapus
+            if (e.getComponent() == frame_bandara.getBtnHapus()) {
+                Bandara bandara = new Bandara(frame_bandara.getTxt_kode_bandara().getText(), frame_bandara.getTxt_nama_bandara().getText());
+                daoBandara.delete(bandara, frame_bandara);
+                fillTabelBandara();
+            }
+            // btn refresh
+            if (e.getComponent() == frame_bandara.getBtnRefresh()) {
+                fillTabelBandara();
+            }
+            // btn simpan
+            if (e.getComponent() == frame_bandara.getBtnSimpan()) {
+                Bandara bandara = new Bandara(frame_bandara.getTxt_kode_bandara().getText(), frame_bandara.getTxt_nama_bandara().getText());
+                daoBandara.insert(bandara, frame_bandara);
+                fillTabelBandara();
+               
+            
+            }
+            // btn ubah
+            if (e.getComponent() == frame_bandara.getBtn_Ubah()) {
+                Bandara bandara = new Bandara(frame_bandara.getTxt_kode_bandara().getText(), frame_bandara.getTxt_nama_bandara().getText());
+                daoBandara.update(bandara, frame_bandara.getKodeBandara().getText());
+                fillTabelBandara();
+            }
         }
       
         @Override
@@ -302,22 +376,32 @@ public class Controller {
     }
     
     public void login(User user) {
-        boolean valid = da.validate(user);
-        if (valid) {                  
-            user.setId(da.findUser(user));
-            JOptionPane.showMessageDialog(frame_login, "Login sebagai "+user.getUsername());
-            
-            frame_pUser.getUsername().setText(user.getUsername());
-            if(da.havetiket(user)) {
-                frame_pUser.getBtnMyTicket().setEnabled(true);
-            } else {
-                frame_pUser.getBtnMyTicket().setEnabled(false);
-            }
-            move(frame_login, frame_pUser);
-            daoBuyTicket.fillCombobox(frame_pUser.getTxt_ke());
-            daoBuyTicket.fillCombobox(frame_pUser.getTxt_dari());                
-        } else {
-            JOptionPane.showMessageDialog(frame_login, "Username atau Password salah");
+        user.setRole(da.getRole(user));
+        switch (user.getRole()) {
+            case 0:
+                move(frame_login, frame_admin);
+                break;
+            case 1:
+                // CUSTOMER
+                user.setId(da.findUser(user));
+                JOptionPane.showMessageDialog(frame_login, "Login sebagai "+user.getUsername());
+                frame_pUser.getUsername().setText(user.getUsername());
+                if(da.havetiket(user)) {
+                    frame_pUser.getBtnMyTicket().setEnabled(true);
+                } else {
+                    frame_pUser.getBtnMyTicket().setEnabled(false);
+                }   
+                move(frame_login, frame_pUser);
+                daoBuyTicket.fillCombobox(frame_pUser.getTxt_ke());
+                daoBuyTicket.fillCombobox(frame_pUser.getTxt_dari());
+                break;
+                
+            case 2:
+                // KASIR
+                break;
+            default:
+                JOptionPane.showMessageDialog(frame_login, "Username atau Password salah");
+                break;
         }
     }
     
@@ -340,7 +424,6 @@ public class Controller {
                         JOptionPane.showMessageDialog(frame_signup, "Password tidak sama");
                     }
                 }
-
             } else {
                 JOptionPane.showMessageDialog(frame_signup, "Field harus diisi semua");
             }
@@ -354,5 +437,18 @@ public class Controller {
  
     public void getDate(JDateChooser gdate) {
         gdate.getDate();
+    }
+    
+    public void fillTabelBandara() {
+        List<Bandara> list = daoBandara.getAllBandara(); 
+        System.out.println(frame_bandara.getjTable1().getColumnCount());
+        frame_bandara.getjTable1().setModel(new TabelBandaraModel(list));
+        frame_bandara.clearTextField();
+    }
+    public void fillTabelBandara2(String nama) {
+        List<Bandara> list = daoBandara.getBandara(nama); 
+        System.out.println(frame_bandara.getjTable1().getColumnCount());
+        frame_bandara.getjTable1().setModel(new TabelBandaraModel(list));
+        frame_bandara.clearTextField();
     }
 }

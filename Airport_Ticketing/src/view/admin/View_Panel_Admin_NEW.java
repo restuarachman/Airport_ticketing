@@ -5,6 +5,7 @@
  */
 package view.admin;
 
+import java.awt.event.MouseListener;
 import view.user.*;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -25,19 +26,34 @@ public class View_Panel_Admin_NEW extends javax.swing.JFrame {
      * Creates new form View
      */
     
-    public View_Panel_Admin_NEW(User user) {
-        
-        
+    public View_Panel_Admin_NEW() {
         initComponents();
-        
     }
 
+    public JPanel getMenu_Atur_Data_Bandara() {
+        return Menu_Atur_Data_Bandara;
+    }
+
+    public JPanel getMenu_Atur_Data_Penerbangan() {
+        return Menu_Atur_Data_Penerbangan;
+    }
+
+    public JPanel getMenu_Atur_Data_Pesawat() {
+        return Menu_Atur_Data_Pesawat;
+    }
+
+    public JButton getBtnLogout() {
+        return btnLogout;
+    }
+    
     
 
-    
-
-  
-
+    public void addListener(MouseListener mouseListener) {
+        Menu_Atur_Data_Bandara.addMouseListener(mouseListener);
+        Menu_Atur_Data_Penerbangan.addMouseListener(mouseListener);
+        Menu_Atur_Data_Pesawat.addMouseListener(mouseListener);
+        btnLogout.addMouseListener(mouseListener);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -303,7 +319,8 @@ public class View_Panel_Admin_NEW extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new View_Panel_Admin_NEW(new User("username","username")).setVisible(true);
+                View_Panel_Admin_NEW admin = new View_Panel_Admin_NEW();
+                admin.setVisible(true);
             }
         });
     }
