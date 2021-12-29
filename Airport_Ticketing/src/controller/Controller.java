@@ -63,16 +63,6 @@ public class Controller {
     private int tiketcount = daoTiket.getnotiket();
     private int bookingcount = daoBooking.jumlahbooking();
     public Controller(View_Login v_login) {
-        frame_pAbout.setVisible(false);
-        frame_rincianHarga.setVisible(false);
-        frame_isidata.setVisible(false);
-        frame_listPenerbangan.setVisible(false);
-        frame_signup.setVisible(false);
-        frame_pUser.setVisible(false);
-                
-        dialog_bayarSukses.setVisible(false);
-        dialog_notfound.setVisible(false);
-        
         this.frame_login = v_login;
         this.frame_login.setVisible(true);
         v_login.setTitle("TUBES NIH BOUS");
@@ -97,26 +87,9 @@ public class Controller {
         // FRAME LOGIN
             // btn login
             if (e.getComponent() == frame_login.getBtnLogin()) {
-                boolean valid = da.validate(frame_login.getTxtUsername().getText(), frame_login.getTxtPassword().getText(), user);
-                if (valid) {
-                    user.setUsername(frame_login.getTxtUsername().getText());
-                    user.setPassword(frame_login.getTxtPassword().getText());
-                    
-                    JOptionPane.showMessageDialog(frame_login, "Login sebagai "+user.getUsername());
-
-                    frame_pUser.getUsername().setText(user.getUsername());
-                    if(da.havetiket(user)) {
-                        frame_pUser.getBtnMyTicket().setEnabled(true);
-                    }
-                    move(frame_login, frame_pUser);
-                    daoBuyTicket.fillCombobox(frame_pUser.getTxt_ke());
-                    daoBuyTicket.fillCombobox(frame_pUser.getTxt_dari());
-                    
-                    
-                    
-                } else {
-                    JOptionPane.showMessageDialog(frame_login, "Username atau Password salah");
-                }
+                user.setUsername(frame_login.getTxtUsername().getText());
+                user.setPassword(frame_login.getTxtPassword().getText());
+                login(user);
             } 
             // btn signup
             if (e.getComponent() == frame_login.getForSignup()){
@@ -132,26 +105,11 @@ public class Controller {
             
             // btn signup
             if (e.getComponent() == frame_signup.getBtnSignup()) {
-           
-                if (!frame_signup.getTxtUsername().getText().equals("") && !frame_signup.getTxtPassword().getText().equals("") && !frame_signup.getTxtPassword1().getText().equals("")) {
-                    if(frame_signup.getTxtPassword().getText().equals(frame_signup.getTxtPassword1().getText())) {
-                        if (da.findUser(frame_signup.getTxtUsername().getText())) {
-                            JOptionPane.showMessageDialog(frame_signup, "Username sudah digunakan");
-                        } else {
-                            da.insert(new User(frame_signup.getTxtUsername().getText(), frame_signup.getTxtPassword().getText()));
-                            JOptionPane.showMessageDialog(frame_signup, "Berhasil daftar");
-                            frame_signup.getTxtUsername().setText(null);
-
-                            move(frame_signup, frame_login);
-                        }
-                        frame_signup.getTxtPassword().setText(null);
-                        frame_signup.getTxtPassword1().setText(null);
-                    } else {
-                        JOptionPane.showMessageDialog(frame_signup, "Password tidak sama");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(frame_signup, "Field harus diisi semua");
-                }
+                user.setUsername(frame_signup.getTxtUsername().getText());
+                user.setPassword(frame_signup.getTxtPassword().getText());
+                String password2 = frame_signup.getTxtPassword1().getText();
+                signup(user, password2);
+                
             }
             
         // FRAME PANEL USER
@@ -164,6 +122,7 @@ public class Controller {
                 jadwal.setDate(utilDate);
                 List<TabelPenerbangan> tabel_penerbangan = daoBuyTicket.cariPesawat(frame_listPenerbangan, (String)frame_pUser.getTxt_dari().getSelectedItem(), (String)frame_pUser.getTxt_ke().getSelectedItem(), utilDate);
                 DefaultListModel addlist = new DefaultListModel();
+                
                 for (TabelPenerbangan terbang : tabel_penerbangan) {
                     addlist.addElement(terbang.getKodePesawat()+"\t "+terbang.getNamaPesawat()+"\t "+terbang.getKelas()+"\t "+terbang.getHarga());
                 }
@@ -222,7 +181,7 @@ public class Controller {
                 }else{
                     System.out.println("batal logout");
 
-        }
+                }
             }
             
         // FRAME LIST PENERBANGAN
@@ -302,7 +261,6 @@ public class Controller {
                 frame_pUser.setEnabled(true);     
             } 
         }
-        
       
         @Override
         public void mousePressed(MouseEvent e) {
@@ -322,6 +280,51 @@ public class Controller {
         @Override
         public void mouseExited(MouseEvent e) {
            
+        }
+    }
+    
+    public void login(User user) {
+        boolean valid = da.validate(user);
+        if (valid) {                  
+            JOptionPane.showMessageDialog(frame_login, "Login sebagai "+user.getUsername());
+
+            frame_pUser.getUsername().setText(user.getUsername());
+            if(da.havetiket(user)) {
+                frame_pUser.getBtnMyTicket().setEnabled(true);
+            } else {
+                frame_pUser.getBtnMyTicket().setEnabled(false);
+            }
+            move(frame_login, frame_pUser);
+            daoBuyTicket.fillCombobox(frame_pUser.getTxt_ke());
+            daoBuyTicket.fillCombobox(frame_pUser.getTxt_dari());                
+        } else {
+            JOptionPane.showMessageDialog(frame_login, "Username atau Password salah");
+        }
+    }
+    
+    public void signup(User user, String password2) {
+        if (da.findUser(user)) {
+            JOptionPane.showMessageDialog(frame_signup, "Username sudah digunakan");
+            frame_signup.getTxtPassword().setText(null);
+            frame_signup.getTxtPassword1().setText(null);
+        } else {
+            if (!user.getUsername().equals("") && !user.getPassword().equals("") && !password2.equals("")) {
+                if (user.getUsername().length() <= 6) {
+                    JOptionPane.showMessageDialog(frame_signup, "Username harus lebih dari 6 karakter");
+                } else {
+                    if(user.getPassword().equals(password2)) {
+                        da.insert(user);
+                        JOptionPane.showMessageDialog(frame_signup, "Berhasil daftar");
+                        frame_signup.getTxtUsername().setText(null);
+                        move(frame_signup, frame_login);
+                    } else {
+                        JOptionPane.showMessageDialog(frame_signup, "Password tidak sama");
+                    }
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(frame_signup, "Field harus diisi semua");
+            }
         }
     }
     
