@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.user;
+package view.kasir.menu;
 
+import view.user.*;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,12 +15,12 @@ import javax.swing.JTextField;
  *
  * @author USER
  */
-public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
+public class Kasir_Pembayaran_Rincian_Pembayaran extends javax.swing.JFrame {
 
     /**
      * Creates new form View_Panel_User_RincianHarga
      */
-    public View_Panel_User_RincianHarga() {
+    public Kasir_Pembayaran_Rincian_Pembayaran() {
         initComponents();
     }
 
@@ -42,6 +43,8 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         btnBayar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtHargaTiket = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtUangAnda = new javax.swing.JTextField();
         Background = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,13 +100,13 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(48, 57, 82));
         jLabel6.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel6.setText("Sub Total                 : ");
+        jLabel6.setText("Sub Total                  : ");
         Panel_List_Penerbangan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(48, 57, 82));
         jLabel8.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel8.setText("Total Penumpang      :");
+        jLabel8.setText("Total Penumpang       :");
         Panel_List_Penerbangan.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
 
         txtSubTotal.setEnabled(false);
@@ -125,7 +128,7 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         btnBayar.setBackground(new java.awt.Color(47, 54, 64));
         btnBayar.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
         btnBayar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBayar.setText("Pergi ke Kasir");
+        btnBayar.setText("Bayar");
         btnBayar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBayarMouseClicked(evt);
@@ -141,7 +144,7 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(48, 57, 82));
         jLabel7.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel7.setText("Harga Satuan TIket    : ");
+        jLabel7.setText("Harga Satuan TIket     : ");
         Panel_List_Penerbangan.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
 
         txtHargaTiket.setEnabled(false);
@@ -151,6 +154,19 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
             }
         });
         Panel_List_Penerbangan.add(txtHargaTiket, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 160, 30));
+
+        jLabel9.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel9.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel9.setText("Masukan Jumlah Uang :");
+        Panel_List_Penerbangan.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, -1, -1));
+
+        txtUangAnda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUangAndaActionPerformed(evt);
+            }
+        });
+        Panel_List_Penerbangan.add(txtUangAnda, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 160, 30));
 
         getContentPane().add(Panel_List_Penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 580));
 
@@ -211,6 +227,10 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHargaTiketActionPerformed
 
+    private void txtUangAndaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUangAndaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUangAndaActionPerformed
+
     private void btnBack2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack2MouseClicked
 
     }//GEN-LAST:event_btnBack2MouseClicked
@@ -232,20 +252,21 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_RincianHarga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kasir_Pembayaran_Rincian_Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_RincianHarga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kasir_Pembayaran_Rincian_Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_RincianHarga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kasir_Pembayaran_Rincian_Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_RincianHarga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kasir_Pembayaran_Rincian_Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new View_Panel_User_RincianHarga().setVisible(true);
+                new Kasir_Pembayaran_Rincian_Pembayaran().setVisible(true);
             }
         });
     }
@@ -290,6 +311,13 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         this.txtTotalPenumpang = txtTotalPenumpang;
     }
 
+    public JTextField getTxtUangAnda() {
+        return txtUangAnda;
+    }
+
+    public void setTxtUangAnda(JTextField txtUangAnda) {
+        this.txtUangAnda = txtUangAnda;
+    }
     
     public void addListener(MouseListener mouseListener) {
         btnBack2.addMouseListener(mouseListener);
@@ -305,9 +333,11 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel moveableFrame1;
     private javax.swing.JTextField txtHargaTiket;
     private javax.swing.JTextField txtSubTotal;
     private javax.swing.JTextField txtTotalPenumpang;
+    private javax.swing.JTextField txtUangAnda;
     // End of variables declaration//GEN-END:variables
 }
