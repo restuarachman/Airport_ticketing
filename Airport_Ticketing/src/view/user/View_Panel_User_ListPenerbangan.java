@@ -7,6 +7,7 @@ package view.user;
 
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
 
@@ -32,6 +33,7 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
     private void initComponents() {
 
         Panel_List_Penerbangan = new javax.swing.JPanel();
+        btnBack2 = new javax.swing.JLabel();
         moveableFrame1 = new javax.swing.JPanel();
         borderList = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -48,7 +50,6 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtHarga = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        btnBack2 = new javax.swing.JLabel();
         Background = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,6 +60,17 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         Panel_List_Penerbangan.setBackground(new java.awt.Color(255, 255, 255));
         Panel_List_Penerbangan.setForeground(new java.awt.Color(255, 255, 255));
         Panel_List_Penerbangan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnBack2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnBack2.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnBack2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/img/btnBack2.png"))); // NOI18N
+        btnBack2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBack2MouseClicked(evt);
+            }
+        });
+        Panel_List_Penerbangan.add(btnBack2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, 40, 40));
 
         moveableFrame1.setOpaque(false);
         moveableFrame1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -192,17 +204,6 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(48, 57, 82));
         jLabel10.setText("Harga  :");
         Panel_List_Penerbangan.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 270, -1, -1));
-
-        btnBack2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnBack2.setForeground(new java.awt.Color(255, 255, 255));
-        btnBack2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnBack2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/img/btnBack2.png"))); // NOI18N
-        btnBack2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBack2MouseClicked(evt);
-            }
-        });
-        Panel_List_Penerbangan.add(btnBack2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, 40, 40));
 
         getContentPane().add(Panel_List_Penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 580));
 
@@ -360,7 +361,14 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         this.txtNamaPesawat = txtNamaPesawat;
     }
 
-   
+    public JLabel getBtnBack2() {
+        return btnBack2;
+    }
+
+    public void setBtnBack2(JLabel btnBack2) {
+        this.btnBack2 = btnBack2;
+    }
+    
     public void addListener(MouseListener mouseListener) {
         btnPilihPenerbangan.addMouseListener(mouseListener);
         btnBack2.addMouseListener(mouseListener);
