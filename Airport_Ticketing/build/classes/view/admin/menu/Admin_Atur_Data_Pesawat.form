@@ -336,6 +336,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_id_pesawat">
           <Properties>
+            <Property name="text" type="java.lang.String" value="id"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>

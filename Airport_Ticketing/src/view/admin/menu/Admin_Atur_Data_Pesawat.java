@@ -211,6 +211,7 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
         jLabel7.setText("ID Pesawat             :");
         bodyPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 140, 30));
 
+        txt_id_pesawat.setText("id");
         txt_id_pesawat.setEnabled(false);
         txt_id_pesawat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
