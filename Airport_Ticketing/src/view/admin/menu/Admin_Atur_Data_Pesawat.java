@@ -5,16 +5,13 @@
  */
 package view.admin.menu;
 
-import view.admin.*;
-import view.user.*;
+import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import model.User;
-import view.View_Login;
-import view.user.dialog.dialogFrame_Penerbangan_notFound;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import tabel.TabelPesawatModel;
 
 /**
  *
@@ -27,18 +24,138 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
      */
     
     public Admin_Atur_Data_Pesawat() {
-        
-        
         initComponents();
-        
     }
 
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
+    public void setBtnBack(JButton btnBack) {
+        this.btnBack = btnBack;
+    }
+
+    public JButton getBtnBatal() {
+        return btnBatal;
+    }
+
+    public void setBtnBatal(JButton btnBatal) {
+        this.btnBatal = btnBatal;
+    }
+
+    public JButton getBtnCari() {
+        return btnCari;
+    }
+
+    public void setBtnCari(JButton btnCari) {
+        this.btnCari = btnCari;
+    }
+
+    public JButton getBtnHapus() {
+        return btnHapus;
+    }
+
+    public void setBtnHapus(JButton btnHapus) {
+        this.btnHapus = btnHapus;
+    }
+
+    public JButton getBtnRefresh() {
+        return btnRefresh;
+    }
+
+    public void setBtnRefresh(JButton btnRefresh) {
+        this.btnRefresh = btnRefresh;
+    }
+
+    public JButton getBtnSimpan() {
+        return btnSimpan;
+    }
+
+    public void setBtnSimpan(JButton btnSimpan) {
+        this.btnSimpan = btnSimpan;
+    }
+
+    public JButton getBtnUbah() {
+        return btnUbah;
+    }
+
+    public void setBtnUbah(JButton btnUbah) {
+        this.btnUbah = btnUbah;
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTable1 = jTable1;
+    }
+
+    public JTextField getTxt_cari_nama_pesawat() {
+        return txt_cari_nama_pesawat;
+    }
+
+    public void setTxt_cari_nama_pesawat(JTextField txt_cari_nama_pesawat) {
+        this.txt_cari_nama_pesawat = txt_cari_nama_pesawat;
+    }
+
+    public JTextField getTxt_id_pesawat() {
+        return txt_id_pesawat;
+    }
+
+    public void setTxt_id_pesawat(JTextField txt_id_pesawat) {
+        this.txt_id_pesawat = txt_id_pesawat;
+    }
+
+    public JTextField getTxt_kode_pesawat() {
+        return txt_kode_pesawat;
+    }
+
+    public void setTxt_kode_pesawat(JTextField txt_kode_pesawat) {
+        this.txt_kode_pesawat = txt_kode_pesawat;
+    }
+
+    public JTextField getTxt_nama_pesawat() {
+        return txt_nama_pesawat;
+    }
+
+    public void setTxt_nama_pesawat(JTextField txt_nama_pesawat) {
+        this.txt_nama_pesawat = txt_nama_pesawat;
+    }
+
+    public void addListener(MouseListener mouseListener) {
+        btnBack.addMouseListener(mouseListener);
+        btnBatal.addMouseListener(mouseListener);
+        btnCari.addMouseListener(mouseListener);
+        btnHapus.addMouseListener(mouseListener);
+        btnRefresh.addMouseListener(mouseListener);
+        btnSimpan.addMouseListener(mouseListener);
+        btnUbah.addMouseListener(mouseListener);
+    }
+
+    public void clearTextField() {
+        txt_cari_nama_pesawat.setText(null);
+        txt_id_pesawat.setText(null);
+        txt_kode_pesawat.setText(null);
+        txt_nama_pesawat.setText(null);
+    }
     
-
+    public void setDataField(){
+        int row;
+        row = jTable1.getSelectedRow();
+        
+        
+        if (row != -1){
+            try {
+                //txt_id_pesawat.setText((String)jTable1.getModel().getValueAt(row, 0));
+                txt_kode_pesawat.setText((String)jTable1.getModel().getValueAt(row, 1));
+                txt_nama_pesawat.setText((String)jTable1.getModel().getValueAt(row, 2));
+            } catch (SecurityException ex) {
+                Logger.getLogger(Admin_Atur_Data_Bandara.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+   }
     
-
-  
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -277,6 +394,11 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         bodyPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 430, 340));
@@ -365,6 +487,11 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
     private void txt_nama_pesawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nama_pesawatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nama_pesawatActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        setDataField();
+    }//GEN-LAST:event_jTable1MouseClicked
     
     private int xMouse, yMouse;
     

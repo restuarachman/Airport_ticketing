@@ -10,6 +10,7 @@ package model;
  * @author ASUS
  */
 public class Pesawat extends Kursi{
+    private int id;
     private String kodePesawat;
     private String namaPesawat;
     private Kursi[] kursi = new Kursi[40];
@@ -17,7 +18,7 @@ public class Pesawat extends Kursi{
     public Pesawat() {
     }
 
-    public Pesawat(String kodePesawat, String namaPesawat) {
+    public Pesawat(int id, String kodePesawat, String namaPesawat) {
         this.kodePesawat = kodePesawat;
         this.namaPesawat = namaPesawat;
     }
@@ -26,6 +27,14 @@ public class Pesawat extends Kursi{
         super(nomorKursi);
         this.kodePesawat = kodePesawat;
         this.namaPesawat = namaPesawat;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getKodePesawat() {

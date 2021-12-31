@@ -9,6 +9,7 @@ import com.toedter.calendar.JDateChooser;
 import dao.DAOBandara;
 import dao.DAOBooking;
 import dao.DAOBuyTicket;
+import dao.DAOPesawat;
 import dao.DAOTiket;
 import dao.DAOUser;
 
@@ -24,10 +25,12 @@ import javax.swing.event.ListSelectionListener;
 import model.Bandara;
 import model.JadwalPenerbangan;
 import model.Booking;
+import model.Pesawat;
 import model.TabelPenerbangan;
 import model.Tiket;
 import model.User;
 import tabel.TabelBandaraModel;
+import tabel.TabelPesawatModel;
 import view.View_Login;
 import view.View_Signup;
 import view.admin.View_Panel_Admin_NEW;
@@ -51,6 +54,7 @@ public class Controller {
     DAOBooking daoBooking = new DAOBooking();
     DAOTiket daoTiket = new DAOTiket();
     DAOBandara daoBandara = new DAOBandara();
+    DAOPesawat daoPesawat = new DAOPesawat();
     
     View_Login frame_login;
     View_Panel_User frame_pUser = new View_Panel_User();
@@ -92,6 +96,7 @@ public class Controller {
         
         frame_admin.addListener(Listener);
         frame_bandara.addListener(Listener);
+        frame_pesawat.addListener(Listener);
     }
     
     class listener implements MouseListener {
@@ -251,7 +256,6 @@ public class Controller {
             // btn bayar
             if (e.getComponent() == frame_rincianHarga.getBtnBayar()) {
                 
-                System.out.println(Integer.parseInt(frame_rincianHarga.getTxtUangAnda().getText()) - Integer.parseInt(frame_rincianHarga.getTxtSubTotal().getText()));
                 if (Integer.parseInt(frame_rincianHarga.getTxtUangAnda().getText()) - Integer.parseInt(frame_rincianHarga.getTxtSubTotal().getText()) > 0) {
                     tiketcount = daoTiket.getnotiket();
                     tiketcount++;
@@ -302,6 +306,7 @@ public class Controller {
             
             // btn atur pesawat
             if (e.getComponent() == frame_admin.getMenu_Atur_Data_Pesawat()) {
+                fillTabelPesawat();
                 move(frame_admin, frame_pesawat);
             }
             
@@ -315,7 +320,7 @@ public class Controller {
                 move(frame_admin, frame_login);
             }
             
-        // FRAME BANDARA
+        // FRAME ATUR BANDARA
             // btn back
             if (e.getComponent() == frame_bandara.getBtnBack()) {
                 move(frame_bandara, frame_admin);
@@ -343,13 +348,46 @@ public class Controller {
                 Bandara bandara = new Bandara(frame_bandara.getTxt_kode_bandara().getText(), frame_bandara.getTxt_nama_bandara().getText());
                 daoBandara.insert(bandara, frame_bandara);
                 fillTabelBandara();
-               
-            
             }
             // btn ubah
             if (e.getComponent() == frame_bandara.getBtn_Ubah()) {
                 Bandara bandara = new Bandara(frame_bandara.getTxt_kode_bandara().getText(), frame_bandara.getTxt_nama_bandara().getText());
                 daoBandara.update(bandara, frame_bandara.getKodeBandara().getText());
+                fillTabelBandara();
+            }
+        // FRAME ATUR PESAWAT
+            // btn back
+            if (e.getComponent() == frame_pesawat.getBtnBack()) {
+                move(frame_pesawat, frame_admin);
+            }
+            // btn batal
+            if (e.getComponent() == frame_pesawat.getBtnBatal()) {
+                frame_pesawat.clearTextField();
+            }
+            // btn cari
+            if (e.getComponent() == frame_pesawat.getBtnCari()) {
+                fillTabelBandara2(frame_pesawat.getTxt_cari_nama_pesawat().getText());
+            }
+            // btn hapus
+            if (e.getComponent() == frame_pesawat.getBtnHapus()) {
+                Pesawat pesawat = new Pesawat(Integer.parseInt(frame_pesawat.getTxt_id_pesawat().getText()), frame_pesawat.getTxt_kode_pesawat().getText(), frame_pesawat.getTxt_nama_pesawat().getText());
+                daoPesawat.delete(pesawat, frame_pesawat);
+                fillTabelBandara();
+            }
+            // btn refresh
+            if (e.getComponent() == frame_pesawat.getBtnRefresh()) {
+                fillTabelBandara();
+            }
+            // btn simpan
+            if (e.getComponent() == frame_pesawat.getBtnSimpan()) {
+                Pesawat pesawat = new Pesawat(Integer.parseInt(frame_pesawat.getTxt_id_pesawat().getText()), frame_pesawat.getTxt_kode_pesawat().getText(), frame_pesawat.getTxt_nama_pesawat().getText());
+                daoPesawat.insert(pesawat, frame_pesawat);
+                fillTabelBandara();
+            }
+            // btn ubah
+            if (e.getComponent() == frame_pesawat.getBtnUbah()) {
+                Pesawat pesawat = new Pesawat(Integer.parseInt(frame_pesawat.getTxt_id_pesawat().getText()), frame_pesawat.getTxt_kode_pesawat().getText(), frame_pesawat.getTxt_nama_pesawat().getText());
+                daoPesawat.update(pesawat);
                 fillTabelBandara();
             }
         }
@@ -379,6 +417,7 @@ public class Controller {
         user.setRole(da.getRole(user));
         switch (user.getRole()) {
             case 0:
+                // ADMIN
                 move(frame_login, frame_admin);
                 break;
             case 1:
@@ -450,5 +489,18 @@ public class Controller {
         System.out.println(frame_bandara.getjTable1().getColumnCount());
         frame_bandara.getjTable1().setModel(new TabelBandaraModel(list));
         frame_bandara.clearTextField();
+    }
+    
+    public void fillTabelPesawat() {
+        List<Pesawat> list = daoPesawat.getAllPesawat(); 
+        System.out.println(frame_bandara.getjTable1().getColumnCount());
+        frame_pesawat.getjTable1().setModel(new TabelPesawatModel(list));
+        frame_pesawat.clearTextField();
+    }
+    public void fillTabelPesawat2(String nama) {
+        List<Pesawat> list = daoPesawat.getPesawat(nama); 
+        System.out.println(frame_bandara.getjTable1().getColumnCount());
+        frame_pesawat.getjTable1().setModel(new TabelPesawatModel(list));
+        frame_pesawat.clearTextField();
     }
 }
