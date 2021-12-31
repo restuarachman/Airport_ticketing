@@ -196,7 +196,6 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
 
     private void btnBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayarActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_btnBayarActionPerformed
 
     private void txtSubTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubTotalActionPerformed
