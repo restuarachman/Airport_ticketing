@@ -5,16 +5,20 @@
  */
 package view.admin.menu;
 
-import view.admin.*;
-import view.user.*;
+import com.toedter.calendar.JDateChooser;
+import java.awt.event.MouseListener;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import model.User;
-import view.View_Login;
-import view.user.dialog.dialogFrame_Penerbangan_notFound;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import model.Bandara;
+import model.Pesawat;
+import tabel.TabelJadwalPenebanganModel;
 
 /**
  *
@@ -33,12 +37,196 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
         
     }
 
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
+    public void setBtnBack(JButton btnBack) {
+        this.btnBack = btnBack;
+    }
+
+    public JButton getBtnBatal() {
+        return btnBatal;
+    }
+
+    public void setBtnBatal(JButton btnBatal) {
+        this.btnBatal = btnBatal;
+    }
+
+    public JButton getBtnCari() {
+        return btnCari;
+    }
+
+    public void setBtnCari(JButton btnCari) {
+        this.btnCari = btnCari;
+    }
+
+    public JButton getBtnHapus() {
+        return btnHapus;
+    }
+
+    public void setBtnHapus(JButton btnHapus) {
+        this.btnHapus = btnHapus;
+    }
+
+    public JButton getBtnRefresh() {
+        return btnRefresh;
+    }
+
+    public void setBtnRefresh(JButton btnRefresh) {
+        this.btnRefresh = btnRefresh;
+    }
+
+    public JButton getBtnSimpan() {
+        return btnSimpan;
+    }
+
+    public void setBtnSimpan(JButton btnSimpan) {
+        this.btnSimpan = btnSimpan;
+    }
+
+    public JButton getBtnUbah() {
+        return btnUbah;
+    }
+
+    public void setBtnUbah(JButton btnUbah) {
+        this.btnUbah = btnUbah;
+    }
+
+    public JComboBox<String> getTxt_bandara_asal() {
+        return txt_bandara_asal;
+    }
+
+    public void setTxt_bandara_asal(JComboBox<String> txt_bandara_asal) {
+        this.txt_bandara_asal = txt_bandara_asal;
+    }
+
+    public JComboBox<String> getTxt_bandara_tujuan() {
+        return txt_bandara_tujuan;
+    }
+
+    public void setTxt_bandara_tujuan(JComboBox<String> txt_bandara_tujuan) {
+        this.txt_bandara_tujuan = txt_bandara_tujuan;
+    }
+
+    public JTextField getTxt_cari_nama_pesawat() {
+        return txt_cari_nama_pesawat;
+    }
+
+    public void setTxt_cari_nama_pesawat(JTextField txt_cari_nama_pesawat) {
+        this.txt_cari_nama_pesawat = txt_cari_nama_pesawat;
+    }
+
+    public JTextField getTxt_harga() {
+        return txt_harga;
+    }
+
+    public void setTxt_harga(JTextField txt_harga) {
+        this.txt_harga = txt_harga;
+    }
+
+    public JLabel getTxt_id() {
+        return txt_id;
+    }
+
+    public void setTxt_id(JLabel txt_id) {
+        this.txt_id = txt_id;
+    }
+
+    public JComboBox<String> getTxt_kelas_penerbangan() {
+        return txt_kelas_penerbangan;
+    }
+
+    public void setTxt_kelas_penerbangan(JComboBox<String> txt_kelas_penerbangan) {
+        this.txt_kelas_penerbangan = txt_kelas_penerbangan;
+    }
+
+    public JDateChooser getTxt_tanggal_penerbangan() {
+        return txt_tanggal_penerbangan;
+    }
+
+    public void setTxt_tanggal_penerbangan(JDateChooser txt_tanggal_penerbangan) {
+        this.txt_tanggal_penerbangan = txt_tanggal_penerbangan;
+    }
+
+    public JComboBox<String> getTxt_pesawat() {
+        return txt_pesawat;
+    }
+
+    public void setTxt_pesawat(JComboBox<String> txt_pesawat) {
+        this.txt_pesawat = txt_pesawat;
+    }
     
-
     
+    
+    public void addListener(MouseListener mouseListener) {
+        btnBack.addMouseListener(mouseListener);
+        btnBatal.addMouseListener(mouseListener);
+        btnCari.addMouseListener(mouseListener);
+        btnHapus.addMouseListener(mouseListener);
+        btnRefresh.addMouseListener(mouseListener);
+        btnSimpan.addMouseListener(mouseListener);
+        btnUbah.addMouseListener(mouseListener);
+    }
+    
+    public void clearTextField() {
+        txt_harga.setText(null);
+        txt_id.setText(null);
+        txt_cari_nama_pesawat.setText(null);
+        txt_bandara_asal.setSelectedIndex(-1);
+        txt_bandara_tujuan.setSelectedIndex(-1);
+        txt_kelas_penerbangan.setSelectedIndex(-1);
+        txt_pesawat.setSelectedIndex(-1);
+        txt_tanggal_penerbangan.setDate(null);
+    }
 
-  
-
+    public void fillTableJadwalPesawat(TabelJadwalPenebanganModel jadwal) {
+        jTable1.setModel(jadwal);
+    }
+     public void setDataField(){
+        int row;
+        row = jTable1.getSelectedRow();
+        
+        if (row != -1){
+            try {
+                txt_id.setText((String)jTable1.getModel().getValueAt(row, 0));
+                txt_tanggal_penerbangan.setDate((Date)jTable1.getModel().getValueAt(row, 1));
+                txt_bandara_asal.setSelectedItem((String)jTable1.getModel().getValueAt(row, 2));
+                txt_bandara_tujuan.setSelectedItem((String)jTable1.getModel().getValueAt(row, 3));
+                txt_pesawat.setSelectedItem((String)jTable1.getModel().getValueAt(row, 4));
+                txt_kelas_penerbangan.setSelectedItem((String)jTable1.getModel().getValueAt(row, 5));
+                txt_harga.setText((String)jTable1.getModel().getValueAt(row, 6));
+            } catch (SecurityException ex) {
+                Logger.getLogger(Admin_Atur_Data_Bandara.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+   }
+    
+    public void fillComboBox(List<Bandara> bandaras, List<Pesawat> pesawats) {
+        txt_pesawat.removeAllItems();
+        txt_bandara_asal.removeAllItems();
+        txt_bandara_tujuan.removeAllItems();
+        txt_kelas_penerbangan.removeAllItems();
+        
+        txt_pesawat.addItem("-");
+        txt_bandara_asal.addItem("-");
+        txt_bandara_tujuan.addItem("-");
+        txt_kelas_penerbangan.addItem("-");
+        
+        for (Pesawat pesawat : pesawats) {
+            txt_pesawat.addItem(pesawat.getKodePesawat()+" - "+pesawat.getNamaPesawat());
+        }
+        
+        for (Bandara bandara : bandaras) {
+            txt_bandara_asal.addItem(bandara.getKodeBandara()+" - "+bandara.getNamaBandara());
+            txt_bandara_tujuan.addItem(bandara.getKodeBandara()+" - "+bandara.getNamaBandara());
+        }
+        
+        txt_kelas_penerbangan.addItem("Economy");
+        txt_kelas_penerbangan.addItem("Business");
+        txt_kelas_penerbangan.addItem("First Class");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,7 +251,6 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
         btnHapus = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txt_id_pesawat = new javax.swing.JTextField();
         btnBatal = new javax.swing.JButton();
         btnCari = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -77,6 +264,9 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
         txt_bandara_asal = new javax.swing.JComboBox<>();
         txt_bandara_tujuan = new javax.swing.JComboBox<>();
         txt_tanggal_penerbangan = new com.toedter.calendar.JDateChooser();
+        jLabel12 = new javax.swing.JLabel();
+        txt_pesawat = new javax.swing.JComboBox<>();
+        txt_id = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -140,7 +330,7 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(48, 57, 82));
         jLabel2.setText("Bandara Asal                  :");
-        bodyPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 190, 30));
+        bodyPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 190, 30));
 
         jLabel5.setBackground(new java.awt.Color(48, 57, 82));
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -208,16 +398,7 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(48, 57, 82));
         jLabel7.setText("ID                                     :");
-        bodyPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 190, 30));
-
-        txt_id_pesawat.setText("id");
-        txt_id_pesawat.setEnabled(false);
-        txt_id_pesawat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_id_pesawatActionPerformed(evt);
-            }
-        });
-        bodyPanel.add(txt_id_pesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 180, 30));
+        bodyPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 190, 30));
 
         btnBatal.setBackground(new java.awt.Color(47, 54, 64));
         btnBatal.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
@@ -277,6 +458,11 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
             }
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -293,39 +479,67 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(48, 57, 82));
         jLabel8.setText("Bandara Tujuan              :");
-        bodyPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 190, 30));
+        bodyPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 190, 30));
 
         jLabel9.setBackground(new java.awt.Color(48, 57, 82));
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(48, 57, 82));
         jLabel9.setText("Kelas Penerbangan       :");
-        bodyPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 190, 30));
+        bodyPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 190, 30));
 
         txt_harga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_hargaActionPerformed(evt);
             }
         });
-        bodyPanel.add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 180, 30));
+        bodyPanel.add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 210, 30));
 
         jLabel10.setBackground(new java.awt.Color(48, 57, 82));
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(48, 57, 82));
         jLabel10.setText("Harga                               :");
-        bodyPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 190, 30));
+        bodyPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 190, 30));
 
         jLabel11.setBackground(new java.awt.Color(48, 57, 82));
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(48, 57, 82));
         jLabel11.setText("Tanggal Penerbangan   :");
-        bodyPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 190, 30));
+        bodyPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 190, 30));
 
-        bodyPanel.add(txt_kelas_penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 180, 30));
+        txt_kelas_penerbangan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_kelas_penerbanganActionPerformed(evt);
+            }
+        });
+        bodyPanel.add(txt_kelas_penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 210, 30));
 
-        bodyPanel.add(txt_bandara_asal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 180, 30));
+        txt_bandara_asal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_bandara_asalActionPerformed(evt);
+            }
+        });
+        bodyPanel.add(txt_bandara_asal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 210, 30));
 
-        bodyPanel.add(txt_bandara_tujuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 180, 30));
-        bodyPanel.add(txt_tanggal_penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 410, 180, -1));
+        bodyPanel.add(txt_bandara_tujuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 210, 30));
+        bodyPanel.add(txt_tanggal_penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 210, 30));
+
+        jLabel12.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel12.setText("Pesawat                          :");
+        bodyPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 190, 30));
+
+        txt_pesawat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_pesawatActionPerformed(evt);
+            }
+        });
+        bodyPanel.add(txt_pesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 210, 30));
+
+        txt_id.setBackground(new java.awt.Color(48, 57, 82));
+        txt_id.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        txt_id.setForeground(new java.awt.Color(48, 57, 82));
+        bodyPanel.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 210, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -379,10 +593,6 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnHapusActionPerformed
 
-    private void txt_id_pesawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id_pesawatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_id_pesawatActionPerformed
-
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBatalActionPerformed
@@ -394,6 +604,23 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
     private void txt_hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_hargaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_hargaActionPerformed
+
+    private void txt_pesawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_pesawatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_pesawatActionPerformed
+
+    private void txt_kelas_penerbanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_kelas_penerbanganActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_kelas_penerbanganActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        setDataField();
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void txt_bandara_asalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bandara_asalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_bandara_asalActionPerformed
     
     private int xMouse, yMouse;
     
@@ -444,6 +671,7 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
     private javax.swing.JButton btnUbah;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -459,8 +687,9 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> txt_bandara_tujuan;
     private javax.swing.JTextField txt_cari_nama_pesawat;
     private javax.swing.JTextField txt_harga;
-    private javax.swing.JTextField txt_id_pesawat;
+    private javax.swing.JLabel txt_id;
     private javax.swing.JComboBox<String> txt_kelas_penerbangan;
+    private javax.swing.JComboBox<String> txt_pesawat;
     private com.toedter.calendar.JDateChooser txt_tanggal_penerbangan;
     // End of variables declaration//GEN-END:variables
 

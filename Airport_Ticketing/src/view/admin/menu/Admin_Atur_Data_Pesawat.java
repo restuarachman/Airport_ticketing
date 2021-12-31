@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import tabel.TabelPesawatModel;
@@ -99,14 +100,15 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
         this.txt_cari_nama_pesawat = txt_cari_nama_pesawat;
     }
 
-    public JTextField getTxt_id_pesawat() {
+    public JLabel getTxt_id_pesawat() {
         return txt_id_pesawat;
     }
 
-    public void setTxt_id_pesawat(JTextField txt_id_pesawat) {
+    public void setTxt_id_pesawat(JLabel txt_id_pesawat) {
         this.txt_id_pesawat = txt_id_pesawat;
     }
 
+   
     public JTextField getTxt_kode_pesawat() {
         return txt_kode_pesawat;
     }
@@ -144,17 +146,16 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
         int row;
         row = jTable1.getSelectedRow();
         
-        
         if (row != -1){
             try {
-                //txt_id_pesawat.setText((String)jTable1.getModel().getValueAt(row, 0));
+                txt_id_pesawat.setText((String)jTable1.getModel().getValueAt(row, 0));
                 txt_kode_pesawat.setText((String)jTable1.getModel().getValueAt(row, 1));
                 txt_nama_pesawat.setText((String)jTable1.getModel().getValueAt(row, 2));
             } catch (SecurityException ex) {
                 Logger.getLogger(Admin_Atur_Data_Bandara.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-   }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -181,13 +182,13 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
         btnHapus = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txt_id_pesawat = new javax.swing.JTextField();
         btnBatal = new javax.swing.JButton();
         btnCari = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         txt_nama_pesawat = new javax.swing.JTextField();
+        txt_id_pesawat = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -328,15 +329,6 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
         jLabel7.setText("ID Pesawat             :");
         bodyPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 140, 30));
 
-        txt_id_pesawat.setText("id");
-        txt_id_pesawat.setEnabled(false);
-        txt_id_pesawat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_id_pesawatActionPerformed(evt);
-            }
-        });
-        bodyPanel.add(txt_id_pesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 180, 30));
-
         btnBatal.setBackground(new java.awt.Color(47, 54, 64));
         btnBatal.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
         btnBatal.setForeground(new java.awt.Color(255, 255, 255));
@@ -416,6 +408,11 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
         });
         bodyPanel.add(txt_nama_pesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 180, 30));
 
+        txt_id_pesawat.setBackground(new java.awt.Color(48, 57, 82));
+        txt_id_pesawat.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        txt_id_pesawat.setForeground(new java.awt.Color(48, 57, 82));
+        bodyPanel.add(txt_id_pesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 180, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -471,10 +468,6 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnHapusActionPerformed
-
-    private void txt_id_pesawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id_pesawatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_id_pesawatActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
@@ -550,7 +543,7 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel moveableFrame;
     private javax.swing.JTextField txt_cari_nama_pesawat;
-    private javax.swing.JTextField txt_id_pesawat;
+    private javax.swing.JLabel txt_id_pesawat;
     private javax.swing.JTextField txt_kode_pesawat;
     private javax.swing.JTextField txt_nama_pesawat;
     // End of variables declaration//GEN-END:variables

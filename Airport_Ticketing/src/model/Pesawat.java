@@ -19,6 +19,12 @@ public class Pesawat extends Kursi{
     }
 
     public Pesawat(int id, String kodePesawat, String namaPesawat) {
+        this.id = id;
+        this.kodePesawat = kodePesawat;
+        this.namaPesawat = namaPesawat;
+    }
+    
+    public Pesawat(String kodePesawat, String namaPesawat) {
         this.kodePesawat = kodePesawat;
         this.namaPesawat = namaPesawat;
     }
