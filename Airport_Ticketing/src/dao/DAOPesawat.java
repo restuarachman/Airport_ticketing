@@ -83,7 +83,7 @@ public class DAOPesawat {
                 result = stmt.executeQuery("SELECT * FROM pesawat WHERE namaPesawat LIKE '%" + nama + "%'");
                 while (result.next()) {
                     Pesawat pesawat  = new Pesawat();
-                    // id, Source, SrcDesc, OSlot, Sink, SinkDesc
+                    
                     pesawat.setId(result.getInt(1));
                     pesawat.setKodePesawat(result.getString(2));
                     pesawat.setNamaPesawat(result.getString(3));
@@ -98,6 +98,46 @@ public class DAOPesawat {
         }
         return null;
     }
+    
+    public Pesawat getPesawat(int id) {
+        Pesawat pesawat  = new Pesawat();
+        try {
+            ResultSet result;
+            try (Statement stmt = Koneksi.getConnection().createStatement()) {
+                result = stmt.executeQuery("SELECT * FROM pesawat WHERE id="+id+"");
+                while (result.next()) {
+                    pesawat.setId(result.getInt(1));
+                    pesawat.setKodePesawat(result.getString(2));
+                    pesawat.setNamaPesawat(result.getString(3));
+                }
+            }
+            result.close();
+            return pesawat;
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public Pesawat getPesawatByKode(String kode) {
+        Pesawat pesawat  = new Pesawat();
+        try {
+            ResultSet result;
+            try (Statement stmt = Koneksi.getConnection().createStatement()) {
+                result = stmt.executeQuery("SELECT * FROM pesawat WHERE kodePesawat='"+kode+"'");
+                while (result.next()) {
+                    pesawat.setId(result.getInt(1));
+                    pesawat.setKodePesawat(result.getString(2));
+                    pesawat.setNamaPesawat(result.getString(3));
+                }
+            }
+            result.close();
+            return pesawat;
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
    
     public List<Pesawat> getAllPesawat() {
         list = new ArrayList<>();
@@ -107,7 +147,7 @@ public class DAOPesawat {
                 result = stmt.executeQuery("SELECT * FROM pesawat");
                 while (result.next()) {
                     Pesawat pesawat  = new Pesawat();
-                    // id, Source, SrcDesc, OSlot, Sink, SinkDesc
+                    
                     pesawat.setId(result.getInt(1));
                     pesawat.setKodePesawat(result.getString(2));
                     pesawat.setNamaPesawat(result.getString(3));

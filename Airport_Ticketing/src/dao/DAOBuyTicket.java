@@ -60,6 +60,7 @@ public class DAOBuyTicket {
     public void fillCombobox(JComboBox cmb) {
         try {
             ResultSet result;
+            cmb.removeAllItems();
             cmb.addItem("-");
             try (Statement statement = Koneksi.getConnection().createStatement()) {
                 result = statement.executeQuery("SELECT * FROM bandara");

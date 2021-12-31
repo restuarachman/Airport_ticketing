@@ -11,9 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import view.View_Login;
+
 
 
 /**
@@ -268,6 +267,11 @@ public class View_Panel_User extends javax.swing.JFrame {
         txt_penumpang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         buyTiketPanel.add(txt_penumpang, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 170, -1));
 
+        txt_ke.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_keActionPerformed(evt);
+            }
+        });
         buyTiketPanel.add(txt_ke, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 150, -1));
 
         txt_dari.addActionListener(new java.awt.event.ActionListener() {
@@ -524,6 +528,10 @@ public class View_Panel_User extends javax.swing.JFrame {
         xMouse=evt.getX();
         yMouse=evt.getY();
     }//GEN-LAST:event_moveableFrame1MousePressed
+
+    private void txt_keActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_keActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_keActionPerformed
     
     private int xMouse, yMouse;
     

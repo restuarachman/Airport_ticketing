@@ -12,6 +12,7 @@ import dao.DAOBuyTicket;
 import dao.DAOPesawat;
 import dao.DAOTiket;
 import dao.DAOUser;
+import dao.DAOjadwalPenerbangan;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -30,16 +31,20 @@ import model.TabelPenerbangan;
 import model.Tiket;
 import model.User;
 import tabel.TabelBandaraModel;
+import tabel.TabelJadwalPenebanganModel;
 import tabel.TabelPesawatModel;
+import tabel.TabelPilihPesawat;
 import view.View_Login;
 import view.View_Signup;
 import view.admin.View_Panel_Admin_NEW;
 import view.admin.menu.Admin_Atur_Data_Bandara;
 import view.admin.menu.Admin_Atur_Data_Pesawat;
+import view.admin.menu.Admin_Atur_Jadwal_Penerbangan;
 import view.user.View_Panel_User;
 import view.user.View_Panel_User_About;
 import view.user.View_Panel_User_IsiDataPenumpang;
 import view.user.View_Panel_User_ListPenerbangan;
+import view.user.View_Panel_User_ListPenerbangan_NEW;
 import view.user.View_Panel_User_RincianHarga;
 import view.user.dialog.dialogFrame_Pembayaran_sukses;
 import view.user.dialog.dialogFrame_Penerbangan_notFound;
@@ -55,11 +60,12 @@ public class Controller {
     DAOTiket daoTiket = new DAOTiket();
     DAOBandara daoBandara = new DAOBandara();
     DAOPesawat daoPesawat = new DAOPesawat();
+    DAOjadwalPenerbangan daoJadwalPenerbangan = new DAOjadwalPenerbangan();
     
     View_Login frame_login;
     View_Panel_User frame_pUser = new View_Panel_User();
     View_Signup frame_signup = new View_Signup();
-    View_Panel_User_ListPenerbangan frame_listPenerbangan = new View_Panel_User_ListPenerbangan();
+    View_Panel_User_ListPenerbangan_NEW frame_listPenerbangan = new View_Panel_User_ListPenerbangan_NEW();
     View_Panel_User_IsiDataPenumpang frame_isidata = new View_Panel_User_IsiDataPenumpang();
     View_Panel_User_RincianHarga frame_rincianHarga = new View_Panel_User_RincianHarga();
     View_Panel_User_About frame_pAbout = new View_Panel_User_About();
@@ -70,6 +76,7 @@ public class Controller {
     View_Panel_Admin_NEW frame_admin = new View_Panel_Admin_NEW();
     Admin_Atur_Data_Bandara frame_bandara = new Admin_Atur_Data_Bandara();
     Admin_Atur_Data_Pesawat frame_pesawat = new Admin_Atur_Data_Pesawat();
+    Admin_Atur_Jadwal_Penerbangan frame_jadwalPenerbangan = new Admin_Atur_Jadwal_Penerbangan();
     
     private User user = new User();
     private JadwalPenerbangan jadwal = new JadwalPenerbangan();
@@ -97,6 +104,7 @@ public class Controller {
         frame_admin.addListener(Listener);
         frame_bandara.addListener(Listener);
         frame_pesawat.addListener(Listener);
+        frame_jadwalPenerbangan.addListener(Listener);
     }
     
     class listener implements MouseListener {
@@ -137,41 +145,19 @@ public class Controller {
             if (e.getComponent() == frame_pUser.getBtnCariPenerbangan()) {
                 String cmb1 = (String)frame_pUser.getTxt_dari().getSelectedItem();
                 String cmb2 = (String)(String)frame_pUser.getTxt_ke().getSelectedItem();
-                Date utilDate = frame_pUser.getTxt_tanggal().getDate();
+                Date date = frame_pUser.getTxt_tanggal().getDate();
                 
-                if (cmb1.equals("-") || cmb2.equals("-") || utilDate == null) {
+                if (cmb1.equals("-") || cmb2.equals("-") || date == null) {
                     JOptionPane.showMessageDialog(frame_rincianHarga, "Field harus diisi semua");
                 } else {
-                    jadwal.setBandaraAsal(cmb1);
-                    jadwal.setBandaraTujuan(cmb2);
-                    jadwal.setDate(utilDate);
-                    List<TabelPenerbangan> tabel_penerbangan = daoBuyTicket.cariPesawat(frame_listPenerbangan, (String)frame_pUser.getTxt_dari().getSelectedItem(), (String)frame_pUser.getTxt_ke().getSelectedItem(), utilDate);
-                    DefaultListModel addlist = new DefaultListModel();
-
-                    for (TabelPenerbangan terbang : tabel_penerbangan) {
-                        addlist.addElement(terbang.getKodePesawat()+"\t "+terbang.getNamaPesawat()+"\t "+terbang.getKelas()+"\t "+terbang.getHarga());
-                    }
-
-                    frame_listPenerbangan.getList_pesawat().setModel(addlist);
-                    frame_listPenerbangan.getList_pesawat().addListSelectionListener(new ListSelectionListener() {
-                        @Override
-                        public void valueChanged(ListSelectionEvent e) {
-                            if (!e.getValueIsAdjusting()) {
-                                TabelPenerbangan selected = tabel_penerbangan.get(frame_listPenerbangan.getList_pesawat().getSelectedIndex());
-                                frame_listPenerbangan.getTxtKodePesawat().setText(selected.getKodePesawat());
-                                frame_listPenerbangan.getTxtNamaPesawat().setText(selected.getNamaPesawat());
-                                frame_listPenerbangan.getTxtHarga().setText(Integer.toString(selected.getHarga()));
-                                frame_listPenerbangan.getTxtKelas().setText(selected.getKelas());
-
-                                jadwal.setHarga(selected.getHarga());
-                                jadwal.setId(selected.getId());
-                            }
-                        }
-                    });
-                    if (tabel_penerbangan.isEmpty()) {
+                    System.out.println(cmb1+ cmb2+ date.getTime()+date);
+                    List<JadwalPenerbangan> list = daoJadwalPenerbangan.getJadwalPenerbangan(cmb1, cmb2, date);
+               
+                    if (list.isEmpty()) {
                         move(frame_pUser, dialog_notfound);
                     } else {
-
+                        frame_listPenerbangan.getjTable1().setModel(new TabelPilihPesawat(list));
+                        frame_jadwalPenerbangan.clearTextField();
                         move(frame_pUser, frame_listPenerbangan);   
                     }
                 }
@@ -211,7 +197,7 @@ public class Controller {
             
         // FRAME LIST PENERBANGAN
             if (e.getComponent() == frame_listPenerbangan.getBtnPilihPenerbangan()) {
-                move(frame_pUser, frame_listPenerbangan);
+                move(frame_listPenerbangan, frame_isidata);
                 
             }
             
@@ -227,7 +213,6 @@ public class Controller {
             
         // FRAME ISI DATA
             if (e.getComponent() == frame_isidata.getBtnSimpanData()) {
-                System.out.println("KONTOL "+user.getId());
                 bookingcount = daoBooking.jumlahbooking();
                 
                 bookingcount++;
@@ -256,15 +241,7 @@ public class Controller {
             // btn bayar
             if (e.getComponent() == frame_rincianHarga.getBtnBayar()) {
                 
-                if (Integer.parseInt(frame_rincianHarga.getTxtUangAnda().getText()) - Integer.parseInt(frame_rincianHarga.getTxtSubTotal().getText()) > 0) {
-                    tiketcount = daoTiket.getnotiket();
-                    tiketcount++;
-                    Tiket tiket = new Tiket(tiketcount, user, booking);
-                    System.out.println(tiket.getId()+" "+ tiket.getKodeTiket());
-                    daoTiket.insert(tiket);
-                
-                    dialog_bayarSukses.setVisible(true);
-                    frame_rincianHarga.setEnabled(false);
+                if (false) {
                     
                 } else {
                     JOptionPane.showMessageDialog(frame_rincianHarga, "Uang anda tidak cukup");
@@ -310,11 +287,12 @@ public class Controller {
                 move(frame_admin, frame_pesawat);
             }
             
-            /*// btn atur jadwal penerbagan
-            if (e.getComponent() == frame_jadwalPenerbangan.) {
+            // btn atur jadwal penerbagan
+            if (e.getComponent() == frame_admin.getMenu_Atur_Data_Penerbangan()) {
+                fillTabelJadwalPenerbangan();
                 move(frame_admin, frame_jadwalPenerbangan);
             }
-            */
+            
             
             if (e.getComponent() == frame_admin.getBtnLogout()) {
                 move(frame_admin, frame_login);
@@ -366,29 +344,64 @@ public class Controller {
             }
             // btn cari
             if (e.getComponent() == frame_pesawat.getBtnCari()) {
-                fillTabelBandara2(frame_pesawat.getTxt_cari_nama_pesawat().getText());
+                fillTabelPesawat2(frame_pesawat.getTxt_cari_nama_pesawat().getText());
             }
             // btn hapus
             if (e.getComponent() == frame_pesawat.getBtnHapus()) {
                 Pesawat pesawat = new Pesawat(Integer.parseInt(frame_pesawat.getTxt_id_pesawat().getText()), frame_pesawat.getTxt_kode_pesawat().getText(), frame_pesawat.getTxt_nama_pesawat().getText());
                 daoPesawat.delete(pesawat, frame_pesawat);
-                fillTabelBandara();
+                fillTabelPesawat();
             }
             // btn refresh
             if (e.getComponent() == frame_pesawat.getBtnRefresh()) {
-                fillTabelBandara();
+                fillTabelPesawat();
             }
             // btn simpan
             if (e.getComponent() == frame_pesawat.getBtnSimpan()) {
-                Pesawat pesawat = new Pesawat(Integer.parseInt(frame_pesawat.getTxt_id_pesawat().getText()), frame_pesawat.getTxt_kode_pesawat().getText(), frame_pesawat.getTxt_nama_pesawat().getText());
+                Pesawat pesawat = new Pesawat(frame_pesawat.getTxt_kode_pesawat().getText(), frame_pesawat.getTxt_nama_pesawat().getText());
                 daoPesawat.insert(pesawat, frame_pesawat);
-                fillTabelBandara();
+                fillTabelPesawat();
             }
             // btn ubah
             if (e.getComponent() == frame_pesawat.getBtnUbah()) {
                 Pesawat pesawat = new Pesawat(Integer.parseInt(frame_pesawat.getTxt_id_pesawat().getText()), frame_pesawat.getTxt_kode_pesawat().getText(), frame_pesawat.getTxt_nama_pesawat().getText());
                 daoPesawat.update(pesawat);
-                fillTabelBandara();
+                fillTabelPesawat();
+            }
+        // FRAME ATUR JADWAL PENERBANGAM
+            // btn back
+            if (e.getComponent() == frame_jadwalPenerbangan.getBtnBack()) {
+                move(frame_jadwalPenerbangan, frame_admin);
+            }
+            // btn batal
+            if (e.getComponent() == frame_jadwalPenerbangan.getBtnBatal()) {
+                frame_jadwalPenerbangan.clearTextField();
+            }
+            // btn cari
+            if (e.getComponent() == frame_jadwalPenerbangan.getBtnCari()) {
+                fillTabelJadwalPenerbangan2(frame_jadwalPenerbangan.getTxt_cari_nama_pesawat().getText());
+            }
+            // btn hapus
+            if (e.getComponent() == frame_jadwalPenerbangan.getBtnHapus()) {
+                JadwalPenerbangan jadwal = getPesawatFromFrameJadwalPenerbangan();
+                daoJadwalPenerbangan.delete(jadwal, frame_jadwalPenerbangan);
+                fillTabelJadwalPenerbangan();
+            }
+            // btn refresh
+            if (e.getComponent() == frame_jadwalPenerbangan.getBtnRefresh()) {
+                fillTabelJadwalPenerbangan();
+            }
+            // btn simpan
+            if (e.getComponent() == frame_jadwalPenerbangan.getBtnSimpan()) {
+                JadwalPenerbangan jadwal = getPesawatFromFrameJadwalPenerbangan();
+                daoJadwalPenerbangan.insert(jadwal, frame_jadwalPenerbangan);
+                fillTabelJadwalPenerbangan();
+            }
+            // btn ubah
+            if (e.getComponent() == frame_jadwalPenerbangan.getBtnUbah()) {
+                JadwalPenerbangan jadwal = getPesawatFromFrameJadwalPenerbangan();
+                daoJadwalPenerbangan.update(jadwal);
+                fillTabelJadwalPenerbangan();
             }
         }
       
@@ -474,33 +487,72 @@ public class Controller {
         from.setVisible(false);
     }
  
-    public void getDate(JDateChooser gdate) {
-        gdate.getDate();
-    }
-    
     public void fillTabelBandara() {
         List<Bandara> list = daoBandara.getAllBandara(); 
-        System.out.println(frame_bandara.getjTable1().getColumnCount());
         frame_bandara.getjTable1().setModel(new TabelBandaraModel(list));
         frame_bandara.clearTextField();
     }
     public void fillTabelBandara2(String nama) {
         List<Bandara> list = daoBandara.getBandara(nama); 
-        System.out.println(frame_bandara.getjTable1().getColumnCount());
         frame_bandara.getjTable1().setModel(new TabelBandaraModel(list));
         frame_bandara.clearTextField();
     }
     
     public void fillTabelPesawat() {
         List<Pesawat> list = daoPesawat.getAllPesawat(); 
-        System.out.println(frame_bandara.getjTable1().getColumnCount());
         frame_pesawat.getjTable1().setModel(new TabelPesawatModel(list));
         frame_pesawat.clearTextField();
     }
+    
     public void fillTabelPesawat2(String nama) {
         List<Pesawat> list = daoPesawat.getPesawat(nama); 
-        System.out.println(frame_bandara.getjTable1().getColumnCount());
         frame_pesawat.getjTable1().setModel(new TabelPesawatModel(list));
         frame_pesawat.clearTextField();
+    }
+    
+    public void fillTabelJadwalPenerbangan() {
+        List<JadwalPenerbangan> list = daoJadwalPenerbangan.getAllJadwalPenerbangan();
+        List<Bandara> bandara = daoBandara.getAllBandara();
+        List<Pesawat> pesawat = daoPesawat.getAllPesawat();
+        frame_jadwalPenerbangan.fillComboBox(bandara, pesawat);
+        frame_jadwalPenerbangan.fillTableJadwalPesawat(new TabelJadwalPenebanganModel(list));
+        frame_jadwalPenerbangan.clearTextField();
+    }
+    
+    public void fillTabelJadwalPenerbangan2(String nama) {
+        List<JadwalPenerbangan> list = daoJadwalPenerbangan.getJadwalPenerbangan(nama);
+        frame_jadwalPenerbangan.fillTableJadwalPesawat(new TabelJadwalPenebanganModel(list));
+        frame_jadwalPenerbangan.clearTextField();
+    }
+    
+    public JadwalPenerbangan getPesawatFromFrameJadwalPenerbangan() {
+        String s = (String)frame_jadwalPenerbangan.getTxt_bandara_asal().getSelectedItem();
+        System.out.println(s);
+        Bandara bandaraAsal = daoBandara.getBandaraByKode(s.split(" - ")[0]);
+        System.out.println(s.split(" - ")[0]);
+        
+        s = (String)frame_jadwalPenerbangan.getTxt_bandara_tujuan().getSelectedItem();
+        Bandara bandaraTujuan = daoBandara.getBandaraByKode(s.split(" - ")[0]);
+        
+        
+        s = (String)frame_jadwalPenerbangan.getTxt_pesawat().getSelectedItem();
+        System.out.println(s+" "+s.split(" - ")[0]);
+        
+        Pesawat pesawat = daoPesawat.getPesawatByKode(s.split(" - ")[0]);
+        System.out.println(pesawat.getKodePesawat());
+        
+        String kelas = (String)frame_jadwalPenerbangan.getTxt_kelas_penerbangan().getSelectedItem();
+        
+        int harga = Integer.parseInt(frame_jadwalPenerbangan.getTxt_harga().getText());
+        
+        Date date = frame_jadwalPenerbangan.getTxt_tanggal_penerbangan().getDate();
+        int id = -1;
+        try {
+            id = Integer.parseInt(frame_jadwalPenerbangan.getTxt_id().getText());
+        } catch (Exception e) {
+        }
+        
+        return new JadwalPenerbangan(id, date, bandaraAsal, bandaraTujuan, pesawat, kelas, harga);
+        
     }
 }

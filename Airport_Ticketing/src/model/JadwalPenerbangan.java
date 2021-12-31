@@ -14,14 +14,23 @@ import java.util.Date;
 public class JadwalPenerbangan {
     private int id;
     private Date date;
-    private String bandaraAsal;
-    private String bandaraTujuan;
-    private String pesawat;
+    private Bandara bandaraAsal;
+    private Bandara bandaraTujuan;
+    private Pesawat pesawat;
     private String kelas;
     private int harga;
 
-    public JadwalPenerbangan(int id, Date date, String bandaraAsal, String bandaraTujuan, String pesawat, String kelas, int harga) {
+    public JadwalPenerbangan(int id, Date date, Bandara bandaraAsal, Bandara bandaraTujuan, Pesawat pesawat, String kelas, int harga) {
         this.id = id;
+        this.date = date;
+        this.bandaraAsal = bandaraAsal;
+        this.bandaraTujuan = bandaraTujuan;
+        this.pesawat = pesawat;
+        this.kelas = kelas;
+        this.harga = harga;
+    }
+    
+    public JadwalPenerbangan(Date date, Bandara bandaraAsal, Bandara bandaraTujuan, Pesawat pesawat, String kelas, int harga) {
         this.date = date;
         this.bandaraAsal = bandaraAsal;
         this.bandaraTujuan = bandaraTujuan;
@@ -49,27 +58,27 @@ public class JadwalPenerbangan {
         this.date = date;
     }
 
-    public String getBandaraAsal() {
+    public Bandara getBandaraAsal() {
         return bandaraAsal;
     }
 
-    public void setBandaraAsal(String bandaraAsal) {
+    public void setBandaraAsal(Bandara bandaraAsal) {
         this.bandaraAsal = bandaraAsal;
     }
 
-    public String getBandaraTujuan() {
+    public Bandara getBandaraTujuan() {
         return bandaraTujuan;
     }
 
-    public void setBandaraTujuan(String bandaraTujuan) {
+    public void setBandaraTujuan(Bandara bandaraTujuan) {
         this.bandaraTujuan = bandaraTujuan;
     }
 
-    public String getPesawat() {
+    public Pesawat getPesawat() {
         return pesawat;
     }
 
-    public void setPesawat(String pesawat) {
+    public void setPesawat(Pesawat pesawat) {
         this.pesawat = pesawat;
     }
 

@@ -40,7 +40,6 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
         txt_noHP = new javax.swing.JTextField();
         txt_namaPenumpang = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txt_Counter = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_Alamat = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
@@ -123,12 +122,6 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(48, 57, 82));
         jLabel7.setText("No HP   :");
         Panel_List_Penerbangan.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
-
-        txt_Counter.setBackground(new java.awt.Color(48, 57, 82));
-        txt_Counter.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
-        txt_Counter.setForeground(new java.awt.Color(48, 57, 82));
-        txt_Counter.setText("x");
-        Panel_List_Penerbangan.add(txt_Counter, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 30, -1));
 
         txt_Alamat.setColumns(20);
         txt_Alamat.setRows(5);
@@ -317,7 +310,6 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel moveableFrame1;
     private javax.swing.JTextArea txt_Alamat;
-    private javax.swing.JLabel txt_Counter;
     private javax.swing.JTextField txt_namaPenumpang;
     private javax.swing.JTextField txt_noHP;
     // End of variables declaration//GEN-END:variables

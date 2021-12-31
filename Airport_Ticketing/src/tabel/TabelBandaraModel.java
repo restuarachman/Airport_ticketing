@@ -40,8 +40,8 @@ public class TabelBandaraModel extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch(column) {
-            case 0 : return "kodeBandara";
-            case 1 : return "namaBandara";
+            case 0 : return "Kode Bandara";
+            case 1 : return "Nama Bandara";
             
             default : return null;
         }

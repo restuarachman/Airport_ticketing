@@ -97,6 +97,25 @@ public class DAOBandara {
         }
         return null;
     }
+    
+    public Bandara getBandaraByKode(String nama) {
+        Bandara bandara  = new Bandara();
+        try {
+            ResultSet result;
+            try (Statement statement = Koneksi.getConnection().createStatement()) {
+                result = statement.executeQuery("SELECT * FROM bandara WHERE kodeBandara='"+nama+"'");
+                while (result.next()) {
+                    bandara.setKodeBandara(result.getString(1));
+                    bandara.setNamaBandara(result.getString(2));
+                }
+            }
+            result.close();
+            return bandara;
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
    
     public List<Bandara> getAllBandara() {
         list = new ArrayList<>();
