@@ -17,9 +17,14 @@ public class Tiket {
     public Tiket() {
     }
 
-    public Tiket(int id, User user, Booking booking) {
+    public Tiket(int id, Booking booking) {
         this.id = id;
-        this.kodeTiket = Integer.toString(this.id)+Integer.toString(booking.getId())+Integer.toString(user.getId());
+        this.kodeTiket = Integer.toString(this.id)+Integer.toString(booking.getId())+Integer.toString(booking.getCustomer().getId());
+        this.booking = booking;
+    }
+    
+    public Tiket(Booking booking) {
+        this.kodeTiket = Integer.toString(this.id)+Integer.toString(booking.getId())+Integer.toString(booking.getCustomer().getId());
         this.booking = booking;
     }
 

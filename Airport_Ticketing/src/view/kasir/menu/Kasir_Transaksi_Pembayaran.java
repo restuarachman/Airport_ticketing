@@ -5,23 +5,26 @@
  */
 package view.kasir.menu;
 
-import view.user.*;
 import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import tabel.TabelBookingModel;
+import view.admin.menu.Admin_Atur_Data_Bandara;
 
 /**
  *
  * @author USER
  */
-public class View_Panel_User_Menu_Transaksi extends javax.swing.JFrame {
+public class Kasir_Transaksi_Pembayaran extends javax.swing.JFrame {
 
     /**
      * Creates new form View_Panel_User_ListPenerbangan
      */
-    public View_Panel_User_Menu_Transaksi() {
+    public Kasir_Transaksi_Pembayaran() {
         initComponents();
     }
 
@@ -136,6 +139,11 @@ public class View_Panel_User_Menu_Transaksi extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -300,6 +308,11 @@ public class View_Panel_User_Menu_Transaksi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_jumlah_penumpangActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        setDataField();
+    }//GEN-LAST:event_jTable1MouseClicked
+
     private int xMouse, yMouse;
     /**
      * @param args the command line arguments
@@ -318,14 +331,62 @@ public class View_Panel_User_Menu_Transaksi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_Menu_Transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kasir_Transaksi_Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_Menu_Transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kasir_Transaksi_Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_Menu_Transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kasir_Transaksi_Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(View_Panel_User_Menu_Transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kasir_Transaksi_Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -346,22 +407,60 @@ public class View_Panel_User_Menu_Transaksi extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new View_Panel_User_Menu_Transaksi().setVisible(true);
+                new Kasir_Transaksi_Pembayaran().setVisible(true);
             }
         });
     }
 
-    public JButton getBtnPilihPenerbangan() {
+    public JButton getBtnLihatTiket() {
         return btnLihatTiket;
     }
 
-    public void setBtnPilihPenerbangan(JButton btnPilihPenerbangan) {
-        this.btnLihatTiket = btnPilihPenerbangan;
+    public void setBtnLihatTiket(JButton btnLihatTiket) {
+        this.btnLihatTiket = btnLihatTiket;
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTable1 = jTable1;
+    }
+
+    public JTextField getTxt_id_booking() {
+        return txt_id_booking;
+    }
+
+    public void setTxt_id_booking(JTextField txt_id_booking) {
+        this.txt_id_booking = txt_id_booking;
+    }
+
+    public JTextField getTxt_jumlah_penumpang() {
+        return txt_jumlah_penumpang;
+    }
+
+    public void setTxt_jumlah_penumpang(JTextField txt_jumlah_penumpang) {
+        this.txt_jumlah_penumpang = txt_jumlah_penumpang;
+    }
+
+    public JTextField getTxt_nama_penumpang() {
+        return txt_nama_penumpang;
+    }
+
+    public void setTxt_nama_penumpang(JTextField txt_nama_penumpang) {
+        this.txt_nama_penumpang = txt_nama_penumpang;
+    }
+
+    public JTextField getTxt_nomor_hp() {
+        return txt_nomor_hp;
+    }
+
+    public void setTxt_nomor_hp(JTextField txt_nomor_hp) {
+        this.txt_nomor_hp = txt_nomor_hp;
     }
 
    
-
-    
 
     public JLabel getBtnBack2() {
         return btnBack2;
@@ -375,7 +474,34 @@ public class View_Panel_User_Menu_Transaksi extends javax.swing.JFrame {
         btnLihatTiket.addMouseListener(mouseListener);
         btnBack2.addMouseListener(mouseListener);
     }
+     
+    public void clearTextField() {
+        txt_id_booking.setText(null);
+        txt_jumlah_penumpang.setText(null);
+        txt_nama_penumpang.setText(null);
+        txt_nomor_hp.setText(null);
+    }
     
+    public void fillTabelBooking(TabelBookingModel booking) {
+        jTable1.setModel(booking);
+    }
+    
+    public void setDataField(){
+        int row;
+        row = jTable1.getSelectedRow();
+        
+        if (row != -1){
+            try {
+                txt_id_booking.setText((String)jTable1.getModel().getValueAt(row, 0));
+                txt_nama_penumpang.setText((String)jTable1.getModel().getValueAt(row, 1));
+                txt_nomor_hp.setText((String)jTable1.getModel().getValueAt(row, 2));
+                txt_jumlah_penumpang.setText((String)jTable1.getModel().getValueAt(row, 3));
+               
+            } catch (SecurityException ex) {
+                Logger.getLogger(Admin_Atur_Data_Bandara.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Panel_List_Penerbangan;

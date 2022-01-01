@@ -230,10 +230,104 @@ public class Kasir_Transaksi_Selesai_LihatTiket extends javax.swing.JFrame {
         });
     }
 
-   
-    
+    public JLabel getBtnBack() {
+        return btnBack;
+    }
+
+    public void setBtnBack(JLabel btnBack) {
+        this.btnBack = btnBack;
+    }
+
+    public JLabel getTxt_asal() {
+        return txt_asal;
+    }
+
+    public void setTxt_asal(JLabel txt_asal) {
+        this.txt_asal = txt_asal;
+    }
+
+    public JLabel getTxt_asal2() {
+        return txt_asal2;
+    }
+
+    public void setTxt_asal2(JLabel txt_asal2) {
+        this.txt_asal2 = txt_asal2;
+    }
+
+    public JLabel getTxt_jumlahKursi() {
+        return txt_jumlahKursi;
+    }
+
+    public void setTxt_jumlahKursi(JLabel txt_jumlahKursi) {
+        this.txt_jumlahKursi = txt_jumlahKursi;
+    }
+
+    public JLabel getTxt_jumlahKursi2() {
+        return txt_jumlahKursi2;
+    }
+
+    public void setTxt_jumlahKursi2(JLabel txt_jumlahKursi2) {
+        this.txt_jumlahKursi2 = txt_jumlahKursi2;
+    }
+
+    public JLabel getTxt_keberangkatan() {
+        return txt_keberangkatan;
+    }
+
+    public void setTxt_keberangkatan(JLabel txt_keberangkatan) {
+        this.txt_keberangkatan = txt_keberangkatan;
+    }
+
+    public JLabel getTxt_keberangkatan2() {
+        return txt_keberangkatan2;
+    }
+
+    public void setTxt_keberangkatan2(JLabel txt_keberangkatan2) {
+        this.txt_keberangkatan2 = txt_keberangkatan2;
+    }
+
+    public JLabel getTxt_kelasPenerbangan() {
+        return txt_kelasPenerbangan;
+    }
+
+    public void setTxt_kelasPenerbangan(JLabel txt_kelasPenerbangan) {
+        this.txt_kelasPenerbangan = txt_kelasPenerbangan;
+    }
+
+    public JLabel getTxt_namaPemesan() {
+        return txt_namaPemesan;
+    }
+
+    public void setTxt_namaPemesan(JLabel txt_namaPemesan) {
+        this.txt_namaPemesan = txt_namaPemesan;
+    }
+
+    public JLabel getTxt_namaPemesan2() {
+        return txt_namaPemesan2;
+    }
+
+    public void setTxt_namaPemesan2(JLabel txt_namaPemesan2) {
+        this.txt_namaPemesan2 = txt_namaPemesan2;
+    }
+
+    public JLabel getTxt_tujuan() {
+        return txt_tujuan;
+    }
+
+    public void setTxt_tujuan(JLabel txt_tujuan) {
+        this.txt_tujuan = txt_tujuan;
+    }
+
+    public JLabel getTxt_tujuan2() {
+        return txt_tujuan2;
+    }
+
+    public void setTxt_tujuan2(JLabel txt_tujuan2) {
+        this.txt_tujuan2 = txt_tujuan2;
+    }
+
     public void addListener(MouseListener mouseListener) {
-       
+       btnBack.addMouseListener(mouseListener);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

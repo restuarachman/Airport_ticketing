@@ -33,7 +33,7 @@ public class dialogFrame_Pembayaran_sukses extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnContinue = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
         label_pembayaran_berhasil = new javax.swing.JLabel();
         icon_sukses = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
@@ -42,21 +42,21 @@ public class dialogFrame_Pembayaran_sukses extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnContinue.setBackground(new java.awt.Color(47, 54, 64));
-        btnContinue.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
-        btnContinue.setForeground(new java.awt.Color(255, 255, 255));
-        btnContinue.setText("Continue");
-        btnContinue.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnPrint.setBackground(new java.awt.Color(47, 54, 64));
+        btnPrint.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
+        btnPrint.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrint.setText("Cetak Struct");
+        btnPrint.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnContinueMouseClicked(evt);
+                btnPrintMouseClicked(evt);
             }
         });
-        btnContinue.addActionListener(new java.awt.event.ActionListener() {
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContinueActionPerformed(evt);
+                btnPrintActionPerformed(evt);
             }
         });
-        getContentPane().add(btnContinue, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 120, 40));
+        getContentPane().add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 140, 40));
 
         label_pembayaran_berhasil.setBackground(new java.awt.Color(48, 57, 82));
         label_pembayaran_berhasil.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 18)); // NOI18N
@@ -76,18 +76,18 @@ public class dialogFrame_Pembayaran_sukses extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnContinueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinueMouseClicked
+    private void btnPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrintMouseClicked
         // TODO add your handling code here:
 
         //        this.setVisible(false);
-    }//GEN-LAST:event_btnContinueMouseClicked
+    }//GEN-LAST:event_btnPrintMouseClicked
 
-    private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
 
         this.setVisible(false);
 
-    }//GEN-LAST:event_btnContinueActionPerformed
+    }//GEN-LAST:event_btnPrintActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,21 +124,21 @@ public class dialogFrame_Pembayaran_sukses extends javax.swing.JFrame {
         });
     }
 
-    public JButton getBtnContinue() {
-        return btnContinue;
+    public JButton getBtnPrint() {
+        return btnPrint;
     }
 
-    public void setBtnContinue(JButton btnContinue) {
-        this.btnContinue = btnContinue;
+    public void setBtnPrint(JButton btnPrint) {
+        this.btnPrint = btnPrint;
     }
 
     public void addListener(MouseListener mouseListener) {
-        btnContinue.addMouseListener(mouseListener);
+        btnPrint.addMouseListener(mouseListener);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
-    private javax.swing.JButton btnContinue;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JLabel icon_sukses;
     private javax.swing.JLabel label_pembayaran_berhasil;
     // End of variables declaration//GEN-END:variables
