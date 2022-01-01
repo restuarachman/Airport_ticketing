@@ -8,19 +8,10 @@ package view.admin.menu;
 import java.awt.event.MouseListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import view.admin.*;
-import view.user.*;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import model.User;
-import view.View_Login;
-import view.user.dialog.dialogFrame_Penerbangan_notFound;
 
 /**
  *
@@ -125,7 +116,6 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
     public void setDataField(){
         int row;
         row = getTableBandaraRow();
-        System.out.println("KONTO "+(String)jTable1.getModel().getValueAt(row, 0));
         
         if (row != -1){
             try {

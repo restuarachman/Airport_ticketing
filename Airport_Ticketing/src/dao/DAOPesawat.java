@@ -58,7 +58,6 @@ public class DAOPesawat {
         } catch (SQLException ex) {
             Logger.getLogger(DAOPesawat.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
    
     public void delete(Pesawat pesaawat, Admin_Atur_Data_Pesawat frame) {

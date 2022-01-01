@@ -39,7 +39,7 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtSubTotal = new javax.swing.JTextField();
         txtTotalPenumpang = new javax.swing.JTextField();
-        btnBayar = new javax.swing.JButton();
+        btnPergiKeKasir = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtHargaTiket = new javax.swing.JTextField();
         Background = new javax.swing.JPanel();
@@ -122,21 +122,21 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         });
         Panel_List_Penerbangan.add(txtTotalPenumpang, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 160, 30));
 
-        btnBayar.setBackground(new java.awt.Color(47, 54, 64));
-        btnBayar.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
-        btnBayar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBayar.setText("Pergi ke Kasir");
-        btnBayar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnPergiKeKasir.setBackground(new java.awt.Color(47, 54, 64));
+        btnPergiKeKasir.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
+        btnPergiKeKasir.setForeground(new java.awt.Color(255, 255, 255));
+        btnPergiKeKasir.setText("Pergi ke Kasir");
+        btnPergiKeKasir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBayarMouseClicked(evt);
+                btnPergiKeKasirMouseClicked(evt);
             }
         });
-        btnBayar.addActionListener(new java.awt.event.ActionListener() {
+        btnPergiKeKasir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBayarActionPerformed(evt);
+                btnPergiKeKasirActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(btnBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 460, 180, 50));
+        Panel_List_Penerbangan.add(btnPergiKeKasir, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 460, 180, 50));
 
         jLabel7.setBackground(new java.awt.Color(48, 57, 82));
         jLabel7.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
@@ -188,15 +188,15 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         yMouse=evt.getY();
     }//GEN-LAST:event_moveableFrame1MousePressed
 
-    private void btnBayarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBayarMouseClicked
+    private void btnPergiKeKasirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPergiKeKasirMouseClicked
         // TODO add your handling code here:
 
         //        this.setVisible(false);
-    }//GEN-LAST:event_btnBayarMouseClicked
+    }//GEN-LAST:event_btnPergiKeKasirMouseClicked
 
-    private void btnBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayarActionPerformed
+    private void btnPergiKeKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPergiKeKasirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBayarActionPerformed
+    }//GEN-LAST:event_btnPergiKeKasirActionPerformed
 
     private void txtSubTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubTotalActionPerformed
         // TODO add your handling code here:
@@ -257,12 +257,12 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         this.btnBack2 = btnBack2;
     }
 
-    public JButton getBtnBayar() {
-        return btnBayar;
+    public JButton getBtnPergiKasir() {
+        return btnPergiKeKasir;
     }
 
-    public void setBtnBayar(JButton btnBayar) {
-        this.btnBayar = btnBayar;
+    public void setBtnPergiKasir(JButton btnBayar) {
+        this.btnPergiKeKasir = btnBayar;
     }
 
     public JTextField getTxtHargaTiket() {
@@ -292,14 +292,14 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
     
     public void addListener(MouseListener mouseListener) {
         btnBack2.addMouseListener(mouseListener);
-        btnBayar.addMouseListener(mouseListener);
+        btnPergiKeKasir.addMouseListener(mouseListener);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Panel_List_Penerbangan;
     private javax.swing.JLabel btnBack2;
-    private javax.swing.JButton btnBayar;
+    private javax.swing.JButton btnPergiKeKasir;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

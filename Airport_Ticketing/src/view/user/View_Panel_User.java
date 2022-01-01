@@ -7,11 +7,13 @@ package view.user;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.MouseListener;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import model.Bandara;
 
 
 
@@ -30,7 +32,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         
         initComponents();
        
-        btnMyTicket.setEnabled(false);
+        btnTransaksi.setEnabled(false);
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setResizable(false);   
     }
@@ -48,7 +50,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         bodyPanel = new javax.swing.JPanel();
         moveableFrame = new javax.swing.JPanel();
         menuPanel = new javax.swing.JPanel();
-        btnMyTicket = new javax.swing.JButton();
+        btnTransaksi = new javax.swing.JButton();
         btnBeliTiket = new javax.swing.JButton();
         btnDashboard = new javax.swing.JButton();
         btnAbout = new javax.swing.JButton();
@@ -125,16 +127,16 @@ public class View_Panel_User extends javax.swing.JFrame {
         menuPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         menuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnMyTicket.setBackground(new java.awt.Color(47, 54, 64));
-        btnMyTicket.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
-        btnMyTicket.setForeground(new java.awt.Color(255, 255, 255));
-        btnMyTicket.setText("MY TICKET");
-        btnMyTicket.addActionListener(new java.awt.event.ActionListener() {
+        btnTransaksi.setBackground(new java.awt.Color(47, 54, 64));
+        btnTransaksi.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
+        btnTransaksi.setForeground(new java.awt.Color(255, 255, 255));
+        btnTransaksi.setText("TRANSACTION");
+        btnTransaksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMyTicketActionPerformed(evt);
+                btnTransaksiActionPerformed(evt);
             }
         });
-        menuPanel.add(btnMyTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 164, 53));
+        menuPanel.add(btnTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 164, 53));
 
         btnBeliTiket.setBackground(new java.awt.Color(47, 54, 64));
         btnBeliTiket.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
@@ -503,18 +505,10 @@ public class View_Panel_User extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_dariActionPerformed
 
-    private void btnMyTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyTicketActionPerformed
+    private void btnTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaksiActionPerformed
         // TODO add your handling code here:
-        // remove panel
-        DynamicPanel.removeAll();
-        DynamicPanel.repaint();
-        DynamicPanel.revalidate();
-
-        // add panel
-        DynamicPanel.add(myTiket);
-        DynamicPanel.repaint();
-        DynamicPanel.revalidate();
-    }//GEN-LAST:event_btnMyTicketActionPerformed
+       
+    }//GEN-LAST:event_btnTransaksiActionPerformed
 
     private void moveableFrame1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moveableFrame1MouseDragged
         // TODO add your handling code here:
@@ -597,7 +591,7 @@ public class View_Panel_User extends javax.swing.JFrame {
     private javax.swing.JButton btnDashboard;
     private javax.swing.JButton btnDashboard1;
     private javax.swing.JButton btnHome3;
-    private javax.swing.JButton btnMyTicket;
+    private javax.swing.JButton btnTransaksi;
     private javax.swing.JPanel buyTiketPanel;
     private javax.swing.JPanel dashboardPanel;
     private javax.swing.JLabel jLabel2;
@@ -867,7 +861,7 @@ public class View_Panel_User extends javax.swing.JFrame {
     
     public void addListener(MouseListener listener) {
         btnCariPenerbangan.addMouseListener(listener);
-        btnMyTicket.addMouseListener(listener);
+        btnTransaksi.addMouseListener(listener);
         btnAbout.addMouseListener(listener);
         btnHome3.addMouseListener(listener);
     }
@@ -960,13 +954,23 @@ public class View_Panel_User extends javax.swing.JFrame {
         this.txt_tujuan2 = txt_tujuan2;
     }
 
-    public JButton getBtnMyTicket() {
-        return btnMyTicket;
+    public JButton getBtnTransaksi() {
+        return btnTransaksi;
     }
 
-    public void setBtnMyTicket(JButton btnMyTicket) {
-        this.btnMyTicket = btnMyTicket;
+    public void setBtnTransaksi(JButton btnMyTicket) {
+        this.btnTransaksi = btnMyTicket;
     }
     
-    
+    public void fillComboBox(List<Bandara> Bandara) {
+        txt_ke.removeAllItems();
+        txt_dari.removeAllItems();
+        
+        txt_ke.addItem("-");
+        txt_dari.addItem("-");
+        for (Bandara bandara : Bandara) {
+            txt_ke.addItem(bandara.getKodeBandara());
+            txt_dari.addItem(bandara.getKodeBandara());
+        }
+    }
 }

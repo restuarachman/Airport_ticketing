@@ -6,10 +6,13 @@
 package view.user;
 
 import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import view.admin.menu.Admin_Atur_Data_Bandara;
 
 /**
  *
@@ -37,19 +40,20 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         moveableFrame1 = new javax.swing.JPanel();
         borderList = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        list_pesawat = new javax.swing.JList<>();
+        jTable1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         txtKelas = new javax.swing.JTextField();
-        txtKodePesawat = new javax.swing.JTextField();
         btnPilihPenerbangan = new javax.swing.JButton();
         txtNamaPesawat = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtHarga = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        txtKodePesawat = new javax.swing.JTextField();
+        txtId = new javax.swing.JLabel();
         Background = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,24 +106,57 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(48, 57, 82));
 
-        list_pesawat.setBackground(new java.awt.Color(48, 57, 82));
-        list_pesawat.setForeground(new java.awt.Color(255, 255, 255));
-        list_pesawat.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                list_pesawatValueChanged(evt);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Kode", "Nama", "Harga", "Kelas"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(list_pesawat);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
 
-        borderList.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 420, 280));
+        borderList.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 480, 290));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("List Pesawat");
-        borderList.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, -1));
+        borderList.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
 
-        Panel_List_Penerbangan.add(borderList, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 460, 350));
+        Panel_List_Penerbangan.add(borderList, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 500, 350));
 
         jLabel11.setBackground(new java.awt.Color(48, 57, 82));
         jLabel11.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
@@ -131,35 +168,22 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(48, 57, 82));
         jLabel6.setText("Kelas  :");
-        Panel_List_Penerbangan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, -1, -1));
+        Panel_List_Penerbangan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(48, 57, 82));
         jLabel7.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(48, 57, 82));
         jLabel7.setText("Detail Pesawat");
-        Panel_List_Penerbangan.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 90, -1, -1));
+        Panel_List_Penerbangan.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, -1, -1));
 
-        jLabel8.setBackground(new java.awt.Color(48, 57, 82));
-        jLabel8.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(48, 57, 82));
-        jLabel8.setText("Kode   :");
-        Panel_List_Penerbangan.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, -1, -1));
-
+        txtKelas.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtKelas.setEnabled(false);
         txtKelas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtKelasActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(txtKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 320, 160, 30));
-
-        txtKodePesawat.setEnabled(false);
-        txtKodePesawat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtKodePesawatActionPerformed(evt);
-            }
-        });
-        Panel_List_Penerbangan.add(txtKodePesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, 160, 30));
+        Panel_List_Penerbangan.add(txtKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 330, 160, 30));
 
         btnPilihPenerbangan.setBackground(new java.awt.Color(47, 54, 64));
         btnPilihPenerbangan.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
@@ -175,35 +199,56 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
                 btnPilihPenerbanganActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(btnPilihPenerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 390, 180, 50));
+        Panel_List_Penerbangan.add(btnPilihPenerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 400, 180, 50));
 
+        txtNamaPesawat.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtNamaPesawat.setEnabled(false);
         txtNamaPesawat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaPesawatActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(txtNamaPesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, 160, 30));
+        Panel_List_Penerbangan.add(txtNamaPesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 230, 160, 30));
 
         jLabel9.setBackground(new java.awt.Color(48, 57, 82));
         jLabel9.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(48, 57, 82));
         jLabel9.setText("Nama  :");
-        Panel_List_Penerbangan.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
+        Panel_List_Penerbangan.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, -1, -1));
 
+        txtHarga.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtHarga.setEnabled(false);
         txtHarga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtHargaActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(txtHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 160, 30));
+        Panel_List_Penerbangan.add(txtHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 280, 160, 30));
 
         jLabel10.setBackground(new java.awt.Color(48, 57, 82));
         jLabel10.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(48, 57, 82));
         jLabel10.setText("Harga  :");
-        Panel_List_Penerbangan.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 270, -1, -1));
+        Panel_List_Penerbangan.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 280, -1, -1));
+
+        jLabel12.setBackground(new java.awt.Color(48, 57, 82));
+        jLabel12.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(48, 57, 82));
+        jLabel12.setText("Kode   :");
+        Panel_List_Penerbangan.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, -1, -1));
+
+        txtKodePesawat.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtKodePesawat.setEnabled(false);
+        txtKodePesawat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtKodePesawatActionPerformed(evt);
+            }
+        });
+        Panel_List_Penerbangan.add(txtKodePesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 180, 160, 30));
+
+        txtId.setForeground(new java.awt.Color(255, 255, 255));
+        txtId.setText("jLabel1");
+        Panel_List_Penerbangan.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
         getContentPane().add(Panel_List_Penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 580));
 
@@ -257,15 +302,6 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtKelasActionPerformed
 
-    private void txtKodePesawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKodePesawatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtKodePesawatActionPerformed
-
-    private void list_pesawatValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_pesawatValueChanged
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_list_pesawatValueChanged
-
     private void txtNamaPesawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaPesawatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaPesawatActionPerformed
@@ -277,6 +313,15 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
     private void btnBack2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack2MouseClicked
 
     }//GEN-LAST:event_btnBack2MouseClicked
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        setDataField();
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void txtKodePesawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKodePesawatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKodePesawatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,6 +349,9 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(View_Panel_User_ListPenerbangan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -311,6 +359,14 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
                 new View_Panel_User_ListPenerbangan().setVisible(true);
             }
         });
+    }
+
+    public JLabel getBtnBack2() {
+        return btnBack2;
+    }
+
+    public void setBtnBack2(JLabel btnBack2) {
+        this.btnBack2 = btnBack2;
     }
 
     public JButton getBtnPilihPenerbangan() {
@@ -321,20 +377,20 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         this.btnPilihPenerbangan = btnPilihPenerbangan;
     }
 
-    public JList<String> getList_pesawat() {
-        return list_pesawat;
-    }
-
-    public void setList_pesawat(JList<String> list_pesawat) {
-        this.list_pesawat = list_pesawat;
-    }
-
     public JTextField getTxtHarga() {
         return txtHarga;
     }
 
     public void setTxtHarga(JTextField txtHarga) {
         this.txtHarga = txtHarga;
+    }
+
+    public JLabel getTxtId() {
+        return txtId;
+    }
+
+    public void setTxtId(JLabel txtId) {
+        this.txtId = txtId;
     }
 
     public JTextField getTxtKelas() {
@@ -361,17 +417,44 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         this.txtNamaPesawat = txtNamaPesawat;
     }
 
-    public JLabel getBtnBack2() {
-        return btnBack2;
+    public JTable getjTable1() {
+        return jTable1;
     }
 
-    public void setBtnBack2(JLabel btnBack2) {
-        this.btnBack2 = btnBack2;
+    public void setjTable1(JTable jTable1) {
+        this.jTable1 = jTable1;
     }
+
+    
     
     public void addListener(MouseListener mouseListener) {
         btnPilihPenerbangan.addMouseListener(mouseListener);
         btnBack2.addMouseListener(mouseListener);
+    }    
+    
+    
+    public void clearTextField() {
+        txtHarga.setText(null);
+        txtKelas.setText(null);
+        txtId.setText(null);
+        txtNamaPesawat.setText(null);
+    }
+    
+    public void setDataField(){
+        int row;
+        row = jTable1.getSelectedRow();
+        
+        if (row != -1){
+            try {
+                txtId.setText((String)jTable1.getModel().getValueAt(row, 4));
+                txtKodePesawat.setText((String)jTable1.getModel().getValueAt(row, 0));
+                txtNamaPesawat.setText((String)jTable1.getModel().getValueAt(row, 1));
+                txtHarga.setText((String)jTable1.getModel().getValueAt(row, 2));
+                txtKelas.setText((String)jTable1.getModel().getValueAt(row, 3));
+            } catch (SecurityException ex) {
+                Logger.getLogger(Admin_Atur_Data_Bandara.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -382,15 +465,16 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
     private javax.swing.JButton btnPilihPenerbangan;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> list_pesawat;
+    private javax.swing.JTable jTable1;
     private javax.swing.JPanel moveableFrame1;
     private javax.swing.JTextField txtHarga;
+    private javax.swing.JLabel txtId;
     private javax.swing.JTextField txtKelas;
     private javax.swing.JTextField txtKodePesawat;
     private javax.swing.JTextField txtNamaPesawat;

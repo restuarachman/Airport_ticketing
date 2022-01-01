@@ -9,20 +9,34 @@ package model;
  *
  * @author ASUS
  */
-public class Customer {
+public class Customer extends User{
+    private int id;
     private String Nama;
     private String Alamat;
-    private String NoHp;
+    private String nomor_hp;
 
     public Customer() {
     }
-
-    public Customer(String Nama, String Alamat, String NoHp) {
-        this.Nama = Nama;
-        this.Alamat = Alamat;
-        this.NoHp = NoHp;
+    
+    public Customer(User user) {
+        super(user);
     }
     
+    public Customer(User user, String Nama, String Alamat, String nomor_hp) {
+        super(user);
+        this.Nama = Nama;
+        this.Alamat = Alamat;
+        this.nomor_hp = nomor_hp;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getNama() {
         return Nama;
     }
@@ -39,14 +53,16 @@ public class Customer {
         this.Alamat = Alamat;
     }
 
-    public String getNoHp() {
-        return NoHp;
+    public String getNomor_hp() {
+        return nomor_hp;
     }
 
-    public void setNoHp(String NoHp) {
-        this.NoHp = NoHp;
+    public void setNomor_hp(String nomor_hp) {
+        this.nomor_hp = nomor_hp;
     }
-    
+    public int getUserId() {
+        return super.getId();
+    }
     public void BayarTiket(){
         
     }
@@ -55,5 +71,13 @@ public class Customer {
     }
     public void MemberiFeedback(){
         
+    }
+    
+    public void getInfo() {
+        System.out.println(getId());
+        System.out.println(getUserId());
+        System.out.println(Nama);
+        System.out.println(nomor_hp);
+        System.out.println(Alamat);
     }
 }

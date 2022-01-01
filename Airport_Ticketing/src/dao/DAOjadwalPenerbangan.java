@@ -123,6 +123,7 @@ public class DAOjadwalPenerbangan {
         return null;
     }
     
+    
     public List<JadwalPenerbangan> getJadwalPenerbangan(String asal, String tujuan, Date date) {
         list = new ArrayList<>();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -131,7 +132,6 @@ public class DAOjadwalPenerbangan {
             try (Statement stmt = Koneksi.getConnection().createStatement()) {
                 result = stmt.executeQuery("SELECT * FROM jadwalpenerbangan WHERE bandaraAsal='"+asal+"' AND bandaraTujuan='"+tujuan+"' AND date='"+sqlDate+"'");
                 while (result.next()) {
-                    System.out.println("MAUSK ANJING");
                     JadwalPenerbangan jadwal  = new JadwalPenerbangan();
                     
                     jadwal.setId(result.getInt(1));
@@ -180,6 +180,30 @@ public class DAOjadwalPenerbangan {
             }
             result.close();
             return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public JadwalPenerbangan getJadwalPenerbangan(int id) {
+        JadwalPenerbangan jadwal  = new JadwalPenerbangan();
+        try {
+            ResultSet result;
+            try (Statement stmt = Koneksi.getConnection().createStatement()) {
+                result = stmt.executeQuery("SELECT * FROM jadwalpenerbangan WHERE id = '"+id+"'");
+                while (result.next()) {
+                    jadwal.setId(result.getInt(1));
+                    jadwal.setDate(result.getDate(2));
+                    jadwal.setBandaraAsal(daoBandara.getBandaraByKode(result.getString(3)));
+                    jadwal.setBandaraTujuan(daoBandara.getBandaraByKode(result.getString(4)));
+                    jadwal.setPesawat(daoPesawat.getPesawat(result.getInt(5)));
+                    jadwal.setKelas(result.getString(6));
+                    jadwal.setHarga(result.getInt(7));
+                }
+            }
+            result.close();
+            return jadwal;
         } catch (SQLException ex) {
             Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
         }

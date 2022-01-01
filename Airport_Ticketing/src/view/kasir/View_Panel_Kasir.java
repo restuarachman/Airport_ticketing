@@ -5,17 +5,9 @@
  */
 package view.kasir;
 
-import view.admin.*;
 import java.awt.event.MouseListener;
-import view.user.*;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import model.User;
-import view.View_Login;
-import view.user.dialog.dialogFrame_Penerbangan_notFound;
 
 /**
  *
@@ -36,13 +28,18 @@ public class View_Panel_Kasir extends javax.swing.JFrame {
     public JButton getBtnLogout() {
         return btnLogout;
     }
-    
-    
+
+    public JPanel getMenu_Pembayaran() {
+        return Menu_Pembayaran;
+    }
+
+    public JPanel getMenu_Transaksi_Selesai() {
+        return Menu_Transaksi_Selesai;
+    }
 
     public void addListener(MouseListener mouseListener) {
-        Menu_Atur_Data_Bandara.addMouseListener(mouseListener);
-        
-        Menu_Atur_Data_Pesawat.addMouseListener(mouseListener);
+        Menu_Pembayaran.addMouseListener(mouseListener);
+        Menu_Transaksi_Selesai.addMouseListener(mouseListener);
         btnLogout.addMouseListener(mouseListener);
     }
     /**
@@ -60,10 +57,10 @@ public class View_Panel_Kasir extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
-        Menu_Atur_Data_Pesawat = new javax.swing.JPanel();
+        Menu_Transaksi_Selesai = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        Menu_Atur_Data_Bandara = new javax.swing.JPanel();
+        Menu_Pembayaran = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -125,37 +122,37 @@ public class View_Panel_Kasir extends javax.swing.JFrame {
 
         bodyPanel.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 110));
 
-        Menu_Atur_Data_Pesawat.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204)));
-        Menu_Atur_Data_Pesawat.setOpaque(false);
-        Menu_Atur_Data_Pesawat.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Menu_Transaksi_Selesai.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204)));
+        Menu_Transaksi_Selesai.setOpaque(false);
+        Menu_Transaksi_Selesai.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/icon/kasir_complete.gif"))); // NOI18N
-        Menu_Atur_Data_Pesawat.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 100));
+        Menu_Transaksi_Selesai.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 100));
 
         jLabel6.setBackground(new java.awt.Color(48, 57, 82));
         jLabel6.setForeground(new java.awt.Color(48, 57, 82));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Transaksi Selesai");
-        Menu_Atur_Data_Pesawat.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 150, -1));
+        Menu_Transaksi_Selesai.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 150, -1));
 
-        bodyPanel.add(Menu_Atur_Data_Pesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 150, 150));
+        bodyPanel.add(Menu_Transaksi_Selesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 150, 150));
 
-        Menu_Atur_Data_Bandara.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204)));
-        Menu_Atur_Data_Bandara.setOpaque(false);
-        Menu_Atur_Data_Bandara.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Menu_Pembayaran.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204)));
+        Menu_Pembayaran.setOpaque(false);
+        Menu_Pembayaran.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/icon/kasir_pembayaran.gif"))); // NOI18N
-        Menu_Atur_Data_Bandara.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 100));
+        Menu_Pembayaran.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 100));
 
         jLabel2.setBackground(new java.awt.Color(48, 57, 82));
         jLabel2.setForeground(new java.awt.Color(48, 57, 82));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Pembayaran");
-        Menu_Atur_Data_Bandara.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 150, -1));
+        Menu_Pembayaran.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 150, -1));
 
-        bodyPanel.add(Menu_Atur_Data_Bandara, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 150, 150));
+        bodyPanel.add(Menu_Pembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 150, 150));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -356,8 +353,8 @@ public class View_Panel_Kasir extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Header;
-    private javax.swing.JPanel Menu_Atur_Data_Bandara;
-    private javax.swing.JPanel Menu_Atur_Data_Pesawat;
+    private javax.swing.JPanel Menu_Pembayaran;
+    private javax.swing.JPanel Menu_Transaksi_Selesai;
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JButton btnLogout;
     private javax.swing.JLabel jLabel1;
