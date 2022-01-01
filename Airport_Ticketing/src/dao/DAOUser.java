@@ -112,7 +112,6 @@ public class DAOUser {
                     return true;
                 }
                 return false;
-               
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOBooking.class.getName()).log(Level.SEVERE, null, ex);
@@ -147,6 +146,27 @@ public class DAOUser {
             Logger.getLogger(DAOBooking.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
+    }
+    
+    public User getUser(int id) {
+        try {
+            User user  = new User();
+            ResultSet result;
+            try (Statement stmt = Koneksi.getConnection().createStatement()) {
+                result = stmt.executeQuery("SELECT * FROM user WHERE id ='"+id+"'");
+                while (result.next()) {
+                    user.setId(result.getInt(1));
+                    user.setUsername(result.getString(2));
+                    user.setPassword(result.getString(3));
+                    user.setRole(result.getInt(4));
+                }
+            }
+            result.close();
+            return user;
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
 }

@@ -5,11 +5,9 @@
  */
 package view.kasir.menu;
 
-import view.user.*;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JTextField;
 
 /**
@@ -23,6 +21,73 @@ public class Kasir_Pembayaran_Cari_ID_Booking extends javax.swing.JFrame {
      */
     public Kasir_Pembayaran_Cari_ID_Booking() {
         initComponents();
+    }
+
+    public JTextField getTxt_cari_id_booking() {
+        return txt_cari_id_booking;
+    }
+
+    public void setTxt_cari_id_booking(JTextField txt_cari_id_booking) {
+        this.txt_cari_id_booking = txt_cari_id_booking;
+    }
+
+    public JTextField getTxt_id_booking() {
+        return txt_id_booking;
+    }
+
+    public void setTxt_id_booking(JTextField txt_id_booking) {
+        this.txt_id_booking = txt_id_booking;
+    }
+
+    public JTextField getTxt_jumlah_penumpang() {
+        return txt_jumlah_penumpang;
+    }
+
+    public void setTxt_jumlah_penumpang(JTextField txt_jumlah_penumpang) {
+        this.txt_jumlah_penumpang = txt_jumlah_penumpang;
+    }
+
+    public JTextField getTxt_nama_penumpang() {
+        return txt_nama_penumpang;
+    }
+
+    public void setTxt_nama_penumpang(JTextField txt_nama_penumpang) {
+        this.txt_nama_penumpang = txt_nama_penumpang;
+    }
+
+    public JTextField getTxt_nomor_hp() {
+        return txt_nomor_hp;
+    }
+
+    public void setTxt_nomor_hp(JTextField txt_nomor_hp) {
+        this.txt_nomor_hp = txt_nomor_hp;
+    }
+
+    public JLabel getBtnBack2() {
+        return btnBack2;
+    }
+
+    public JButton getBtnCari() {
+        return btnCari;
+    }
+
+    public JButton getBtnLanjutkanPembayaran() {
+        return btnLanjutkanPembayaran;
+    }
+    
+    public void clearTextField() {
+        //txt_cari_id_booking.setText(null);
+        txt_id_booking.setText(null);
+        txt_jumlah_penumpang.setText(null);
+        txt_nama_penumpang.setText(null);
+        txt_nomor_hp.setText(null);
+        btnLanjutkanPembayaran.setEnabled(false);
+    }
+    
+    public void addListener(MouseListener mouseListener) {
+        btnLanjutkanPembayaran.addMouseListener(mouseListener);
+        btnBack2.addMouseListener(mouseListener);
+        btnCari.addMouseListener(mouseListener);
     }
 
     /**
@@ -121,6 +186,7 @@ public class Kasir_Pembayaran_Cari_ID_Booking extends javax.swing.JFrame {
         jLabel8.setText("ID Booking");
         Panel_List_Penerbangan.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, -1, -1));
 
+        txt_jumlah_penumpang.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txt_jumlah_penumpang.setEnabled(false);
         txt_jumlah_penumpang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,6 +195,7 @@ public class Kasir_Pembayaran_Cari_ID_Booking extends javax.swing.JFrame {
         });
         Panel_List_Penerbangan.add(txt_jumlah_penumpang, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 290, 180, 30));
 
+        txt_id_booking.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txt_id_booking.setEnabled(false);
         txt_id_booking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,6 +208,7 @@ public class Kasir_Pembayaran_Cari_ID_Booking extends javax.swing.JFrame {
         btnLanjutkanPembayaran.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
         btnLanjutkanPembayaran.setForeground(new java.awt.Color(255, 255, 255));
         btnLanjutkanPembayaran.setText("Lanjutkan Pembayaran");
+        btnLanjutkanPembayaran.setEnabled(false);
         btnLanjutkanPembayaran.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLanjutkanPembayaranMouseClicked(evt);
@@ -153,6 +221,7 @@ public class Kasir_Pembayaran_Cari_ID_Booking extends javax.swing.JFrame {
         });
         Panel_List_Penerbangan.add(btnLanjutkanPembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 370, 220, 50));
 
+        txt_nama_penumpang.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txt_nama_penumpang.setEnabled(false);
         txt_nama_penumpang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +236,7 @@ public class Kasir_Pembayaran_Cari_ID_Booking extends javax.swing.JFrame {
         jLabel9.setText("Nama Penumpang");
         Panel_List_Penerbangan.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, -1, -1));
 
+        txt_nomor_hp.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txt_nomor_hp.setEnabled(false);
         txt_nomor_hp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -311,13 +381,6 @@ public class Kasir_Pembayaran_Cari_ID_Booking extends javax.swing.JFrame {
                 new Kasir_Pembayaran_Cari_ID_Booking().setVisible(true);
             }
         });
-    }
-
-   
-    
-    public void addListener(MouseListener mouseListener) {
-        btnLanjutkanPembayaran.addMouseListener(mouseListener);
-        btnBack2.addMouseListener(mouseListener);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

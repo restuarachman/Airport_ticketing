@@ -12,59 +12,26 @@ package model;
 public class Booking {
     private int id;
     private JadwalPenerbangan jadwal;
-    private User user;
+    private Customer customer;
     private int jumlahPenumpang;
-    private String nama_penumpang;
-    private String nomor_hp;
-    private String alamat;
     private int harga;
     public Booking() {
       
     }
 
-    public Booking(int id, JadwalPenerbangan jadwal, User user, int jumlahPenumpang, String nama_penumpang, String nomor_hp, String alamat, int harga) {
+    public Booking(int id, JadwalPenerbangan jadwal, Customer customer, int jumlahPenumpang, int harga) {
         this.id = id;
         this.jadwal = jadwal;
-        this.user = user;
+        this.customer = customer;
         this.jumlahPenumpang = jumlahPenumpang;
-        this.nama_penumpang = nama_penumpang;
-        this.nomor_hp = nomor_hp;
-        this.alamat = alamat;
         this.harga = harga*jumlahPenumpang;
-        
-        getInfo();
     }
-
-    public int getHarga() {
-        return harga;
-    }
-
-    public void setHarga(int harga) {
-        this.harga = harga;
-    }
-
-    public String getNama_penumpang() {
-        return nama_penumpang;
-    }
-
-    public void setNama_penumpang(String nama_penumpang) {
-        this.nama_penumpang = nama_penumpang;
-    }
-
-    public String getNomor_hp() {
-        return nomor_hp;
-    }
-
-    public void setNomor_hp(String nomor_hp) {
-        this.nomor_hp = nomor_hp;
-    }
-
-    public String getAlamat() {
-        return alamat;
-    }
-
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
+    
+    public Booking(JadwalPenerbangan jadwal, Customer customer, int jumlahPenumpang, int harga) {
+        this.jadwal = jadwal;
+        this.customer = customer;
+        this.jumlahPenumpang = jumlahPenumpang;
+        this.harga = harga*jumlahPenumpang;
     }
 
     public int getId() {
@@ -83,12 +50,12 @@ public class Booking {
         this.jadwal = jadwal;
     }
 
-    public User getUser() {
-        return user;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public int getJumlahPenumpang() {
@@ -99,14 +66,19 @@ public class Booking {
         this.jumlahPenumpang = jumlahPenumpang;
     }
 
+    public int getHarga() {
+        return harga;
+    }
+
+    public void setHarga(int harga) {
+        this.harga = harga;
+    }
+
     public void getInfo() {
         System.out.println(id);
         System.out.println(jadwal.getId());
-        System.out.println(user.getId());
+        System.out.println(customer.getId());
         System.out.println(jumlahPenumpang);
-        System.out.println(nama_penumpang);
-        System.out.println(nomor_hp);
-        System.out.println(alamat);
         System.out.println(harga);
     }
     

@@ -5,46 +5,29 @@
  */
 package controller;
 
-import com.toedter.calendar.JDateChooser;
-import dao.DAOBandara;
-import dao.DAOBooking;
-import dao.DAOBuyTicket;
-import dao.DAOPesawat;
-import dao.DAOTiket;
-import dao.DAOUser;
-import dao.DAOjadwalPenerbangan;
+import dao.*;
+import model.*;
+import tabel.*;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Date;
 import java.util.List;
-import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import model.Bandara;
-import model.JadwalPenerbangan;
-import model.Booking;
-import model.Pesawat;
-import model.TabelPenerbangan;
-import model.Tiket;
-import model.User;
-import tabel.TabelBandaraModel;
-import tabel.TabelJadwalPenebanganModel;
-import tabel.TabelPesawatModel;
-import tabel.TabelPilihPesawat;
 import view.View_Login;
 import view.View_Signup;
 import view.admin.View_Panel_Admin_NEW;
 import view.admin.menu.Admin_Atur_Data_Bandara;
 import view.admin.menu.Admin_Atur_Data_Pesawat;
 import view.admin.menu.Admin_Atur_Jadwal_Penerbangan;
+import view.kasir.View_Panel_Kasir;
+import view.kasir.menu.Kasir_Pembayaran_Cari_ID_Booking;
+import view.kasir.menu.Kasir_Pembayaran_Rincian_Pembayaran;
 import view.user.View_Panel_User;
 import view.user.View_Panel_User_About;
 import view.user.View_Panel_User_IsiDataPenumpang;
 import view.user.View_Panel_User_ListPenerbangan;
-import view.user.View_Panel_User_ListPenerbangan_NEW;
 import view.user.View_Panel_User_RincianHarga;
 import view.user.dialog.dialogFrame_Pembayaran_sukses;
 import view.user.dialog.dialogFrame_Penerbangan_notFound;
@@ -55,7 +38,7 @@ import view.user.dialog.dialogFrame_Penerbangan_notFound;
  */
 public class Controller {
     DAOUser da = new DAOUser();
-    DAOBuyTicket daoBuyTicket = new DAOBuyTicket();
+    DAOCustomer daoCustomer = new DAOCustomer();
     DAOBooking daoBooking = new DAOBooking();
     DAOTiket daoTiket = new DAOTiket();
     DAOBandara daoBandara = new DAOBandara();
@@ -65,7 +48,7 @@ public class Controller {
     View_Login frame_login;
     View_Panel_User frame_pUser = new View_Panel_User();
     View_Signup frame_signup = new View_Signup();
-    View_Panel_User_ListPenerbangan_NEW frame_listPenerbangan = new View_Panel_User_ListPenerbangan_NEW();
+    View_Panel_User_ListPenerbangan frame_listPenerbangan = new View_Panel_User_ListPenerbangan();
     View_Panel_User_IsiDataPenumpang frame_isidata = new View_Panel_User_IsiDataPenumpang();
     View_Panel_User_RincianHarga frame_rincianHarga = new View_Panel_User_RincianHarga();
     View_Panel_User_About frame_pAbout = new View_Panel_User_About();
@@ -78,12 +61,18 @@ public class Controller {
     Admin_Atur_Data_Pesawat frame_pesawat = new Admin_Atur_Data_Pesawat();
     Admin_Atur_Jadwal_Penerbangan frame_jadwalPenerbangan = new Admin_Atur_Jadwal_Penerbangan();
     
+    View_Panel_Kasir frame_kasir = new View_Panel_Kasir();
+    Kasir_Pembayaran_Cari_ID_Booking frame_pembayaran = new Kasir_Pembayaran_Cari_ID_Booking();
+    Kasir_Pembayaran_Rincian_Pembayaran frame_rincianPembayaran = new Kasir_Pembayaran_Rincian_Pembayaran();
+    
     private User user = new User();
     private JadwalPenerbangan jadwal = new JadwalPenerbangan();
     private Booking booking = new Booking();
+    private Customer customer = new Customer();
     
     private int tiketcount = daoTiket.getnotiket();
     private int bookingcount = daoBooking.jumlahbooking();
+    private int customercount = daoCustomer.getnocustomer();
     public Controller(View_Login v_login) {
         this.frame_login = v_login;
         this.frame_login.setVisible(true);
@@ -105,10 +94,13 @@ public class Controller {
         frame_bandara.addListener(Listener);
         frame_pesawat.addListener(Listener);
         frame_jadwalPenerbangan.addListener(Listener);
+        
+        frame_kasir.addListener(Listener);
+        frame_pembayaran.addListener(Listener);
+        frame_rincianPembayaran.addListener(Listener);
     }
     
-    class listener implements MouseListener {
-        
+    class listener implements MouseListener {  
         @Override
         public void mouseClicked(MouseEvent e) {
         // FRAME LOGIN
@@ -123,7 +115,6 @@ public class Controller {
             if (e.getComponent() == frame_login.getForSignup()){
                 move(frame_login, frame_signup);
             } 
-           
            
         // FRAME SIGNUP
             // btn back
@@ -150,7 +141,6 @@ public class Controller {
                 if (cmb1.equals("-") || cmb2.equals("-") || date == null) {
                     JOptionPane.showMessageDialog(frame_rincianHarga, "Field harus diisi semua");
                 } else {
-                    System.out.println(cmb1+ cmb2+ date.getTime()+date);
                     List<JadwalPenerbangan> list = daoJadwalPenerbangan.getJadwalPenerbangan(cmb1, cmb2, date);
                
                     if (list.isEmpty()) {
@@ -189,18 +179,28 @@ public class Controller {
                     move(frame_pUser, frame_login);
                     
                     frame_login.getTxtPassword().setText(null);
-                }else{
+                } else{
                     System.out.println("batal logout");
 
                 }
             }
             
         // FRAME LIST PENERBANGAN
+            // btn pilih penerbangan
             if (e.getComponent() == frame_listPenerbangan.getBtnPilihPenerbangan()) {
+                int id = Integer.parseInt(frame_listPenerbangan.getTxtId().getText());
+                Date date = frame_pUser.getTxt_tanggal().getDate();
+                Bandara bandaraAsal = daoBandara.getBandaraByKode((String)frame_pUser.getTxt_dari().getSelectedItem());
+                Bandara bandaraTujuan = daoBandara.getBandaraByKode((String)frame_pUser.getTxt_ke().getSelectedItem());
+                Pesawat pesawat = daoPesawat.getPesawat(Integer.parseInt(frame_listPenerbangan.getTxtId().getText()));
+                String kelas =  frame_listPenerbangan.getTxtKelas().getText();
+                int harga = Integer.parseInt(frame_listPenerbangan.getTxtHarga().getText());
+                System.out.println(id);
+                jadwal = new JadwalPenerbangan(id, date, bandaraAsal, bandaraTujuan, pesawat, kelas, harga);
                 move(frame_listPenerbangan, frame_isidata);
-                
             }
             
+            // btn back
             if (e.getComponent() == frame_listPenerbangan.getBtnBack2()) {
                 move(frame_listPenerbangan, frame_pUser);
             }
@@ -213,18 +213,17 @@ public class Controller {
             
         // FRAME ISI DATA
             if (e.getComponent() == frame_isidata.getBtnSimpanData()) {
-                bookingcount = daoBooking.jumlahbooking();
+                customer = new Customer(user, frame_isidata.getTxt_namaPenumpang().getText(), frame_isidata.getTxt_Alamat().getText(), frame_isidata.getTxt_noHP().getText());
+                daoCustomer.insert(customer);
+                customer = daoCustomer.getCustomer(customer);
                 
-                bookingcount++;
-                user.setId(da.findUser(user));
-                booking = new Booking(bookingcount, jadwal, user, Integer.parseInt((String)frame_pUser.getTxt_penumpang().getSelectedItem()), frame_isidata.getTxt_namaPenumpang().getText(), frame_isidata.getTxt_noHP().getText(), frame_isidata.getTxt_Alamat().getText(), 
-                      Integer.parseInt(frame_listPenerbangan.getTxtHarga().getText()));
-                daoBooking.insert(booking);
+                int total_penumpang = Integer.parseInt((String)frame_pUser.getTxt_penumpang().getSelectedItem());
+                int harga_tiket = Integer.parseInt((String)frame_listPenerbangan.getTxtHarga().getText());
+                int subtotal = harga_tiket*total_penumpang;
                 
-                frame_rincianHarga.getTxtHargaTiket().setText(frame_listPenerbangan.getTxtHarga().getText());
-                frame_rincianHarga.getTxtSubTotal().setText(Integer.toString(booking.getHarga()));
-                frame_rincianHarga.getTxtTotalPenumpang().setText(Integer.toString(booking.getJumlahPenumpang()));
-                
+                frame_rincianHarga.getTxtHargaTiket().setText(Integer.toString(harga_tiket));
+                frame_rincianHarga.getTxtSubTotal().setText(Integer.toString(subtotal));
+                frame_rincianHarga.getTxtTotalPenumpang().setText(Integer.toString(total_penumpang));
                 move(frame_isidata, frame_rincianHarga);
             }
             
@@ -239,23 +238,13 @@ public class Controller {
             } 
                 
             // btn bayar
-            if (e.getComponent() == frame_rincianHarga.getBtnBayar()) {
+            if (e.getComponent() == frame_rincianHarga.getBtnPergiKasir()) {
+                int total_penumpang = Integer.parseInt((String)frame_pUser.getTxt_penumpang().getSelectedItem());
+                int harga_tiket = Integer.parseInt((String)frame_listPenerbangan.getTxtHarga().getText());
+                int subtotal = harga_tiket*total_penumpang;
                 
-                if (false) {
-                    
-                } else {
-                    JOptionPane.showMessageDialog(frame_rincianHarga, "Uang anda tidak cukup");
-                }
-            }
-        // DIALOG SUKSES
-            if(e.getComponent() == dialog_bayarSukses.getBtnContinue()) {
-                
-                
-                dialog_bayarSukses.setVisible(false);
-                frame_rincianHarga.setEnabled(true);
-                if(da.havetiket(user)) {
-                    frame_pUser.getBtnMyTicket().setEnabled(true);
-                }
+                booking = new Booking(jadwal, customer, total_penumpang, subtotal);
+                daoBooking.insert(booking);
                 move(frame_rincianHarga, frame_pUser);
                 
                 frame_pUser.getDynamicPanel().removeAll();
@@ -266,6 +255,17 @@ public class Controller {
                 frame_pUser.getDynamicPanel().add(frame_pUser.getDashboardPanel());
                 frame_pUser.getDynamicPanel().repaint();
                 frame_pUser.getDynamicPanel().revalidate();
+            }
+        // DIALOG SUKSES
+            if(e.getComponent() == dialog_bayarSukses.getBtnContinue()) {
+                
+                
+                dialog_bayarSukses.setVisible(false);
+                frame_rincianHarga.setEnabled(true);
+                if(da.havetiket(user)) {
+                    frame_pUser.getBtnMyTicket().setEnabled(true);
+                }
+               
             }
             
         // FRAME ABOUT USER
@@ -403,6 +403,68 @@ public class Controller {
                 daoJadwalPenerbangan.update(jadwal);
                 fillTabelJadwalPenerbangan();
             }
+            
+        // ========================== KASIR ===========================
+        // FRAME KASIR
+            if (e.getComponent() == frame_kasir.getMenu_Pembayaran()) {
+                move(frame_kasir, frame_pembayaran);
+            }
+            
+            if (e.getComponent() == frame_kasir.getMenu_Transaksi_Selesai()) {
+                //move(frame_kasir, frame_traksaksiSelesai);
+            }
+            
+            if (e.getComponent() == frame_kasir.getBtnLogout()) {
+                move(frame_kasir, frame_login);
+            }
+            
+        // FRAME PEMBAYARAN
+            // btn cari booking id
+            if (e.getComponent() == frame_pembayaran.getBtnCari()) {
+                booking = daoBooking.getBooking(Integer.parseInt(frame_pembayaran.getTxt_cari_id_booking().getText()));
+                
+                if (booking.getId() == 0) {
+                    booking = new Booking();
+                    JOptionPane.showMessageDialog(frame_pembayaran, "Pesanan Tidak Ditemukan");
+                    frame_pembayaran.clearTextField();
+                } else {
+                    frame_pembayaran.getBtnLanjutkanPembayaran().setEnabled(true);
+                    frame_pembayaran.getTxt_id_booking().setText(Integer.toString(booking.getId()));
+                    frame_pembayaran.getTxt_jumlah_penumpang().setText(Integer.toString(booking.getJumlahPenumpang()));
+                    frame_pembayaran.getTxt_nama_penumpang().setText(booking.getCustomer().getNama());
+                    frame_pembayaran.getTxt_nomor_hp().setText(booking.getCustomer().getNomor_hp());
+                }
+            }
+        
+            // btn lanjutkan bayar
+            if (e.getComponent() == frame_pembayaran.getBtnLanjutkanPembayaran()) {
+                if (booking.getId() == 0 && frame_pembayaran.getTxt_id_booking().getText()!= null) {
+                    
+                } else {
+                    move(frame_pembayaran, frame_rincianPembayaran);
+                    frame_rincianPembayaran.getTxtHargaTiket().setText(Integer.toString(booking.getJadwal().getHarga()));
+                    frame_rincianPembayaran.getTxtSubTotal().setText(Integer.toString(booking.getHarga()));
+                    frame_rincianPembayaran.getTxtTotalPenumpang().setText(Integer.toString(booking.getJumlahPenumpang()));
+                }
+            }
+            
+            // btn back
+            if (e.getComponent() == frame_pembayaran.getBtnBack2()) {
+                frame_pembayaran.clearTextField();
+                move(frame_pembayaran, frame_kasir);
+            }
+        
+        // FRAME RINCIAN PEMBAYARAN
+            // btn bayar
+            if (e.getComponent() == frame_rincianPembayaran.getBtnBayar()) {
+                
+            }
+            
+            // btn back
+            if (e.getComponent() == frame_rincianPembayaran.getBtnBack2()) {
+                move(frame_rincianPembayaran, frame_pembayaran);
+                frame_pembayaran.clearTextField();
+            }
         }
       
         @Override
@@ -435,7 +497,9 @@ public class Controller {
                 break;
             case 1:
                 // CUSTOMER
+                
                 user.setId(da.findUser(user));
+                /*
                 JOptionPane.showMessageDialog(frame_login, "Login sebagai "+user.getUsername());
                 frame_pUser.getUsername().setText(user.getUsername());
                 if(da.havetiket(user)) {
@@ -443,13 +507,15 @@ public class Controller {
                 } else {
                     frame_pUser.getBtnMyTicket().setEnabled(false);
                 }   
+                */
+                frame_pUser.fillComboBox(daoBandara.getAllBandara());
+
                 move(frame_login, frame_pUser);
-                daoBuyTicket.fillCombobox(frame_pUser.getTxt_ke());
-                daoBuyTicket.fillCombobox(frame_pUser.getTxt_dari());
                 break;
                 
             case 2:
                 // KASIR
+                move(frame_login, frame_kasir);
                 break;
             default:
                 JOptionPane.showMessageDialog(frame_login, "Username atau Password salah");
@@ -484,7 +550,7 @@ public class Controller {
     
     public void move(JFrame from, JFrame to) {
         to.setVisible(true);
-        from.setVisible(false);
+        from.dispose();
     }
  
     public void fillTabelBandara() {
@@ -527,19 +593,13 @@ public class Controller {
     
     public JadwalPenerbangan getPesawatFromFrameJadwalPenerbangan() {
         String s = (String)frame_jadwalPenerbangan.getTxt_bandara_asal().getSelectedItem();
-        System.out.println(s);
-        Bandara bandaraAsal = daoBandara.getBandaraByKode(s.split(" - ")[0]);
-        System.out.println(s.split(" - ")[0]);
+        Bandara bandaraAsal = daoBandara.getBandaraByKode(s.split(" - ")[0]);      
         
         s = (String)frame_jadwalPenerbangan.getTxt_bandara_tujuan().getSelectedItem();
         Bandara bandaraTujuan = daoBandara.getBandaraByKode(s.split(" - ")[0]);
         
-        
-        s = (String)frame_jadwalPenerbangan.getTxt_pesawat().getSelectedItem();
-        System.out.println(s+" "+s.split(" - ")[0]);
-        
+        s = (String)frame_jadwalPenerbangan.getTxt_pesawat().getSelectedItem();  
         Pesawat pesawat = daoPesawat.getPesawatByKode(s.split(" - ")[0]);
-        System.out.println(pesawat.getKodePesawat());
         
         String kelas = (String)frame_jadwalPenerbangan.getTxt_kelas_penerbangan().getSelectedItem();
         

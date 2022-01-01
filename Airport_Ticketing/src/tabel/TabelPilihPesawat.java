@@ -33,10 +33,12 @@ public class TabelPilihPesawat extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex) {
+            
             case 0 : return list.get(rowIndex).getPesawat().getKodePesawat();
             case 1 : return list.get(rowIndex).getPesawat().getNamaPesawat(); 
             case 2 : return Integer.toString(list.get(rowIndex).getHarga());
             case 3 : return list.get(rowIndex).getKelas();
+            case 4 : return Integer.toString(list.get(rowIndex).getId());
           
             default : return null;
         }
@@ -48,6 +50,7 @@ public class TabelPilihPesawat extends AbstractTableModel{
             case 1 : return "Nama";
             case 2 : return "Harga";
             case 3 : return "Kelas";
+            case 4 : return "ID";
             
             default : return null;
         }
