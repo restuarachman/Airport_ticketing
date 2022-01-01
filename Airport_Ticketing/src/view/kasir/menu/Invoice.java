@@ -5,26 +5,26 @@
  */
 package view.kasir.menu;
 
+import java.awt.event.MouseListener;
 import java.awt.print.PrinterException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
+import model.Booking;
 
 /**
  *
  * @author USER
  */
-public class invoice extends javax.swing.JFrame {
-
+public class Invoice extends javax.swing.JFrame {
     /**
      * Creates new form invoice
      */
-    public invoice() {
+    public Invoice() {
         initComponents();
-        
-        printStruk();
-        
     }
 
     /**
@@ -37,6 +37,7 @@ public class invoice extends javax.swing.JFrame {
 
         btnPrint = new javax.swing.JButton();
         fieldStruk = new javax.swing.JTextArea();
+        btnTutup = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -60,18 +61,35 @@ public class invoice extends javax.swing.JFrame {
         fieldStruk.setColumns(20);
         fieldStruk.setRows(5);
 
+        btnTutup.setBackground(new java.awt.Color(47, 54, 64));
+        btnTutup.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
+        btnTutup.setForeground(new java.awt.Color(255, 255, 255));
+        btnTutup.setText("TUTUP");
+        btnTutup.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTutupMouseClicked(evt);
+            }
+        });
+        btnTutup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTutupActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(134, 134, 134)
-                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(9, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(fieldStruk, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTutup, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,7 +97,9 @@ public class invoice extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addComponent(fieldStruk, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnPrint)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPrint)
+                    .addComponent(btnTutup))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -99,10 +119,18 @@ public class invoice extends javax.swing.JFrame {
 
             fieldStruk.print();
         } catch (PrinterException ex) {
-            Logger.getLogger(invoice.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Invoice.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void btnTutupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTutupMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTutupMouseClicked
+
+    private void btnTutupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTutupActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTutupActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,38 +149,32 @@ public class invoice extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new invoice().setVisible(true);
+                new Invoice().setVisible(true);
             }
         });
     }
     
     
-    public void printStruk() {
+    public void printStruk(Booking booking, int uang) {
         String total = "5";
         String bayar = "5000";
+        //Date date = date.setDate(WIDTH);
         SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd");
-        String date = "2022-01-01";
-            
-        String totalPenumpang ="4";
-        String hargaSatuan    ="Rp.1.000.000";
-        String subTotal       ="Rp.4.000.000";
-        String uangAnda       ="Rp.5.000.000";
-        String kembalian      ="Rp.1.000.000";
-        
-        
+        //String date = "2022-01-01";
         
         fieldStruk.setText(fieldStruk.getText() + "--------------------------------------------------------------------------------------------\n");
         fieldStruk.setText(fieldStruk.getText() + "\tSTRUK PEMBELIAN TIKET PESAWAT\n");
@@ -160,22 +182,22 @@ public class invoice extends javax.swing.JFrame {
 
         
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Kode Booking \t\t:   #" + "1234" + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Kode Booking \t\t:   #" + booking.getId() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Nama Pemesan \t:   " + "Restu Arofah" + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Nama Pemesan \t:   " + booking.getCustomer().getNama() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
         
-        fieldStruk.setText(fieldStruk.getText() + "Total Penumpang \t:   " + totalPenumpang + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Total Penumpang \t:   " + booking.getJumlahPenumpang() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Harga Satuan \t\t:   " + hargaSatuan + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Harga Satuan \t\t:   Rp." + booking.getJadwal().getHarga() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Sub Total \t\t:   " + subTotal + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Sub Total \t\t:   RP." + booking.getHarga() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Uang Anda \t\t:   " + uangAnda + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Uang Anda \t\t:   RP." + uang + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Kembalian \t\t:   " + kembalian + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Kembalian \t\t:   RP." + (uang-booking.getHarga()) + "\n");
         
         fieldStruk.setText(fieldStruk.getText() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
@@ -186,9 +208,34 @@ public class invoice extends javax.swing.JFrame {
         
         
     }
+
+    public JButton getBtnPrint() {
+        return btnPrint;
+    }
+
+    public void setBtnPrint(JButton btnPrint) {
+        this.btnPrint = btnPrint;
+    }
+
+    public JButton getBtnTutup() {
+        return btnTutup;
+    }
+
+    public void setBtnTutup(JButton btnTutup) {
+        this.btnTutup = btnTutup;
+    }
+    
+    
+    public void addListener(MouseListener mouseListener) {
+        btnPrint.addMouseListener(mouseListener);
+        btnTutup.addMouseListener(mouseListener);
+    }
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPrint;
+    private javax.swing.JButton btnTutup;
     private javax.swing.JTextArea fieldStruk;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+import tabel.TabelBookingModel;
 import tabel.TabelJadwalPenebanganModel;
 import view.admin.menu.Admin_Atur_Data_Bandara;
 
@@ -349,11 +351,11 @@ public class View_Panel_User_Menu_Transaksi extends javax.swing.JFrame {
         });
     }
 
-    public JButton getBtnPilihPenerbangan() {
+    public JButton getBtnLihatTiket() {
         return btnLihatTiket;
     }
 
-    public void setBtnPilihPenerbangan(JButton btnPilihPenerbangan) {
+    public void setBtnLihatTiket(JButton btnPilihPenerbangan) {
         this.btnLihatTiket = btnPilihPenerbangan;
     }
 
@@ -369,6 +371,40 @@ public class View_Panel_User_Menu_Transaksi extends javax.swing.JFrame {
         btnLihatTiket.addMouseListener(mouseListener);
         btnBack2.addMouseListener(mouseListener);
     }
+
+    public JTextField getTxt_id_booking() {
+        return txt_id_booking;
+    }
+
+    public void setTxt_id_booking(JTextField txt_id_booking) {
+        this.txt_id_booking = txt_id_booking;
+    }
+
+    public JTextField getTxt_jumlah_penumpang() {
+        return txt_jumlah_penumpang;
+    }
+
+    public void setTxt_jumlah_penumpang(JTextField txt_jumlah_penumpang) {
+        this.txt_jumlah_penumpang = txt_jumlah_penumpang;
+    }
+
+    public JTextField getTxt_nama_penumpang() {
+        return txt_nama_penumpang;
+    }
+
+    public void setTxt_nama_penumpang(JTextField txt_nama_penumpang) {
+        this.txt_nama_penumpang = txt_nama_penumpang;
+    }
+
+    public JTextField getTxt_nomor_hp() {
+        return txt_nomor_hp;
+    }
+
+    public void setTxt_nomor_hp(JTextField txt_nomor_hp) {
+        this.txt_nomor_hp = txt_nomor_hp;
+    }
+      
+    
     
     public void clearTextField() {
         txt_id_booking.setText(null);
@@ -377,8 +413,8 @@ public class View_Panel_User_Menu_Transaksi extends javax.swing.JFrame {
         txt_nomor_hp.setText(null);
     }
 
-    public void fillTableJadwalPesawat(TabelJadwalPenebanganModel jadwal) {
-        jTable1.setModel(jadwal);
+    public void fillTabelBooking(TabelBookingModel booking) {
+        jTable1.setModel(booking);
     }
     
     public void setDataField(){

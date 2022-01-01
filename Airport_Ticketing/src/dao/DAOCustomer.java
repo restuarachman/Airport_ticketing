@@ -10,11 +10,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import koneksi.Koneksi;
 import model.Customer;
+import model.User;
 
 /**
  *
@@ -98,7 +100,7 @@ public class DAOCustomer {
         return null;
     }
     
-   public int getnocustomer() {
+    public int getnocustomer() {
         try {
             Connection connection = Koneksi.getConnection();
             String sql = "SELECT id FROM customer ORDER BY id DESC";
@@ -116,6 +118,32 @@ public class DAOCustomer {
         return 0;
     }
     public List<Customer> getAllCustomer() {
+        return null;
+    }
+    
+    public List<Customer> getCustomerFromUser(User user) {
+        ArrayList list = new ArrayList();
+        
+        try {
+            ResultSet rs;
+            try (Statement stmt = Koneksi.getConnection().createStatement()) {
+                rs = stmt.executeQuery("SELECT * FROM customer WHERE user_id='"+user.getId()+"'");
+                while (rs.next()) {
+                    Customer customer = new Customer();
+                    customer = new Customer(daoUser.getUser(rs.getInt(2)));
+                    customer.setId(rs.getInt(1));
+                    customer.setNama(rs.getString(3));
+                    customer.setAlamat(rs.getString(4));
+                    customer.setNomor_hp(rs.getString(5));
+                    
+                    list.add(customer);
+                }
+            }
+            rs.close();
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
 }

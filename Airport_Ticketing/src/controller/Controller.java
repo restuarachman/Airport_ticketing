@@ -11,6 +11,8 @@ import tabel.*;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
@@ -24,9 +26,14 @@ import view.admin.menu.Admin_Atur_Jadwal_Penerbangan;
 import view.kasir.View_Panel_Kasir;
 import view.kasir.menu.Kasir_Pembayaran_Cari_ID_Booking;
 import view.kasir.menu.Kasir_Pembayaran_Rincian_Pembayaran;
+import view.kasir.menu.Invoice;
+import view.kasir.menu.Kasir_Transaksi_Pembayaran;
+import view.kasir.menu.Kasir_Transaksi_Selesai_LihatTiket;
+import view.user.View_Panel_User_Menu_Transaksi;
 import view.user.View_Panel_User;
 import view.user.View_Panel_User_About;
 import view.user.View_Panel_User_IsiDataPenumpang;
+import view.user.View_Panel_User_LihatTiket;
 import view.user.View_Panel_User_ListPenerbangan;
 import view.user.View_Panel_User_RincianHarga;
 import view.user.dialog.dialogFrame_Pembayaran_sukses;
@@ -52,6 +59,8 @@ public class Controller {
     View_Panel_User_IsiDataPenumpang frame_isidata = new View_Panel_User_IsiDataPenumpang();
     View_Panel_User_RincianHarga frame_rincianHarga = new View_Panel_User_RincianHarga();
     View_Panel_User_About frame_pAbout = new View_Panel_User_About();
+    View_Panel_User_Menu_Transaksi frame_transaksi = new View_Panel_User_Menu_Transaksi();
+    View_Panel_User_LihatTiket frame_UserlihatTiket = new View_Panel_User_LihatTiket();
     
     dialogFrame_Penerbangan_notFound dialog_notfound = new dialogFrame_Penerbangan_notFound();
     dialogFrame_Pembayaran_sukses dialog_bayarSukses = new dialogFrame_Pembayaran_sukses();
@@ -64,6 +73,9 @@ public class Controller {
     View_Panel_Kasir frame_kasir = new View_Panel_Kasir();
     Kasir_Pembayaran_Cari_ID_Booking frame_pembayaran = new Kasir_Pembayaran_Cari_ID_Booking();
     Kasir_Pembayaran_Rincian_Pembayaran frame_rincianPembayaran = new Kasir_Pembayaran_Rincian_Pembayaran();
+    Kasir_Transaksi_Pembayaran frame_transaksiPembayaran = new Kasir_Transaksi_Pembayaran();
+    Kasir_Transaksi_Selesai_LihatTiket frame_KasirLihatTiket = new Kasir_Transaksi_Selesai_LihatTiket();
+    Invoice invoice = new Invoice();
     
     private User user = new User();
     private JadwalPenerbangan jadwal = new JadwalPenerbangan();
@@ -86,6 +98,8 @@ public class Controller {
         frame_isidata.addListener(Listener);
         frame_rincianHarga.addListener(Listener);
         frame_pAbout.addListener(Listener);
+        frame_transaksi.addListener(Listener);
+        frame_UserlihatTiket.addListener(Listener);
         
         dialog_notfound.addListener(Listener);
         dialog_bayarSukses.addListener(Listener);
@@ -98,6 +112,9 @@ public class Controller {
         frame_kasir.addListener(Listener);
         frame_pembayaran.addListener(Listener);
         frame_rincianPembayaran.addListener(Listener);
+        frame_transaksiPembayaran.addListener(Listener);
+        frame_KasirLihatTiket.addListener(Listener);
+        invoice.addListener(Listener);
     }
     
     class listener implements MouseListener {  
@@ -152,13 +169,14 @@ public class Controller {
                     }
                 }
             }
-            // btn my tiket
-            if (e.getComponent() == frame_pUser.getBtnMyTicket()) {
-                da.getMyTiket(user, frame_pUser);
+            // btn transaksi
+            if (e.getComponent() == frame_pUser.getBtnTransaksi()) {
+                List<Booking> tableBooking = daoBooking.getBooking(user);
+                frame_transaksi.fillTabelBooking(new TabelBookingModel(tableBooking));
+                move(frame_pUser, frame_transaksi);
             }
             // btn about
             if (e.getComponent() == frame_pUser.getBtnAbout()) {
-                //frame_pUser.setEnabled(false);
                 frame_pAbout.setVisible(true);
                 frame_pAbout.setAlwaysOnTop(true);
             }
@@ -256,23 +274,54 @@ public class Controller {
                 frame_pUser.getDynamicPanel().repaint();
                 frame_pUser.getDynamicPanel().revalidate();
             }
-        // DIALOG SUKSES
-            if(e.getComponent() == dialog_bayarSukses.getBtnContinue()) {
-                
-                
-                dialog_bayarSukses.setVisible(false);
-                frame_rincianHarga.setEnabled(true);
-                if(da.havetiket(user)) {
-                    frame_pUser.getBtnMyTicket().setEnabled(true);
-                }
-               
-            }
             
         // FRAME ABOUT USER
             if (e.getComponent() == frame_pAbout.getBtnClose()) {
                 frame_pAbout.setVisible(false);
                 frame_pUser.setEnabled(true);     
             } 
+            
+        // FRAME TRANSAKSI
+            if (e.getComponent() == frame_transaksi.getBtnBack2()) {
+                move(frame_transaksi, frame_pUser);
+            }
+            
+            if (e.getComponent() == frame_transaksi.getBtnLihatTiket()) {
+                Booking booking2 = new Booking();
+                booking2.setId(Integer.parseInt(frame_transaksi.getTxt_id_booking().getText()));
+                
+                if (daoTiket.paid(booking2)) {
+                    booking = daoBooking.getBooking(booking2.getId());
+                    frame_UserlihatTiket.getTxt_asal().setText(booking.getJadwal().getBandaraAsal().getKodeBandara()+" - "+booking.getJadwal().getBandaraAsal().getNamaBandara());
+                    frame_UserlihatTiket.getTxt_asal2().setText(booking.getJadwal().getBandaraAsal().getKodeBandara()+" - "+booking.getJadwal().getBandaraAsal().getNamaBandara());
+                    
+                    frame_UserlihatTiket.getTxt_jumlahKursi().setText(Integer.toString(booking.getJumlahPenumpang()));
+                    frame_UserlihatTiket.getTxt_jumlahKursi2().setText(Integer.toString(booking.getJumlahPenumpang()));
+                    DateFormat df = new SimpleDateFormat("dd MMMMM yyyy");
+                    
+                    frame_UserlihatTiket.getTxt_keberangkatan().setText(df.format(booking.getJadwal().getDate()));
+                    frame_UserlihatTiket.getTxt_keberangkatan2().setText(df.format(booking.getJadwal().getDate()));
+                    
+                    frame_UserlihatTiket.getTxt_kelasPenerbangan().setText(booking.getJadwal().getKelas());
+                    
+                    frame_UserlihatTiket.getTxt_namaPemesan().setText(booking.getCustomer().getNama());
+                    frame_UserlihatTiket.getTxt_namaPemesan2().setText(booking.getCustomer().getNama());
+                    
+                    frame_UserlihatTiket.getTxt_tujuan().setText(booking.getJadwal().getBandaraTujuan().getKodeBandara()+" - "+booking.getJadwal().getBandaraTujuan().getNamaBandara());
+                    frame_UserlihatTiket.getTxt_tujuan2().setText(booking.getJadwal().getBandaraTujuan().getKodeBandara()+" - "+booking.getJadwal().getBandaraTujuan().getNamaBandara());
+                   
+                    move(frame_transaksi, frame_UserlihatTiket);
+                } else {
+                    JOptionPane.showMessageDialog(frame_transaksi, "Tiket belum dibayar. Silahkan bayar di kasir!");
+                }
+            }
+            
+        // FRAME LIHAT TIKET
+            // btn back
+            if (e.getComponent() == frame_UserlihatTiket.getBtnBack()) {
+                move(frame_UserlihatTiket, frame_transaksi);
+            }
+        
          // ========================== ADMIN ===========================
          // FRAME ADMIN
             // btn atur bandara
@@ -411,7 +460,8 @@ public class Controller {
             }
             
             if (e.getComponent() == frame_kasir.getMenu_Transaksi_Selesai()) {
-                //move(frame_kasir, frame_traksaksiSelesai);
+                frame_transaksiPembayaran.fillTabelBooking(new TabelBookingModel(daoBooking.getBookingByTiket(daoTiket.getAllTiket())));
+                move(frame_kasir, frame_transaksiPembayaran);
             }
             
             if (e.getComponent() == frame_kasir.getBtnLogout()) {
@@ -423,6 +473,7 @@ public class Controller {
             if (e.getComponent() == frame_pembayaran.getBtnCari()) {
                 booking = daoBooking.getBooking(Integer.parseInt(frame_pembayaran.getTxt_cari_id_booking().getText()));
                 
+                booking.getInfo();
                 if (booking.getId() == 0) {
                     booking = new Booking();
                     JOptionPane.showMessageDialog(frame_pembayaran, "Pesanan Tidak Ditemukan");
@@ -438,7 +489,7 @@ public class Controller {
         
             // btn lanjutkan bayar
             if (e.getComponent() == frame_pembayaran.getBtnLanjutkanPembayaran()) {
-                if (booking.getId() == 0 && frame_pembayaran.getTxt_id_booking().getText()!= null) {
+                if (booking.getId() == 0 && frame_pembayaran.getTxt_id_booking().getText() != null) {
                     
                 } else {
                     move(frame_pembayaran, frame_rincianPembayaran);
@@ -457,13 +508,67 @@ public class Controller {
         // FRAME RINCIAN PEMBAYARAN
             // btn bayar
             if (e.getComponent() == frame_rincianPembayaran.getBtnBayar()) {
-                
+                int kembalian = Integer.parseInt(frame_rincianPembayaran.getTxtUangAnda().getText()) - Integer.parseInt(frame_rincianPembayaran.getTxtSubTotal().getText());
+                if(kembalian >= 0) {
+                    dialog_bayarSukses.setVisible(true);
+                    Tiket tiket = new Tiket(booking);
+                    daoTiket.insert(tiket);
+                } else {
+                    JOptionPane.showMessageDialog(frame_rincianPembayaran, "Pembayaran Gagal");
+                }
             }
             
             // btn back
             if (e.getComponent() == frame_rincianPembayaran.getBtnBack2()) {
                 move(frame_rincianPembayaran, frame_pembayaran);
                 frame_pembayaran.clearTextField();
+            }
+            
+        // DIALOG PEMBAYARAN BTN print
+            if (e.getComponent() == dialog_bayarSukses.getBtnPrint()) {
+                invoice.setVisible(true);
+                invoice.printStruk(booking, Integer.parseInt(frame_rincianPembayaran.getTxtUangAnda().getText()));
+                
+            }
+            
+            if (e.getComponent() == invoice.getBtnTutup()) {
+                invoice.dispose();
+                move(frame_rincianPembayaran, frame_kasir);
+            }
+        // FRAME LIST PEMBAYARAN SELESAI
+            if (e.getComponent() == frame_transaksiPembayaran.getBtnBack2()) {
+                move(frame_transaksiPembayaran, frame_kasir);
+            }
+            
+            if (e.getComponent() == frame_transaksiPembayaran.getBtnLihatTiket()) {
+                Booking booking2 = new Booking();
+                booking2.setId(Integer.parseInt(frame_transaksiPembayaran.getTxt_id_booking().getText()));
+                
+                booking = daoBooking.getBooking(booking2.getId());
+                frame_KasirLihatTiket.getTxt_asal().setText(booking.getJadwal().getBandaraAsal().getKodeBandara()+" - "+booking.getJadwal().getBandaraAsal().getNamaBandara());
+                frame_KasirLihatTiket.getTxt_asal2().setText(booking.getJadwal().getBandaraAsal().getKodeBandara()+" - "+booking.getJadwal().getBandaraAsal().getNamaBandara());
+                   
+                frame_KasirLihatTiket.getTxt_jumlahKursi().setText(Integer.toString(booking.getJumlahPenumpang()));
+                frame_KasirLihatTiket.getTxt_jumlahKursi2().setText(Integer.toString(booking.getJumlahPenumpang()));
+                DateFormat df = new SimpleDateFormat("dd MMMMM yyyy");
+                  
+                frame_KasirLihatTiket.getTxt_keberangkatan().setText(df.format(booking.getJadwal().getDate()));
+                frame_KasirLihatTiket.getTxt_keberangkatan2().setText(df.format(booking.getJadwal().getDate()));
+                    
+                frame_KasirLihatTiket.getTxt_kelasPenerbangan().setText(booking.getJadwal().getKelas());
+                    
+                frame_KasirLihatTiket.getTxt_namaPemesan().setText(booking.getCustomer().getNama());
+                frame_KasirLihatTiket.getTxt_namaPemesan2().setText(booking.getCustomer().getNama());
+                    
+                frame_KasirLihatTiket.getTxt_tujuan().setText(booking.getJadwal().getBandaraTujuan().getKodeBandara()+" - "+booking.getJadwal().getBandaraTujuan().getNamaBandara());
+                frame_KasirLihatTiket.getTxt_tujuan2().setText(booking.getJadwal().getBandaraTujuan().getKodeBandara()+" - "+booking.getJadwal().getBandaraTujuan().getNamaBandara());
+                  
+                move(frame_transaksiPembayaran, frame_KasirLihatTiket);
+            }
+            
+            // FRAME KASIR LIHAT TIKET
+            if (e.getComponent() == frame_KasirLihatTiket.getBtnBack()) {
+                move(frame_KasirLihatTiket, frame_transaksiPembayaran);
             }
         }
       
