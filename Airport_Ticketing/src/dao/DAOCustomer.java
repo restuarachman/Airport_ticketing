@@ -146,4 +146,21 @@ public class DAOCustomer {
         }
         return null;
     }
+    
+    public boolean isFound(Customer customer) {
+        try {
+            ResultSet rs;
+            try (Statement stmt = Koneksi.getConnection().createStatement()) {
+                rs = stmt.executeQuery("SELECT * FROM customer WHERE user_id='"+customer.getUserId()+"' AND nama='"+customer.getNama()+"' AND alamat='"+customer.getAlamat()+"' AND nomor_hp='"+customer.getNomor_hp()+"'");
+                while (rs.next()) {
+                    return true;
+                }
+            }
+            rs.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }
