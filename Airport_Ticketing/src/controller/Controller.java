@@ -81,10 +81,7 @@ public class Controller {
     private JadwalPenerbangan jadwal = new JadwalPenerbangan();
     private Booking booking = new Booking();
     private Customer customer = new Customer();
-    
-    private int tiketcount = daoTiket.getnotiket();
-    private int bookingcount = daoBooking.jumlahbooking();
-    private int customercount = daoCustomer.getnocustomer();
+
     public Controller(View_Login v_login) {
         this.frame_login = v_login;
         this.frame_login.setVisible(true);
@@ -146,7 +143,6 @@ public class Controller {
                 user.setPassword(frame_signup.getTxtPassword().getText());
                 String password2 = frame_signup.getTxtPassword1().getText();
                 signup(user, password2);
-                
             }
             
         // FRAME PANEL USER
@@ -264,9 +260,7 @@ public class Controller {
                 int harga_tiket = Integer.parseInt((String)frame_listPenerbangan.getTxtHarga().getText());
                 int subtotal = harga_tiket*total_penumpang;
                 
-                frame_rincianHarga.getTxtHargaTiket().setText(Integer.toString(harga_tiket));
-                frame_rincianHarga.getTxtSubTotal().setText(Integer.toString(subtotal));
-                frame_rincianHarga.getTxtTotalPenumpang().setText(Integer.toString(total_penumpang));
+                frame_rincianHarga.setText(total_penumpang, harga_tiket, subtotal);
                 move(frame_isidata, frame_rincianHarga);
             }
             
