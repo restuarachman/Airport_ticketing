@@ -6,7 +6,10 @@
 package view.user;
 
 import java.awt.event.MouseListener;
+import java.text.NumberFormat;
+import java.util.Locale;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -21,6 +24,7 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
      */
     public View_Panel_User_RincianHarga() {
         initComponents();
+        
     }
 
     /**
@@ -106,7 +110,9 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         jLabel8.setText("Total Penumpang      :");
         Panel_List_Penerbangan.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
 
+        txtSubTotal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtSubTotal.setEnabled(false);
+        txtSubTotal.setSelectionColor(new java.awt.Color(0, 0, 0));
         txtSubTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSubTotalActionPerformed(evt);
@@ -114,6 +120,7 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         });
         Panel_List_Penerbangan.add(txtSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 160, 30));
 
+        txtTotalPenumpang.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtTotalPenumpang.setEnabled(false);
         txtTotalPenumpang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +151,7 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         jLabel7.setText("Harga Satuan TIket    : ");
         Panel_List_Penerbangan.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
 
+        txtHargaTiket.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtHargaTiket.setEnabled(false);
         txtHargaTiket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,12 +297,18 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         this.txtTotalPenumpang = txtTotalPenumpang;
     }
 
+    public void setText(int penumpang, int harga, int subtotal){
+        txtTotalPenumpang.setText(Integer.toString(penumpang));
+        txtHargaTiket.setText(NumberFormat.getCurrencyInstance(new Locale("en","id")).format(harga));
+        txtSubTotal.setText(NumberFormat.getCurrencyInstance(new Locale("en","id")).format(subtotal));
+    }
     
     public void addListener(MouseListener mouseListener) {
         btnBack2.addMouseListener(mouseListener);
         btnPergiKeKasir.addMouseListener(mouseListener);
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Panel_List_Penerbangan;
