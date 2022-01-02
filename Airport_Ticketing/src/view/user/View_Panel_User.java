@@ -31,8 +31,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         
         
         initComponents();
-       
-        btnTransaksi.setEnabled(false);
+        
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setResizable(false);   
     }
@@ -126,7 +125,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         btnBeliTiket.setBackground(new java.awt.Color(47, 54, 64));
         btnBeliTiket.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
         btnBeliTiket.setForeground(new java.awt.Color(255, 255, 255));
-        btnBeliTiket.setText("BUY TICKET");
+        btnBeliTiket.setText("BOOKING TICKET");
         btnBeliTiket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBeliTiketActionPerformed(evt);

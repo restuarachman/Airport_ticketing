@@ -24,14 +24,14 @@ public class Booking {
         this.jadwal = jadwal;
         this.customer = customer;
         this.jumlahPenumpang = jumlahPenumpang;
-        this.harga = harga*jumlahPenumpang;
+        this.harga = harga;
     }
     
     public Booking(JadwalPenerbangan jadwal, Customer customer, int jumlahPenumpang, int harga) {
         this.jadwal = jadwal;
         this.customer = customer;
         this.jumlahPenumpang = jumlahPenumpang;
-        this.harga = harga*jumlahPenumpang;
+        this.harga = harga;
     }
 
     public int getId() {
