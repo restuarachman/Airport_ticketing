@@ -613,11 +613,8 @@ public class Controller {
                 move(frame_login, frame_admin);
                 break;
             case 1:
-                // CUSTOMER
-                user.setId(da.findUser(user));
-                frame_pUser.getUsername().setText(user.getUsername());
-                frame_pUser.fillComboBox(daoBandara.getAllBandara());
-
+                // Customer
+                customer.login(user, frame_pUser);
                 move(frame_login, frame_pUser);
                 break;
                 

@@ -5,10 +5,12 @@
  */
 package model;
 
+import javax.swing.JFrame;
+
 /**
  *
- * @author ASUS
+ * @author restu
  */
-public interface SudahPenuh {
-   public boolean penuh();
+public interface Login {
+    public abstract void login(User user,  JFrame frame);
 }
