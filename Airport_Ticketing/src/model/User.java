@@ -54,16 +54,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public void SignIn() {
-        
-    }
-    
-    public void SignOut() {
-        
-    }
-    
-    public void SignUp() {
-        
-    }
 }

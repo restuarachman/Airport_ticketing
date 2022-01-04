@@ -124,7 +124,6 @@ public class Controller {
                 user.setUsername(frame_login.getTxtUsername().getText());
                 user.setPassword(frame_login.getTxtPassword().getText());
                 login(user);
-                System.out.println("LOGIN SEBAGAI "+user.getId()+" "+user.getUsername());
             } 
             // btn signup
             if (e.getComponent() == frame_login.getForSignup()){
@@ -141,6 +140,7 @@ public class Controller {
             if (e.getComponent() == frame_signup.getBtnSignup()) {
                 user.setUsername(frame_signup.getTxtUsername().getText());
                 user.setPassword(frame_signup.getTxtPassword().getText());
+                user.setRole(1);
                 String password2 = frame_signup.getTxtPassword1().getText();
                 signup(user, password2);
             }
@@ -185,24 +185,7 @@ public class Controller {
             
             // btn logout
             if (e.getComponent() == frame_pUser.getBtnHome3()) {
-                int dialogBtn = JOptionPane.YES_NO_OPTION;
-                int dialogResult = JOptionPane.showConfirmDialog(frame_pUser, "Anda yakin ingin keluar?", "PERINGATAN", dialogBtn);
-                if (dialogResult == 0) {
-                    frame_pUser.getDynamicPanel().removeAll();
-                    frame_pUser.getDynamicPanel().repaint();
-                    frame_pUser.getDynamicPanel().revalidate();
-
-                    // add panel
-                    frame_pUser.getDynamicPanel().add(frame_pUser.getDashboardPanel());
-                    frame_pUser.getDynamicPanel().repaint();
-                    frame_pUser.getDynamicPanel().revalidate();
-                    move(frame_pUser, frame_login);
-                    
-                    frame_login.getTxtPassword().setText(null);
-                } else{
-                    System.out.println("batal logout");
-
-                }
+                logout(frame_pUser);
             }
             
         // FRAME LIST PENERBANGAN
@@ -222,10 +205,8 @@ public class Controller {
                     jadwal = new JadwalPenerbangan(id, date, bandaraAsal, bandaraTujuan, pesawat, kelas, harga);
                     
                     List<Customer> listCustomer = daoCustomer.getCustomerFromUser(user);
-                    if (listCustomer.isEmpty()) {
-                        System.out.println("tet");
-                    } else {
-                        System.out.println("SIZE "+(listCustomer.size()-1));
+                    // Kalu akun ini ada customer maka text field diisi otomatis
+                    if (!listCustomer.isEmpty()) {
                         customer = listCustomer.get(listCustomer.size()-1);
                         frame_isidata.getTxt_Alamat().setText(customer.getAlamat());
                         frame_isidata.getTxt_namaPenumpang().setText(customer.getNama());
@@ -370,7 +351,7 @@ public class Controller {
             
             
             if (e.getComponent() == frame_admin.getBtnLogout()) {
-                move(frame_admin, frame_login);
+                logout(frame_admin);
             }
             
         // FRAME ATUR BANDARA
@@ -491,7 +472,7 @@ public class Controller {
             }
             
             if (e.getComponent() == frame_kasir.getBtnLogout()) {
-                move(frame_kasir, frame_login);
+                logout(frame_kasir);
             }
             
         // FRAME PEMBAYARAN
@@ -567,28 +548,33 @@ public class Controller {
             
             if (e.getComponent() == frame_transaksiPembayaran.getBtnLihatTiket()) {
                 Booking booking2 = new Booking();
-                booking2.setId(Integer.parseInt(frame_transaksiPembayaran.getTxt_id_booking().getText()));
+                if ("".equals(frame_transaksiPembayaran.getTxt_id_booking().getText())) {
+                    JOptionPane.showMessageDialog(frame_transaksiPembayaran, "Pilih booking terlebih dahulu");
+                } else {
+                    booking2.setId(Integer.parseInt(frame_transaksiPembayaran.getTxt_id_booking().getText()));
                 
-                booking = daoBooking.getBooking(booking2.getId());
-                frame_KasirLihatTiket.getTxt_asal().setText(booking.getJadwal().getBandaraAsal().getKodeBandara()+" - "+booking.getJadwal().getBandaraAsal().getNamaBandara());
-                frame_KasirLihatTiket.getTxt_asal2().setText(booking.getJadwal().getBandaraAsal().getKodeBandara()+" - "+booking.getJadwal().getBandaraAsal().getNamaBandara());
-                   
-                frame_KasirLihatTiket.getTxt_jumlahKursi().setText(Integer.toString(booking.getJumlahPenumpang()));
-                frame_KasirLihatTiket.getTxt_jumlahKursi2().setText(Integer.toString(booking.getJumlahPenumpang()));
-                DateFormat df = new SimpleDateFormat("dd MMMMM yyyy");
-                  
-                frame_KasirLihatTiket.getTxt_keberangkatan().setText(df.format(booking.getJadwal().getDate()));
-                frame_KasirLihatTiket.getTxt_keberangkatan2().setText(df.format(booking.getJadwal().getDate()));
+                    booking = daoBooking.getBooking(booking2.getId());
                     
-                frame_KasirLihatTiket.getTxt_kelasPenerbangan().setText(booking.getJadwal().getKelas());
-                    
-                frame_KasirLihatTiket.getTxt_namaPemesan().setText(booking.getCustomer().getNama());
-                frame_KasirLihatTiket.getTxt_namaPemesan2().setText(booking.getCustomer().getNama());
-                    
-                frame_KasirLihatTiket.getTxt_tujuan().setText(booking.getJadwal().getBandaraTujuan().getKodeBandara()+" - "+booking.getJadwal().getBandaraTujuan().getNamaBandara());
-                frame_KasirLihatTiket.getTxt_tujuan2().setText(booking.getJadwal().getBandaraTujuan().getKodeBandara()+" - "+booking.getJadwal().getBandaraTujuan().getNamaBandara());
-                  
-                move(frame_transaksiPembayaran, frame_KasirLihatTiket);
+                    frame_KasirLihatTiket.getTxt_asal().setText(booking.getJadwal().getBandaraAsal().getKodeBandara()+" - "+booking.getJadwal().getBandaraAsal().getNamaBandara());
+                    frame_KasirLihatTiket.getTxt_asal2().setText(booking.getJadwal().getBandaraAsal().getKodeBandara()+" - "+booking.getJadwal().getBandaraAsal().getNamaBandara());
+
+                    frame_KasirLihatTiket.getTxt_jumlahKursi().setText(Integer.toString(booking.getJumlahPenumpang()));
+                    frame_KasirLihatTiket.getTxt_jumlahKursi2().setText(Integer.toString(booking.getJumlahPenumpang()));
+                    DateFormat df = new SimpleDateFormat("dd MMMMM yyyy");
+
+                    frame_KasirLihatTiket.getTxt_keberangkatan().setText(df.format(booking.getJadwal().getDate()));
+                    frame_KasirLihatTiket.getTxt_keberangkatan2().setText(df.format(booking.getJadwal().getDate()));
+
+                    frame_KasirLihatTiket.getTxt_kelasPenerbangan().setText(booking.getJadwal().getKelas());
+
+                    frame_KasirLihatTiket.getTxt_namaPemesan().setText(booking.getCustomer().getNama());
+                    frame_KasirLihatTiket.getTxt_namaPemesan2().setText(booking.getCustomer().getNama());
+
+                    frame_KasirLihatTiket.getTxt_tujuan().setText(booking.getJadwal().getBandaraTujuan().getKodeBandara()+" - "+booking.getJadwal().getBandaraTujuan().getNamaBandara());
+                    frame_KasirLihatTiket.getTxt_tujuan2().setText(booking.getJadwal().getBandaraTujuan().getKodeBandara()+" - "+booking.getJadwal().getBandaraTujuan().getNamaBandara());
+
+                    move(frame_transaksiPembayaran, frame_KasirLihatTiket);
+                }
             }
             
             // FRAME KASIR LIHAT TIKET
@@ -620,17 +606,15 @@ public class Controller {
     
     public void login(User user) {
         user.setRole(da.getRole(user));
+        frame_login.getTxtPassword().setText(null);
         switch (user.getRole()) {
             case 0:
                 // ADMIN
                 move(frame_login, frame_admin);
                 break;
             case 1:
-                // CUSTOMER
-                user.setId(da.findUser(user));
-                frame_pUser.getUsername().setText(user.getUsername());
-                frame_pUser.fillComboBox(daoBandara.getAllBandara());
-
+                // Customer
+                customer.login(user, frame_pUser);
                 move(frame_login, frame_pUser);
                 break;
                 
@@ -641,6 +625,7 @@ public class Controller {
             default:
                 JOptionPane.showMessageDialog(frame_login, "Username atau Password salah");
                 break;
+                
         }
     }
     
@@ -740,7 +725,7 @@ public class Controller {
     public void clearAllTxtUser() {
         frame_pUser.getTxt_dari().setSelectedIndex(-1);
         frame_pUser.getTxt_ke().setSelectedIndex(-1);
-        frame_pUser.getTxt_penumpang().setSelectedIndex(-1);
+        frame_pUser.getTxt_penumpang().setSelectedItem(1);
         frame_pUser.getTxt_tanggal().setDate(null);
         
         frame_listPenerbangan.getTxtHarga().setText(null);
@@ -754,5 +739,25 @@ public class Controller {
     }
     public void clearAllTextKasir() {
         
+    }
+    public void logout(JFrame frame) {
+        int dialogBtn = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(frame_pUser, "Anda yakin ingin keluar?", "PERINGATAN", dialogBtn);
+        
+        if (dialogResult == 0) {
+            if (frame.getClass() == frame_pUser.getClass()) {
+                frame_pUser.getDynamicPanel().removeAll();
+                frame_pUser.getDynamicPanel().repaint();
+                frame_pUser.getDynamicPanel().revalidate();
+
+                // add panel
+                frame_pUser.getDynamicPanel().add(frame_pUser.getDashboardPanel());
+                frame_pUser.getDynamicPanel().repaint();
+                frame_pUser.getDynamicPanel().revalidate();
+            }
+            move(frame, frame_login);
+        } else{
+            System.out.println("batal logout");
+        }
     }
 }

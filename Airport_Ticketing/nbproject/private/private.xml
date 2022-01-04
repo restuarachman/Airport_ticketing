@@ -7,6 +7,7 @@
             <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/view/kasir/menu/Kasir_Transaksi_Selesai_LihatTiket.java</file>
             <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/airport_ticketing/Airport_Ticketing.java</file>
             <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/view/user/dialog/dialogFrame_Pembayaran_sukses.java</file>
+            <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/model/Kursi.java</file>
             <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/view/user/View_Panel_User_RincianHarga.java</file>
             <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/model/Customer.java</file>
             <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/view/user/View_Panel_User.java</file>
@@ -37,7 +38,6 @@
             <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/model/Bandara.java</file>
             <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/dao/DAOjadwalPenerbangan.java</file>
             <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/tabel/TabelBandaraModel.java</file>
-            <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/model/Feedback.java</file>
             <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/view/admin/menu/Admin_Atur_Data_Bandara.java</file>
             <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/model/JadwalPenerbangan.java</file>
             <file>file:/D:/ngoding/git-demo/Airport_ticketing/Airport_Ticketing/src/dao/DAOBooking.java</file>
