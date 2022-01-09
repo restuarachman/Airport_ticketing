@@ -8,6 +8,7 @@ package tabel;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.JadwalPenerbangan;
+import model.Rupiah;
 
 /**
  *
@@ -32,11 +33,12 @@ public class TabelPilihPesawat extends AbstractTableModel{
     
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        Rupiah harga = new Rupiah(list.get(rowIndex).getHarga());
         switch(columnIndex) {
             
             case 0 : return list.get(rowIndex).getPesawat().getKodePesawat();
             case 1 : return list.get(rowIndex).getPesawat().getNamaPesawat(); 
-            case 2 : return Integer.toString(list.get(rowIndex).getHarga());
+            case 2 : return harga.getRupiahString();
             case 3 : return list.get(rowIndex).getKelas();
             case 4 : return Integer.toString(list.get(rowIndex).getId());
           

@@ -7,11 +7,13 @@ package view.user;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.MouseListener;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Bandara;
 
@@ -74,6 +76,9 @@ public class View_Panel_User extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txt_tanggal = new com.toedter.calendar.JDateChooser();
         btnCariPenerbangan = new javax.swing.JButton();
+        txtErrorTanggal = new javax.swing.JLabel();
+        txtErrorDari = new javax.swing.JLabel();
+        txtErrorKe = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -251,7 +256,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         buyTiketPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, -1, -1));
 
         txt_penumpang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        buyTiketPanel.add(txt_penumpang, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 170, -1));
+        buyTiketPanel.add(txt_penumpang, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 150, -1));
 
         txt_ke.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,6 +299,18 @@ public class View_Panel_User extends javax.swing.JFrame {
         });
         buyTiketPanel.add(btnCariPenerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 430, 190, 60));
 
+        txtErrorTanggal.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        txtErrorTanggal.setForeground(new java.awt.Color(255, 0, 0));
+        buyTiketPanel.add(txtErrorTanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, -1, -1));
+
+        txtErrorDari.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        txtErrorDari.setForeground(new java.awt.Color(255, 0, 0));
+        buyTiketPanel.add(txtErrorDari, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+
+        txtErrorKe.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        txtErrorKe.setForeground(new java.awt.Color(255, 0, 0));
+        buyTiketPanel.add(txtErrorKe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
+
         DynamicPanel.add(buyTiketPanel, "card2");
 
         bodyPanel.add(DynamicPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 6, 797, 588));
@@ -331,14 +348,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         // remove panel
-        DynamicPanel.removeAll();
-        DynamicPanel.repaint();
-        DynamicPanel.revalidate();
-
-        // add panel
-        DynamicPanel.add(dashboardPanel);
-        DynamicPanel.repaint();
-        DynamicPanel.revalidate();
+        goToDashboard();
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
@@ -450,6 +460,17 @@ public class View_Panel_User extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void goToDashboard() {
+        DynamicPanel.removeAll();
+        DynamicPanel.repaint();
+        DynamicPanel.revalidate();
+
+        // add panel
+        DynamicPanel.add(dashboardPanel);
+        DynamicPanel.repaint();
+        DynamicPanel.revalidate();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DynamicPanel;
@@ -474,6 +495,9 @@ public class View_Panel_User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JPanel moveableFrame;
+    private javax.swing.JLabel txtErrorDari;
+    private javax.swing.JLabel txtErrorKe;
+    private javax.swing.JLabel txtErrorTanggal;
     private javax.swing.JComboBox<String> txt_dari;
     private javax.swing.JComboBox<String> txt_ke;
     private javax.swing.JComboBox<String> txt_penumpang;
@@ -610,15 +634,13 @@ public class View_Panel_User extends javax.swing.JFrame {
         this.txt_penumpang = txt_penumpang;
     }
 
-    public JDateChooser getTxt_tanggal() {
-        return txt_tanggal;
+    public Date getTxt_tanggal() {
+        return txt_tanggal.getDate();
     }
 
     public void setTxt_tanggal(JDateChooser txt_tanggal) {
         this.txt_tanggal = txt_tanggal;
     }
-
-   
 
     public JLabel getjLabel2() {
         return jLabel2;
@@ -741,5 +763,48 @@ public class View_Panel_User extends javax.swing.JFrame {
             txt_ke.addItem(bandara.getKodeBandara());
             txt_dari.addItem(bandara.getKodeBandara());
         }
+    }
+    
+    public boolean validateInput() {
+        boolean condition1 = txt_ke.getSelectedItem() == txt_dari.getSelectedItem() && (txt_ke.getSelectedItem()!="-" && txt_dari.getSelectedItem()!="-");
+        boolean condition2 = txt_ke.getSelectedItem()=="-";
+        boolean condition3 = txt_dari.getSelectedItem()=="-";
+        boolean condition4 = txt_tanggal.getDate() == null;
+        
+        if (condition1 || condition2 || condition3 || condition4) {
+            String msg = "Data harus diisi semua";
+            
+            if (condition1) {
+                msg = "Asal dan Tujuan tidak boleh sama";
+            }
+            if (condition2) {
+                txtErrorKe.setText("*perlu diisi");
+            } else {
+                txtErrorKe.setText(null);
+            }
+            if (condition3) {
+                txtErrorDari.setText("*perlu diisi");
+            } else {
+                txtErrorDari.setText(null);
+            }
+            if (condition4) {
+                txtErrorTanggal.setText("*perlu diisi");
+            } else {
+                txtErrorTanggal.setText(null);
+            }
+            JOptionPane.showMessageDialog(this, msg);
+            return false;
+        }
+        txtErrorKe.setText(null);
+        txtErrorDari.setText(null);
+        txtErrorTanggal.setText(null);
+        return true;
+    }
+    
+    public void clearAllTxtUser() {
+        txt_dari.setSelectedIndex(-1);
+        txt_ke.setSelectedIndex(-1);
+        txt_penumpang.setSelectedItem(1);
+        txt_tanggal.setDate(null);
     }
 }

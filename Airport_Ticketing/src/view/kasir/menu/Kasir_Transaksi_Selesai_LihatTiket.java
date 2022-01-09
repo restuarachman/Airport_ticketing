@@ -5,12 +5,8 @@
  */
 package view.kasir.menu;
 
-import view.user.*;
 import java.awt.event.MouseListener;
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JTextField;
 
 /**
  *

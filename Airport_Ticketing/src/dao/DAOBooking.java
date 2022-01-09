@@ -72,17 +72,39 @@ public class DAOBooking {
                     booking.setId(result.getInt(1));
                     booking.setJadwal(daoJadwalPenerbangan.getJadwalPenerbangan(result.getInt(2)));
                     booking.setCustomer(daoCustomer.getCustomer(result.getInt(3)));
-                    System.out.println(" dfdf "+booking.getCustomer().getId());
                     booking.setJumlahPenumpang(result.getInt(4));
                     booking.setHarga(result.getInt(5));
                 }
             }
             result.close();
-            return booking;
         } catch (SQLException ex) {
             Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return booking;
+    }
+    
+    public List<Booking> getAllBooking() {
+        List<Booking> list = new ArrayList();
+        try {
+            ResultSet result;
+            try (Statement stmt = Koneksi.getConnection().createStatement()) {
+                result = stmt.executeQuery("SELECT * FROM booking");
+                while (result.next()) {   
+                    Booking booking  = new Booking();
+                    booking.setId(result.getInt(1));
+                    booking.setJadwal(daoJadwalPenerbangan.getJadwalPenerbangan(result.getInt(2)));
+                    booking.setCustomer(daoCustomer.getCustomer(result.getInt(3)));
+                    booking.setJumlahPenumpang(result.getInt(4));
+                    booking.setHarga(result.getInt(5));
+                    
+                    list.add(booking);
+                }
+            }
+            result.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
     
     public int jumlahbooking() {
@@ -130,13 +152,12 @@ public class DAOBooking {
                     }
                 }
                 result.close();
-                return list;
             } catch (SQLException ex) {
                 Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
        
-        return null;
+        return list;
     }
     
     public List<Booking> getBookingByTiket(List<Tiket> listtiket) {
@@ -150,7 +171,7 @@ public class DAOBooking {
             for (int i = 1; i < listtiket.size(); i++) {
                 temp += ","+listtiket.get(i).getBooking().getId();
             }
-            System.out.println(temp);
+            
             try {
                 ResultSet result;
                 try (Statement stmt = Koneksi.getConnection().createStatement()) {
@@ -167,12 +188,45 @@ public class DAOBooking {
                     }
                 }
                 result.close();
-                return list;
             } catch (SQLException ex) {
                 Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
        
-        return null;
+        return list;
+    }
+    
+    public List<Booking> getBookingNotPaid(List<Tiket> listtiket) {
+        List<Booking> list = new ArrayList();
+        if (listtiket.isEmpty()) {
+            list = getAllBooking();
+        } else {
+            String temp = Integer.toString(listtiket.get(0).getBooking().getId());
+            for (int i = 1; i < listtiket.size(); i++) {
+                temp += ","+listtiket.get(i).getBooking().getId();
+            }
+            
+            
+            try {
+                ResultSet result;
+                try (Statement stmt = Koneksi.getConnection().createStatement()) {
+                    result = stmt.executeQuery("SELECT * FROM booking WHERE id NOT IN ("+temp+")");
+                    while (result.next()) {   
+                        Booking booking  = new Booking();
+                        booking.setId(result.getInt(1));
+                        booking.setJadwal(daoJadwalPenerbangan.getJadwalPenerbangan(result.getInt(2)));
+                        booking.setCustomer(daoCustomer.getCustomer(result.getInt(3)));
+                        booking.setJumlahPenumpang(result.getInt(4));
+                        booking.setHarga(result.getInt(5));
+
+                        list.add(booking);
+                    }
+                }
+                result.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return list;
     }
 }

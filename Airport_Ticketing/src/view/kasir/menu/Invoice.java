@@ -8,12 +8,11 @@ package view.kasir.menu;
 import java.awt.event.MouseListener;
 import java.awt.print.PrinterException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.table.DefaultTableModel;
 import model.Booking;
+import model.Rupiah;
 
 /**
  *
@@ -191,13 +190,13 @@ public class Invoice extends javax.swing.JFrame {
         
         fieldStruk.setText(fieldStruk.getText() + "Total Penumpang \t:   " + booking.getJumlahPenumpang() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Harga Satuan \t\t:   Rp." + booking.getJadwal().getHarga() + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Harga Satuan \t\t:   " + new Rupiah(booking.getJadwal().getHarga()).getRupiahString() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Sub Total \t\t:   RP." + booking.getHarga() + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Sub Total \t\t:   " + new Rupiah(booking.getHarga()).getRupiahString() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Uang Anda \t\t:   RP." + uang + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Uang Anda \t\t:   " + new Rupiah(uang).getRupiahString() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Kembalian \t\t:   RP." + (uang-booking.getHarga()) + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Kembalian \t\t:   " + new Rupiah(uang-booking.getHarga()).getRupiahString()+ "\n");
         
         fieldStruk.setText(fieldStruk.getText() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");

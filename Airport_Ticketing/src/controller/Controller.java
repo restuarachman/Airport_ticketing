@@ -36,6 +36,7 @@ import view.user.View_Panel_User_IsiDataPenumpang;
 import view.user.View_Panel_User_LihatTiket;
 import view.user.View_Panel_User_ListPenerbangan;
 import view.user.View_Panel_User_RincianHarga;
+import view.user.View_Panel_User_pilih_Kursi;
 import view.user.dialog.dialogFrame_Pembayaran_sukses;
 import view.user.dialog.dialogFrame_Penerbangan_notFound;
 
@@ -148,13 +149,12 @@ public class Controller {
         // FRAME PANEL USER
             // btn cari penerbangan
             if (e.getComponent() == frame_pUser.getBtnCariPenerbangan()) {
-                String cmb1 = (String)frame_pUser.getTxt_dari().getSelectedItem();
-                String cmb2 = (String)(String)frame_pUser.getTxt_ke().getSelectedItem();
-                Date date = frame_pUser.getTxt_tanggal().getDate();
                 
-                if (cmb1.equals("-") || cmb2.equals("-") || date == null) {
-                    JOptionPane.showMessageDialog(frame_rincianHarga, "Field harus diisi semua");
-                } else {
+                if (frame_pUser.validateInput()) {
+                    String cmb1 = (String)frame_pUser.getTxt_dari().getSelectedItem();
+                    String cmb2 = (String)frame_pUser.getTxt_ke().getSelectedItem();
+                    Date date = frame_pUser.getTxt_tanggal();
+                    
                     List<JadwalPenerbangan> list = daoJadwalPenerbangan.getJadwalPenerbangan(cmb1, cmb2, date);
                
                     if (list.isEmpty()) {
@@ -195,14 +195,14 @@ public class Controller {
                     JOptionPane.showMessageDialog(frame_listPenerbangan, "Pilih Pesawat Terlebih Dahulu");
                 } else {
                     int id = Integer.parseInt(frame_listPenerbangan.getTxtId().getText());
-                    Date date = frame_pUser.getTxt_tanggal().getDate();
+                    Date date = frame_pUser.getTxt_tanggal();
                     Bandara bandaraAsal = daoBandara.getBandaraByKode((String)frame_pUser.getTxt_dari().getSelectedItem());
                     Bandara bandaraTujuan = daoBandara.getBandaraByKode((String)frame_pUser.getTxt_ke().getSelectedItem());
                     Pesawat pesawat = daoPesawat.getPesawat(Integer.parseInt(frame_listPenerbangan.getTxtId().getText()));
                     String kelas =  frame_listPenerbangan.getTxtKelas().getText();
-                    int harga = Integer.parseInt(frame_listPenerbangan.getTxtHarga().getText());
+                    Rupiah harga = new Rupiah(frame_listPenerbangan.getTxtHarga().getText());
                     System.out.println(id);
-                    jadwal = new JadwalPenerbangan(id, date, bandaraAsal, bandaraTujuan, pesawat, kelas, harga);
+                    jadwal = new JadwalPenerbangan(id, date, bandaraAsal, bandaraTujuan, pesawat, kelas, harga.getRupiahInt());
                     
                     List<Customer> listCustomer = daoCustomer.getCustomerFromUser(user);
                     // Kalu akun ini ada customer maka text field diisi otomatis
@@ -214,7 +214,6 @@ public class Controller {
                     }
                     move(frame_listPenerbangan, frame_isidata);
                 }
-                
             }
             
             // btn back
@@ -234,14 +233,13 @@ public class Controller {
             }
             
         // FRAME ISI DATA
-            if (e.getComponent() == frame_isidata.getBtnSimpanData()) {
+            if (e.getComponent() == frame_isidata.getBtnLanjutkan()) {
                 customer = new Customer(user, frame_isidata.getTxt_namaPenumpang().getText(), frame_isidata.getTxt_Alamat().getText(), frame_isidata.getTxt_noHP().getText());
                
                 int total_penumpang = Integer.parseInt((String)frame_pUser.getTxt_penumpang().getSelectedItem());
-                int harga_tiket = Integer.parseInt((String)frame_listPenerbangan.getTxtHarga().getText());
-                int subtotal = harga_tiket*total_penumpang;
-                
-                frame_rincianHarga.setText(total_penumpang, harga_tiket, subtotal);
+                Rupiah harga_tiket = new Rupiah((String)frame_listPenerbangan.getTxtHarga().getText());
+                Rupiah subtotal = new Rupiah(harga_tiket.getRupiahInt()*total_penumpang);
+                frame_rincianHarga.setText(total_penumpang, harga_tiket.getRupiahString(), subtotal.getRupiahString());
                 move(frame_isidata, frame_rincianHarga);
             }
             
@@ -263,23 +261,18 @@ public class Controller {
                 }
                 customer = daoCustomer.getCustomer(customer);
                 int total_penumpang = Integer.parseInt((String)frame_pUser.getTxt_penumpang().getSelectedItem());
-                int harga_tiket = Integer.parseInt((String)frame_listPenerbangan.getTxtHarga().getText());
-                int subtotal = harga_tiket*total_penumpang;
+                Rupiah harga_tiket = new Rupiah((String)frame_listPenerbangan.getTxtHarga().getText());
+                Rupiah subtotal = new Rupiah(harga_tiket.getRupiahInt()*total_penumpang);
              
-                booking = new Booking(jadwal, customer, total_penumpang, subtotal);
+                booking = new Booking(jadwal, customer, total_penumpang, subtotal.getRupiahInt());
                 daoBooking.insert(booking);
                 
                 move(frame_rincianHarga, frame_pUser);
                 
-                frame_pUser.getDynamicPanel().removeAll();
-                frame_pUser.getDynamicPanel().repaint();
-                frame_pUser.getDynamicPanel().revalidate();
-
-                // add panel
-                frame_pUser.getDynamicPanel().add(frame_pUser.getDashboardPanel());
-                frame_pUser.getDynamicPanel().repaint();
-                frame_pUser.getDynamicPanel().revalidate();
-                clearAllTxtUser();
+                frame_pUser.goToDashboard();
+                
+                frame_pUser.clearAllTxtUser();
+                frame_listPenerbangan.clearAllText();
             }
             
         // FRAME ABOUT USER
@@ -366,12 +359,15 @@ public class Controller {
             // btn cari
             if (e.getComponent() == frame_bandara.getBtnCari()) {
                 fillTabelBandara2(frame_bandara.getTxt_cari_nama_bandara().getText());
+                
             }
             // btn hapus
             if (e.getComponent() == frame_bandara.getBtnHapus()) {
-                Bandara bandara = new Bandara(frame_bandara.getTxt_kode_bandara().getText(), frame_bandara.getTxt_nama_bandara().getText());
-                daoBandara.delete(bandara, frame_bandara);
-                fillTabelBandara();
+                if (frame_bandara.validateInput()) {
+                    Bandara bandara = new Bandara(frame_bandara.getTxt_kode_bandara().getText(), frame_bandara.getTxt_nama_bandara().getText());
+                    daoBandara.delete(bandara, frame_bandara);
+                    fillTabelBandara();
+                }
             }
             // btn refresh
             if (e.getComponent() == frame_bandara.getBtnRefresh()) {
@@ -379,15 +375,21 @@ public class Controller {
             }
             // btn simpan
             if (e.getComponent() == frame_bandara.getBtnSimpan()) {
-                Bandara bandara = new Bandara(frame_bandara.getTxt_kode_bandara().getText(), frame_bandara.getTxt_nama_bandara().getText());
-                daoBandara.insert(bandara, frame_bandara);
-                fillTabelBandara();
+                if (frame_bandara.validateInput()) {
+                    Bandara bandara = new Bandara(frame_bandara.getTxt_kode_bandara().getText(), frame_bandara.getTxt_nama_bandara().getText());
+                    daoBandara.insert(bandara, frame_bandara);
+                    fillTabelBandara();
+                }
+                
             }
             // btn ubah
             if (e.getComponent() == frame_bandara.getBtn_Ubah()) {
-                Bandara bandara = new Bandara(frame_bandara.getTxt_kode_bandara().getText(), frame_bandara.getTxt_nama_bandara().getText());
-                daoBandara.update(bandara, frame_bandara.getKodeBandara().getText());
-                fillTabelBandara();
+                if (frame_bandara.validateInput()) {
+                    Bandara bandara = new Bandara(frame_bandara.getTxt_kode_bandara().getText(), frame_bandara.getTxt_nama_bandara().getText());
+                    daoBandara.update(bandara, frame_bandara.getKodeBandara().getText());
+                    fillTabelBandara();
+                }
+                
             }
         // FRAME ATUR PESAWAT
             // btn back
@@ -404,9 +406,13 @@ public class Controller {
             }
             // btn hapus
             if (e.getComponent() == frame_pesawat.getBtnHapus()) {
-                Pesawat pesawat = new Pesawat(Integer.parseInt(frame_pesawat.getTxt_id_pesawat().getText()), frame_pesawat.getTxt_kode_pesawat().getText(), frame_pesawat.getTxt_nama_pesawat().getText());
-                daoPesawat.delete(pesawat, frame_pesawat);
-                fillTabelPesawat();
+                if (frame_pesawat.getTxt_id_pesawat().getText() == null) {
+                    JOptionPane.showMessageDialog(frame_pesawat, "Pilih pesawat terlebih dahulu");
+                }else if (frame_pesawat.validateInput()) {
+                    Pesawat pesawat = new Pesawat(Integer.parseInt(frame_pesawat.getTxt_id_pesawat().getText()), frame_pesawat.getTxt_kode_pesawat().getText(), frame_pesawat.getTxt_nama_pesawat().getText());
+                    daoPesawat.delete(pesawat, frame_pesawat);
+                    fillTabelPesawat();
+                }
             }
             // btn refresh
             if (e.getComponent() == frame_pesawat.getBtnRefresh()) {
@@ -414,15 +420,21 @@ public class Controller {
             }
             // btn simpan
             if (e.getComponent() == frame_pesawat.getBtnSimpan()) {
-                Pesawat pesawat = new Pesawat(frame_pesawat.getTxt_kode_pesawat().getText(), frame_pesawat.getTxt_nama_pesawat().getText());
-                daoPesawat.insert(pesawat, frame_pesawat);
-                fillTabelPesawat();
+                if (frame_pesawat.validateInput()) {
+                    Pesawat pesawat = new Pesawat(frame_pesawat.getTxt_kode_pesawat().getText(), frame_pesawat.getTxt_nama_pesawat().getText());
+                    daoPesawat.insert(pesawat, frame_pesawat);
+                    fillTabelPesawat();
+                }
             }
             // btn ubah
             if (e.getComponent() == frame_pesawat.getBtnUbah()) {
-                Pesawat pesawat = new Pesawat(Integer.parseInt(frame_pesawat.getTxt_id_pesawat().getText()), frame_pesawat.getTxt_kode_pesawat().getText(), frame_pesawat.getTxt_nama_pesawat().getText());
-                daoPesawat.update(pesawat);
-                fillTabelPesawat();
+                if (frame_pesawat.getTxt_id_pesawat().getText()== null) {
+                    JOptionPane.showMessageDialog(frame_pesawat, "Pilih pesawat terlebih dahulu");
+                }else if (frame_pesawat.validateInput()) {
+                    Pesawat pesawat = new Pesawat(Integer.parseInt(frame_pesawat.getTxt_id_pesawat().getText()), frame_pesawat.getTxt_kode_pesawat().getText(), frame_pesawat.getTxt_nama_pesawat().getText());
+                    daoPesawat.update(pesawat);
+                    fillTabelPesawat();
+                }
             }
         // FRAME ATUR JADWAL PENERBANGAM
             // btn back
@@ -439,9 +451,14 @@ public class Controller {
             }
             // btn hapus
             if (e.getComponent() == frame_jadwalPenerbangan.getBtnHapus()) {
-                JadwalPenerbangan jadwal = getPesawatFromFrameJadwalPenerbangan();
-                daoJadwalPenerbangan.delete(jadwal, frame_jadwalPenerbangan);
-                fillTabelJadwalPenerbangan();
+                if(frame_jadwalPenerbangan.getTxt_id().getText() == null) {
+                    JOptionPane.showMessageDialog(frame_jadwalPenerbangan, "Pilih jadwal terlebih dahulu");
+                } else if(frame_jadwalPenerbangan.validateInput()) {
+                    JadwalPenerbangan jadwal = getPesawatFromFrameJadwalPenerbangan();
+                    daoJadwalPenerbangan.delete(jadwal, frame_jadwalPenerbangan);
+                    fillTabelJadwalPenerbangan();
+                }
+                
             }
             // btn refresh
             if (e.getComponent() == frame_jadwalPenerbangan.getBtnRefresh()) {
@@ -449,20 +466,27 @@ public class Controller {
             }
             // btn simpan
             if (e.getComponent() == frame_jadwalPenerbangan.getBtnSimpan()) {
-                JadwalPenerbangan jadwal = getPesawatFromFrameJadwalPenerbangan();
-                daoJadwalPenerbangan.insert(jadwal, frame_jadwalPenerbangan);
-                fillTabelJadwalPenerbangan();
+                if (frame_jadwalPenerbangan.validateInput()) {
+                    JadwalPenerbangan jadwal = getPesawatFromFrameJadwalPenerbangan();
+                    daoJadwalPenerbangan.insert(jadwal, frame_jadwalPenerbangan);
+                    fillTabelJadwalPenerbangan();
+                }
             }
             // btn ubah
             if (e.getComponent() == frame_jadwalPenerbangan.getBtnUbah()) {
-                JadwalPenerbangan jadwal = getPesawatFromFrameJadwalPenerbangan();
-                daoJadwalPenerbangan.update(jadwal);
-                fillTabelJadwalPenerbangan();
+                if(frame_jadwalPenerbangan.getTxt_id().getText() == null) {
+                    JOptionPane.showMessageDialog(frame_jadwalPenerbangan, "Pilih jadwal terlebih dahulu");
+                } else if(frame_jadwalPenerbangan.validateInput()) {
+                    JadwalPenerbangan jadwal = getPesawatFromFrameJadwalPenerbangan();
+                    daoJadwalPenerbangan.update(jadwal);
+                    fillTabelJadwalPenerbangan();
+                }
             }
             
         // ========================== KASIR ===========================
         // FRAME KASIR
             if (e.getComponent() == frame_kasir.getMenu_Pembayaran()) {
+                frame_pembayaran.fillTabelBooking(new TabelBookingModel(daoBooking.getBookingNotPaid(daoTiket.getAllTiket())));
                 move(frame_kasir, frame_pembayaran);
             }
             
@@ -478,31 +502,42 @@ public class Controller {
         // FRAME PEMBAYARAN
             // btn cari booking id
             if (e.getComponent() == frame_pembayaran.getBtnCari()) {
-                booking = daoBooking.getBooking(Integer.parseInt(frame_pembayaran.getTxt_cari_id_booking().getText()));
                 
-                if (booking.getId() == 0) {
+                List<Booking> list = daoBooking.getBookingNotPaid(daoTiket.getAllTiket());
+                
+                boolean ketemu = false;
+                for (Booking book : list) {
+                    if (book.getId() == Integer.parseInt(frame_pembayaran.getTxt_cari_id_booking().getText())) {
+                        
+                        frame_pembayaran.getTxt_id_booking().setText(Integer.toString(book.getId()));
+                        frame_pembayaran.getTxt_jumlah_penumpang().setText(Integer.toString(book.getJumlahPenumpang()));
+                        frame_pembayaran.getTxt_nama_penumpang().setText(book.getCustomer().getNama());
+                        frame_pembayaran.getTxt_nomor_hp().setText(book.getCustomer().getNomor_hp());
+                        ketemu = true;
+                    }
+                }
+                
+                if (!ketemu) {
                     booking = new Booking();
                     JOptionPane.showMessageDialog(frame_pembayaran, "Pesanan Tidak Ditemukan");
                     frame_pembayaran.clearTextField();
-                } else {
-                    frame_pembayaran.getBtnLanjutkanPembayaran().setEnabled(true);
-                    frame_pembayaran.getTxt_id_booking().setText(Integer.toString(booking.getId()));
-                    frame_pembayaran.getTxt_jumlah_penumpang().setText(Integer.toString(booking.getJumlahPenumpang()));
-                    frame_pembayaran.getTxt_nama_penumpang().setText(booking.getCustomer().getNama());
-                    frame_pembayaran.getTxt_nomor_hp().setText(booking.getCustomer().getNomor_hp());
                 }
             }
-        
+            
             // btn lanjutkan bayar
             if (e.getComponent() == frame_pembayaran.getBtnLanjutkanPembayaran()) {
-                if (booking.getId() == 0 && frame_pembayaran.getTxt_id_booking().getText() != null) {
-                    
-                } else {
+                if (frame_pembayaran.validateInput()) {
+                    booking = daoBooking.getBooking(Integer.parseInt(frame_pembayaran.getTxt_id_booking().getText()));
                     move(frame_pembayaran, frame_rincianPembayaran);
-                    frame_rincianPembayaran.getTxtHargaTiket().setText(Integer.toString(booking.getJadwal().getHarga()));
-                    frame_rincianPembayaran.getTxtSubTotal().setText(Integer.toString(booking.getHarga()));
+                    String harga = new Rupiah(booking.getJadwal().getHarga()).getRupiahString();
+                    String subtotal = new Rupiah(booking.getHarga()).getRupiahString();
+                    
+                    frame_rincianPembayaran.getTxtHargaTiket().setText(harga);
+                    frame_rincianPembayaran.getTxtSubTotal().setText(subtotal);
                     frame_rincianPembayaran.getTxtTotalPenumpang().setText(Integer.toString(booking.getJumlahPenumpang()));
-                }
+                    frame_rincianPembayaran.getTxtUangAnda().setText(null);
+                } 
+              
             }
             
             // btn back
@@ -514,7 +549,9 @@ public class Controller {
         // FRAME RINCIAN PEMBAYARAN
             // btn bayar
             if (e.getComponent() == frame_rincianPembayaran.getBtnBayar()) {
-                int kembalian = Integer.parseInt(frame_rincianPembayaran.getTxtUangAnda().getText()) - Integer.parseInt(frame_rincianPembayaran.getTxtSubTotal().getText());
+                int uanganda = new Rupiah(frame_rincianPembayaran.getTxtUangAnda().getText()).getRupiahInt();
+                int subtotal = new Rupiah(frame_rincianPembayaran.getTxtSubTotal().getText()).getRupiahInt();
+                int kembalian = uanganda - subtotal;
                 if(kembalian >= 0) {
                     dialog_bayarSukses.setVisible(true);
                     Tiket tiket = new Tiket(booking);
@@ -522,6 +559,7 @@ public class Controller {
                 } else {
                     JOptionPane.showMessageDialog(frame_rincianPembayaran, "Pembayaran Gagal");
                 }
+                
             }
             
             // btn back
@@ -533,7 +571,7 @@ public class Controller {
         // DIALOG PEMBAYARAN BTN print
             if (e.getComponent() == dialog_bayarSukses.getBtnPrint()) {
                 invoice.setVisible(true);
-                invoice.printStruk(booking, Integer.parseInt(frame_rincianPembayaran.getTxtUangAnda().getText()));
+                invoice.printStruk(booking, new Rupiah(frame_rincianPembayaran.getTxtUangAnda().getText()).getRupiahInt());
                 
             }
             
@@ -709,7 +747,7 @@ public class Controller {
         
         String kelas = (String)frame_jadwalPenerbangan.getTxt_kelas_penerbangan().getSelectedItem();
         
-        int harga = Integer.parseInt(frame_jadwalPenerbangan.getTxt_harga().getText());
+        int harga = new Rupiah(frame_jadwalPenerbangan.getTxt_harga().getText()).getRupiahInt();
         
         Date date = frame_jadwalPenerbangan.getTxt_tanggal_penerbangan().getDate();
         int id = -1;
@@ -722,18 +760,7 @@ public class Controller {
         return new JadwalPenerbangan(id, date, bandaraAsal, bandaraTujuan, pesawat, kelas, harga); 
     }
     
-    public void clearAllTxtUser() {
-        frame_pUser.getTxt_dari().setSelectedIndex(-1);
-        frame_pUser.getTxt_ke().setSelectedIndex(-1);
-        frame_pUser.getTxt_penumpang().setSelectedItem(1);
-        frame_pUser.getTxt_tanggal().setDate(null);
-        
-        frame_listPenerbangan.getTxtHarga().setText(null);
-        frame_listPenerbangan.getTxtId().setText(null);
-        frame_listPenerbangan.getTxtKelas().setText(null);
-        frame_listPenerbangan.getTxtKodePesawat().setText(null);
-        frame_listPenerbangan.getTxtNamaPesawat().setText(null);
-    }
+    
     public void clearAllTextAdmin() {
         
     }
@@ -746,18 +773,12 @@ public class Controller {
         
         if (dialogResult == 0) {
             if (frame.getClass() == frame_pUser.getClass()) {
-                frame_pUser.getDynamicPanel().removeAll();
-                frame_pUser.getDynamicPanel().repaint();
-                frame_pUser.getDynamicPanel().revalidate();
-
-                // add panel
-                frame_pUser.getDynamicPanel().add(frame_pUser.getDashboardPanel());
-                frame_pUser.getDynamicPanel().repaint();
-                frame_pUser.getDynamicPanel().revalidate();
+                frame_pUser.goToDashboard();
             }
             move(frame, frame_login);
         } else{
             System.out.println("batal logout");
         }
     }
+
 }

@@ -9,7 +9,6 @@ import java.awt.event.MouseListener;
 import java.text.NumberFormat;
 import java.util.Locale;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -297,10 +296,10 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
         this.txtTotalPenumpang = txtTotalPenumpang;
     }
 
-    public void setText(int penumpang, int harga, int subtotal){
+    public void setText(int penumpang, String harga, String subtotal){
         txtTotalPenumpang.setText(Integer.toString(penumpang));
-        txtHargaTiket.setText(NumberFormat.getCurrencyInstance(new Locale("en","id")).format(harga));
-        txtSubTotal.setText(NumberFormat.getCurrencyInstance(new Locale("en","id")).format(subtotal));
+        txtHargaTiket.setText(harga);
+        txtSubTotal.setText(subtotal);
     }
     
     public void addListener(MouseListener mouseListener) {
