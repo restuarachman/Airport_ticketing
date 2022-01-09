@@ -44,7 +44,7 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
         txt_Alamat = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        btnSimpanData = new javax.swing.JButton();
+        btnLanjutkan = new javax.swing.JButton();
         Background = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,39 +95,39 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(48, 57, 82));
         jLabel6.setText("Alamat  :");
-        Panel_List_Penerbangan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
+        Panel_List_Penerbangan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(48, 57, 82));
         jLabel8.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(48, 57, 82));
         jLabel8.setText("Nama   :");
-        Panel_List_Penerbangan.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
+        Panel_List_Penerbangan.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, -1, -1));
 
         txt_noHP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_noHPActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(txt_noHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 300, 30));
+        Panel_List_Penerbangan.add(txt_noHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 370, 30));
 
         txt_namaPenumpang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_namaPenumpangActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(txt_namaPenumpang, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 300, 30));
+        Panel_List_Penerbangan.add(txt_namaPenumpang, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 370, 30));
 
         jLabel7.setBackground(new java.awt.Color(48, 57, 82));
         jLabel7.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(48, 57, 82));
         jLabel7.setText("No HP   :");
-        Panel_List_Penerbangan.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
+        Panel_List_Penerbangan.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, -1, -1));
 
         txt_Alamat.setColumns(20);
         txt_Alamat.setRows(5);
         jScrollPane1.setViewportView(txt_Alamat);
 
-        Panel_List_Penerbangan.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 300, 100));
+        Panel_List_Penerbangan.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 370, 100));
 
         jLabel12.setBackground(new java.awt.Color(48, 57, 82));
         jLabel12.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
@@ -139,23 +139,23 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(48, 57, 82));
         jLabel13.setText("Data Penumpang");
-        Panel_List_Penerbangan.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
+        Panel_List_Penerbangan.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, -1, -1));
 
-        btnSimpanData.setBackground(new java.awt.Color(47, 54, 64));
-        btnSimpanData.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
-        btnSimpanData.setForeground(new java.awt.Color(255, 255, 255));
-        btnSimpanData.setText("Simpan Data");
-        btnSimpanData.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnLanjutkan.setBackground(new java.awt.Color(47, 54, 64));
+        btnLanjutkan.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
+        btnLanjutkan.setForeground(new java.awt.Color(255, 255, 255));
+        btnLanjutkan.setText("Lanjutkan");
+        btnLanjutkan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSimpanDataMouseClicked(evt);
+                btnLanjutkanMouseClicked(evt);
             }
         });
-        btnSimpanData.addActionListener(new java.awt.event.ActionListener() {
+        btnLanjutkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSimpanDataActionPerformed(evt);
+                btnLanjutkanActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(btnSimpanData, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, 180, 50));
+        Panel_List_Penerbangan.add(btnLanjutkan, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 460, 180, 50));
 
         getContentPane().add(Panel_List_Penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 580));
 
@@ -200,17 +200,17 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_namaPenumpangActionPerformed
 
-    private void btnSimpanDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanDataMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSimpanDataMouseClicked
-
-    private void btnSimpanDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanDataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSimpanDataActionPerformed
-
     private void btnBack2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack2MouseClicked
 
     }//GEN-LAST:event_btnBack2MouseClicked
+
+    private void btnLanjutkanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLanjutkanMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLanjutkanMouseClicked
+
+    private void btnLanjutkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLanjutkanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLanjutkanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,12 +252,12 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
         });
     }
 
-    public JButton getBtnSimpanData() {
-        return btnSimpanData;
+    public JButton getBtnLanjutkan() {
+        return btnLanjutkan;
     }
 
-    public void setBtnSimpanData(JButton btnSimpanData) {
-        this.btnSimpanData = btnSimpanData;
+    public void setBtnLanjutkan(JButton btnLanjutkan) {
+        this.btnLanjutkan = btnLanjutkan;
     }
 
     public JTextArea getTxt_Alamat() {
@@ -293,7 +293,8 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
     }
 
     public void addListener(MouseListener mouseListener) {
-        btnSimpanData.addMouseListener(mouseListener);
+        btnLanjutkan.addMouseListener(mouseListener);
+        
         btnBack2.addMouseListener(mouseListener);
     }
 
@@ -301,7 +302,7 @@ public class View_Panel_User_IsiDataPenumpang extends javax.swing.JFrame {
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Panel_List_Penerbangan;
     private javax.swing.JLabel btnBack2;
-    private javax.swing.JButton btnSimpanData;
+    private javax.swing.JButton btnLanjutkan;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel6;

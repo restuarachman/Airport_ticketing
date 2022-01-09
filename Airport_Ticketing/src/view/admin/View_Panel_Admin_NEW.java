@@ -6,15 +6,8 @@
 package view.admin;
 
 import java.awt.event.MouseListener;
-import view.user.*;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import model.User;
-import view.View_Login;
-import view.user.dialog.dialogFrame_Penerbangan_notFound;
 
 /**
  *
