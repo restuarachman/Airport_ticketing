@@ -13,7 +13,6 @@ public class Airport_Ticketing {
         
         View_Login frame = new View_Login();
         Controller controller = new Controller(frame);
-       
     }
     
 }

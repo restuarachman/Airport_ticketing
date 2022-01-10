@@ -7,13 +7,13 @@ package view.kasir.menu;
 
 import java.awt.event.MouseListener;
 import java.awt.print.PrinterException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.table.DefaultTableModel;
 import model.Booking;
+import model.Rupiah;
 
 /**
  *
@@ -170,17 +170,16 @@ public class Invoice extends javax.swing.JFrame {
     
     
     public void printStruk(Booking booking, int uang) {
-        String total = "5";
-        String bayar = "5000";
-        //Date date = date.setDate(WIDTH);
-        SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd");
-        //String date = "2022-01-01";
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
         
         fieldStruk.setText(fieldStruk.getText() + "--------------------------------------------------------------------------------------------\n");
         fieldStruk.setText(fieldStruk.getText() + "\tSTRUK PEMBELIAN TIKET PESAWAT\n");
         fieldStruk.setText(fieldStruk.getText() + "--------------------------------------------------------------------------------------------\n");
 
         
+        fieldStruk.setText(fieldStruk.getText() + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Tanggal Pembayaran \t:   " + dtf.format(now) + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "Kode Booking \t\t:   #" + booking.getId() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
@@ -191,13 +190,13 @@ public class Invoice extends javax.swing.JFrame {
         
         fieldStruk.setText(fieldStruk.getText() + "Total Penumpang \t:   " + booking.getJumlahPenumpang() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Harga Satuan \t\t:   Rp." + booking.getJadwal().getHarga() + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Harga Satuan \t\t:   " + new Rupiah(booking.getJadwal().getHarga()).getRupiahString() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Sub Total \t\t:   RP." + booking.getHarga() + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Sub Total \t\t:   " + new Rupiah(booking.getHarga()).getRupiahString() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Uang Anda \t\t:   RP." + uang + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Uang Anda \t\t:   " + new Rupiah(uang).getRupiahString() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");
-        fieldStruk.setText(fieldStruk.getText() + "Kembalian \t\t:   RP." + (uang-booking.getHarga()) + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Kembalian \t\t:   " + new Rupiah(uang-booking.getHarga()).getRupiahString()+ "\n");
         
         fieldStruk.setText(fieldStruk.getText() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");

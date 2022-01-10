@@ -5,11 +5,16 @@
  */
 package model;
 
+import dao.DAOBandara;
+import dao.DAOUser;
+import javax.swing.JFrame;
+import view.user.View_Panel_User;
+
 /**
  *
  * @author ASUS
  */
-public class Customer extends User{
+public class Customer extends User implements Login{
     private int id;
     private String Nama;
     private String Alamat;
@@ -79,5 +84,15 @@ public class Customer extends User{
         System.out.println(Nama);
         System.out.println(nomor_hp);
         System.out.println(Alamat);
+    }
+
+    @Override
+    public void login(User user, JFrame frame) {
+        DAOUser da = new DAOUser();
+        DAOBandara daoBandara = new DAOBandara();
+        
+        user.setId(da.findUser(user));
+        ((View_Panel_User)frame).getUsername().setText(user.getUsername());
+        ((View_Panel_User)frame).fillComboBox(daoBandara.getAllBandara());
     }
 }

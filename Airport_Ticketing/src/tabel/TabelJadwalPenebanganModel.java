@@ -8,6 +8,7 @@ package tabel;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.JadwalPenerbangan;
+import model.Rupiah;
 
 /**
  *
@@ -35,7 +36,7 @@ public class TabelJadwalPenebanganModel extends AbstractTableModel{
             case 3 : return list.get(rowIndex).getBandaraTujuan().getKodeBandara()+" - "+list.get(rowIndex).getBandaraTujuan().getNamaBandara();
             case 4 : return list.get(rowIndex).getPesawat().getKodePesawat()+" - "+list.get(rowIndex).getPesawat().getNamaPesawat();
             case 5 : return list.get(rowIndex).getKelas();
-            case 6 : return Integer.toString(list.get(rowIndex).getHarga());
+            case 6 : return new Rupiah(list.get(rowIndex).getHarga()).getRupiahString();
           
             default : return null;
         }
@@ -45,8 +46,8 @@ public class TabelJadwalPenebanganModel extends AbstractTableModel{
         switch(column) {
             case 0 : return "ID";
             case 1 : return "Tanggal";
-            case 2 : return "Bandara Asal";
-            case 3 : return "Bandara Tujuan";
+            case 2 : return "Asal";
+            case 3 : return "Tujuan";
             case 4 : return "Pesawat";
             case 5 : return "Kelas";
             case 6 : return "Harga";

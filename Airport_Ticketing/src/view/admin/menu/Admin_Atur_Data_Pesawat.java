@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import tabel.TabelPesawatModel;
@@ -140,6 +141,8 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
         txt_id_pesawat.setText(null);
         txt_kode_pesawat.setText(null);
         txt_nama_pesawat.setText(null);
+        txtErrorKode.setText(null);
+        txtErrorNama.setText(null);
     }
     
     public void setDataField(){
@@ -157,6 +160,25 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
         }
     }
     
+    public boolean validateInput() {
+        boolean condition1 = "".equals(txt_kode_pesawat.getText());
+        boolean condition2 = "".equals(txt_nama_pesawat.getText());
+        
+        if (condition1 || condition2) {
+            if (condition1) {
+                txtErrorKode.setText("*perlu diisi");
+            } else {
+                txtErrorKode.setText(null);
+            }
+            if(condition2) {
+                txtErrorNama.setText("*perlu diisi");
+            } else {
+                txtErrorNama.setText(null);
+            }
+            return false;
+        }
+        return true;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -189,6 +211,8 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txt_nama_pesawat = new javax.swing.JTextField();
         txt_id_pesawat = new javax.swing.JLabel();
+        txtErrorNama = new javax.swing.JLabel();
+        txtErrorKode = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -413,6 +437,14 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
         txt_id_pesawat.setForeground(new java.awt.Color(48, 57, 82));
         bodyPanel.add(txt_id_pesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 180, 30));
 
+        txtErrorNama.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        txtErrorNama.setForeground(new java.awt.Color(255, 51, 51));
+        bodyPanel.add(txtErrorNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, -1, -1));
+
+        txtErrorKode.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        txtErrorKode.setForeground(new java.awt.Color(255, 51, 51));
+        bodyPanel.add(txtErrorKode, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -542,6 +574,8 @@ public class Admin_Atur_Data_Pesawat extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel moveableFrame;
+    private javax.swing.JLabel txtErrorKode;
+    private javax.swing.JLabel txtErrorNama;
     private javax.swing.JTextField txt_cari_nama_pesawat;
     private javax.swing.JLabel txt_id_pesawat;
     private javax.swing.JTextField txt_kode_pesawat;

@@ -94,8 +94,6 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
         this.namaBandara = namaBandara;
     }
     
-    
-    
     public void addListener(MouseListener mouseListener) {
         btnBack.addMouseListener(mouseListener);
         btnBatal.addMouseListener(mouseListener);
@@ -109,6 +107,8 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
     public void clearTextField() {
         txt_kode_bandara.setText(null);
         txt_nama_bandara.setText(null);
+        txtErrorKode.setText(null);
+        txtErrorNama.setText(null);
     }
 
     public int getTableBandaraRow() { return jTable1.getSelectedRow(); }
@@ -126,7 +126,29 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
                 Logger.getLogger(Admin_Atur_Data_Bandara.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-   }
+    }
+    
+    public boolean validateInput() {
+        if ("".equals(txt_kode_bandara.getText()) || "".equals(txt_nama_bandara.getText())) {
+            if ("".equals(txt_kode_bandara.getText())) {
+                txtErrorKode.setText("*perlu diisi");
+                
+            } else {
+                txtErrorKode.setText(null);
+            }
+
+            if ("".equals(txt_nama_bandara.getText())) {
+                txtErrorNama.setText("*perlu diisi");
+                
+            } else {
+                txtErrorNama.setText(null);
+            }
+            return false;
+        }
+        
+        return true;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -159,6 +181,8 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         kodeBandara = new javax.swing.JLabel();
         namaBandara = new javax.swing.JLabel();
+        txtErrorNama = new javax.swing.JLabel();
+        txtErrorKode = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -385,6 +409,14 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
         namaBandara.setText("jLabel1");
         bodyPanel.add(namaBandara, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, -1, -1));
 
+        txtErrorNama.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        txtErrorNama.setForeground(new java.awt.Color(255, 51, 51));
+        bodyPanel.add(txtErrorNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, -1, -1));
+
+        txtErrorKode.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        txtErrorKode.setForeground(new java.awt.Color(255, 51, 51));
+        bodyPanel.add(txtErrorKode, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -492,17 +524,10 @@ public class Admin_Atur_Data_Bandara extends javax.swing.JFrame {
     private javax.swing.JLabel kodeBandara;
     private javax.swing.JPanel moveableFrame;
     private javax.swing.JLabel namaBandara;
+    private javax.swing.JLabel txtErrorKode;
+    private javax.swing.JLabel txtErrorNama;
     private javax.swing.JTextField txt_cari_nama_bandara;
     private javax.swing.JTextField txt_kode_bandara;
     private javax.swing.JTextField txt_nama_bandara;
     // End of variables declaration//GEN-END:variables
-
-    
-    
-    private Object View_Panel_User_ListPenerbangan() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-
 }

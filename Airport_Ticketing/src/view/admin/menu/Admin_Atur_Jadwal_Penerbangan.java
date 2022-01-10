@@ -15,9 +15,11 @@ import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import model.Bandara;
 import model.Pesawat;
+import model.Rupiah;
 import tabel.TabelJadwalPenebanganModel;
 
 /**
@@ -173,11 +175,17 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
         txt_harga.setText(null);
         txt_id.setText(null);
         txt_cari_nama_pesawat.setText(null);
-        txt_bandara_asal.setSelectedIndex(-1);
-        txt_bandara_tujuan.setSelectedIndex(-1);
-        txt_kelas_penerbangan.setSelectedIndex(-1);
-        txt_pesawat.setSelectedIndex(-1);
+        txt_bandara_asal.setSelectedIndex(0);
+        txt_bandara_tujuan.setSelectedIndex(0);
+        txt_kelas_penerbangan.setSelectedIndex(0);
+        txt_pesawat.setSelectedIndex(0);
         txt_tanggal_penerbangan.setDate(null);
+        ErrorAsal.setText(null);
+        ErrorHarga.setText(null);
+        ErrorKelas.setText(null);
+        ErrorPeswat.setText(null);
+        ErrorTanggal.setText(null);
+        ErrorTujuan.setText(null);
     }
 
     public void fillTableJadwalPesawat(TabelJadwalPenebanganModel jadwal) {
@@ -227,6 +235,57 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
         txt_kelas_penerbangan.addItem("Business");
         txt_kelas_penerbangan.addItem("First Class");
     }
+    
+    public boolean validateInput() {
+        boolean condition1 = txt_bandara_asal.getSelectedItem() == "-";
+        boolean condition2 = txt_bandara_tujuan.getSelectedItem() == "-";
+        boolean condition3 = "".equals(txt_harga.getText());
+        boolean condition4 = txt_kelas_penerbangan.getSelectedItem() == "-";
+        boolean condition5 = txt_pesawat.getSelectedItem() == "-";
+        boolean condition6 = txt_tanggal_penerbangan.getDate()== null;
+        boolean condition7 = txt_bandara_asal.getSelectedItem() == txt_bandara_tujuan.getSelectedItem();
+        
+        System.out.println(condition7+"kokokkokok");
+        
+        if(condition1 || condition2 || condition3 || condition4 || condition5 || condition6 || condition7) {
+            
+            if (condition7) {
+                JOptionPane.showMessageDialog(this, "Asal dan Tujuan tidak boleh sama");
+            }
+            if (condition1) {
+                ErrorAsal.setText("*perlu diisi");
+            } else {
+                ErrorAsal.setText(null);
+            }
+            if (condition2) {
+                ErrorTujuan.setText("*perlu diisi");
+            } else {
+                ErrorTujuan.setText(null);
+            }
+            if (condition3) {
+                ErrorHarga.setText("*perlu diisi");
+            } else {
+                ErrorHarga.setText(null);
+            }
+            if (condition4) {
+                ErrorKelas.setText("*perlu diisi");
+            } else {
+                ErrorKelas.setText(null);
+            }
+            if (condition5) {
+                ErrorPeswat.setText("*perlu diisi");
+            } else {
+                ErrorPeswat.setText(null);
+            }
+            if (condition6) {
+                ErrorTanggal.setText("*perlu diisi");
+            } else {
+                ErrorTanggal.setText(null);
+            }
+            return false;
+        }
+        return true;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -236,6 +295,7 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         bodyPanel = new javax.swing.JPanel();
         moveableFrame = new javax.swing.JPanel();
         Header = new javax.swing.JPanel();
@@ -267,6 +327,14 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         txt_pesawat = new javax.swing.JComboBox<>();
         txt_id = new javax.swing.JLabel();
+        ErrorTanggal = new javax.swing.JLabel();
+        ErrorAsal = new javax.swing.JLabel();
+        ErrorTujuan = new javax.swing.JLabel();
+        ErrorPeswat = new javax.swing.JLabel();
+        ErrorKelas = new javax.swing.JLabel();
+        ErrorHarga = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -330,20 +398,20 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(48, 57, 82));
         jLabel2.setText("Bandara Asal                  :");
-        bodyPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 190, 30));
+        bodyPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 190, 30));
 
         jLabel5.setBackground(new java.awt.Color(48, 57, 82));
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(48, 57, 82));
         jLabel5.setText("Cari Data");
-        bodyPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, 70, 30));
+        bodyPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 70, 30));
 
         txt_cari_nama_pesawat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_cari_nama_pesawatActionPerformed(evt);
             }
         });
-        bodyPanel.add(txt_cari_nama_pesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 160, 30));
+        bodyPanel.add(txt_cari_nama_pesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 160, 30));
 
         btnRefresh.setBackground(new java.awt.Color(47, 54, 64));
         btnRefresh.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
@@ -354,7 +422,7 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
                 btnRefreshActionPerformed(evt);
             }
         });
-        bodyPanel.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 140, 90, 30));
+        bodyPanel.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 90, 30));
 
         btnSimpan.setBackground(new java.awt.Color(0, 153, 102));
         btnSimpan.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
@@ -365,7 +433,7 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
                 btnSimpanActionPerformed(evt);
             }
         });
-        bodyPanel.add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, 90, 30));
+        bodyPanel.add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 90, 30));
 
         btnUbah.setBackground(new java.awt.Color(153, 153, 0));
         btnUbah.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
@@ -376,7 +444,7 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
                 btnUbahActionPerformed(evt);
             }
         });
-        bodyPanel.add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 500, 90, 30));
+        bodyPanel.add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 90, 30));
 
         btnHapus.setBackground(new java.awt.Color(153, 0, 0));
         btnHapus.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
@@ -387,18 +455,18 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
                 btnHapusActionPerformed(evt);
             }
         });
-        bodyPanel.add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 500, 90, 30));
+        bodyPanel.add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 150, 90, 30));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Atur Jadwal Penerbangan");
-        bodyPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
+        bodyPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(48, 57, 82));
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(48, 57, 82));
         jLabel7.setText("ID                                     :");
-        bodyPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 190, 30));
+        bodyPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 190, 30));
 
         btnBatal.setBackground(new java.awt.Color(47, 54, 64));
         btnBatal.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
@@ -409,7 +477,7 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
                 btnBatalActionPerformed(evt);
             }
         });
-        bodyPanel.add(btnBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 500, 90, 30));
+        bodyPanel.add(btnBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 150, 90, 30));
 
         btnCari.setBackground(new java.awt.Color(47, 54, 64));
         btnCari.setFont(new java.awt.Font("Swis721 LtEx BT", 0, 12)); // NOI18N
@@ -420,7 +488,7 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
                 btnCariActionPerformed(evt);
             }
         });
-        bodyPanel.add(btnCari, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 90, 30));
+        bodyPanel.add(btnCari, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 90, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -473,55 +541,65 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        bodyPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 430, 340));
+        bodyPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, 900, 130));
 
         jLabel8.setBackground(new java.awt.Color(48, 57, 82));
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(48, 57, 82));
         jLabel8.setText("Bandara Tujuan              :");
-        bodyPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 190, 30));
+        bodyPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 190, 30));
 
         jLabel9.setBackground(new java.awt.Color(48, 57, 82));
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(48, 57, 82));
         jLabel9.setText("Kelas Penerbangan       :");
-        bodyPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 190, 30));
+        bodyPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 210, 190, 30));
 
+        txt_harga.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_hargaMouseClicked(evt);
+            }
+        });
         txt_harga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_hargaActionPerformed(evt);
             }
         });
-        bodyPanel.add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 210, 30));
+        txt_harga.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_hargaKeyReleased(evt);
+            }
+        });
+        bodyPanel.add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 260, 210, 30));
 
         jLabel10.setBackground(new java.awt.Color(48, 57, 82));
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(48, 57, 82));
         jLabel10.setText("Harga                               :");
-        bodyPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 190, 30));
+        bodyPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 190, 30));
 
         jLabel11.setBackground(new java.awt.Color(48, 57, 82));
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(48, 57, 82));
         jLabel11.setText("Tanggal Penerbangan   :");
-        bodyPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 190, 30));
+        bodyPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, 190, 30));
 
         txt_kelas_penerbangan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_kelas_penerbanganActionPerformed(evt);
             }
         });
-        bodyPanel.add(txt_kelas_penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 210, 30));
+        bodyPanel.add(txt_kelas_penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 210, 210, 30));
 
         txt_bandara_asal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_bandara_asalActionPerformed(evt);
             }
         });
-        bodyPanel.add(txt_bandara_asal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 210, 30));
+        bodyPanel.add(txt_bandara_asal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 210, 30));
 
-        bodyPanel.add(txt_bandara_tujuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 210, 30));
-        bodyPanel.add(txt_tanggal_penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 210, 30));
+        bodyPanel.add(txt_bandara_tujuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 210, 30));
+        bodyPanel.add(txt_tanggal_penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 310, 210, 30));
 
         jLabel12.setBackground(new java.awt.Color(48, 57, 82));
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -539,7 +617,31 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
         txt_id.setBackground(new java.awt.Color(48, 57, 82));
         txt_id.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         txt_id.setForeground(new java.awt.Color(48, 57, 82));
-        bodyPanel.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 210, 30));
+        bodyPanel.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 210, 30));
+
+        ErrorTanggal.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        ErrorTanggal.setForeground(new java.awt.Color(255, 51, 51));
+        bodyPanel.add(ErrorTanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 340, -1, -1));
+
+        ErrorAsal.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        ErrorAsal.setForeground(new java.awt.Color(255, 51, 51));
+        bodyPanel.add(ErrorAsal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
+
+        ErrorTujuan.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        ErrorTujuan.setForeground(new java.awt.Color(255, 51, 51));
+        bodyPanel.add(ErrorTujuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, -1, -1));
+
+        ErrorPeswat.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        ErrorPeswat.setForeground(new java.awt.Color(255, 51, 51));
+        bodyPanel.add(ErrorPeswat, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, -1));
+
+        ErrorKelas.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        ErrorKelas.setForeground(new java.awt.Color(255, 51, 51));
+        bodyPanel.add(ErrorKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 240, -1, -1));
+
+        ErrorHarga.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        ErrorHarga.setForeground(new java.awt.Color(255, 51, 51));
+        bodyPanel.add(ErrorHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -621,6 +723,18 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
     private void txt_bandara_asalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bandara_asalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_bandara_asalActionPerformed
+
+    private void txt_hargaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_hargaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_hargaMouseClicked
+
+    private void txt_hargaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_hargaKeyReleased
+        // TODO add your handling code here:
+        if (!"".equals(txt_harga.getText())) {
+            Rupiah rp = new Rupiah(txt_harga.getText());
+            txt_harga.setText(rp.getRupiahString().split(",")[0].replace("//", ""));
+        }
+    }//GEN-LAST:event_txt_hargaKeyReleased
     
     private int xMouse, yMouse;
     
@@ -660,6 +774,12 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ErrorAsal;
+    private javax.swing.JLabel ErrorHarga;
+    private javax.swing.JLabel ErrorKelas;
+    private javax.swing.JLabel ErrorPeswat;
+    private javax.swing.JLabel ErrorTanggal;
+    private javax.swing.JLabel ErrorTujuan;
     private javax.swing.JPanel Header;
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JButton btnBack;
@@ -669,6 +789,7 @@ public class Admin_Atur_Jadwal_Penerbangan extends javax.swing.JFrame {
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnUbah;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

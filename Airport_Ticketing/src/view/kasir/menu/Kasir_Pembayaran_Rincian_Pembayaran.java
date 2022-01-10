@@ -6,9 +6,11 @@
 package view.kasir.menu;
 
 import java.awt.event.MouseListener;
+import java.text.DecimalFormat;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import model.Rupiah;
 
 /**
  *
@@ -228,6 +230,14 @@ public class Kasir_Pembayaran_Rincian_Pembayaran extends javax.swing.JFrame {
                 txtUangAndaActionPerformed(evt);
             }
         });
+        txtUangAnda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUangAndaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUangAndaKeyReleased(evt);
+            }
+        });
         Panel_List_Penerbangan.add(txtUangAnda, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 160, 30));
 
         getContentPane().add(Panel_List_Penerbangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 580));
@@ -296,6 +306,18 @@ public class Kasir_Pembayaran_Rincian_Pembayaran extends javax.swing.JFrame {
     private void btnBack2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack2MouseClicked
 
     }//GEN-LAST:event_btnBack2MouseClicked
+
+    private void txtUangAndaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUangAndaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUangAndaKeyPressed
+
+    private void txtUangAndaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUangAndaKeyReleased
+        // TODO add your handling code here:
+        if (!"".equals(txtUangAnda.getText())) {
+            Rupiah rp = new Rupiah(txtUangAnda.getText());
+            txtUangAnda.setText(rp.getRupiahString().split(",")[0].replace("//", ""));
+        }
+    }//GEN-LAST:event_txtUangAndaKeyReleased
 
     /**
      * @param args the command line arguments

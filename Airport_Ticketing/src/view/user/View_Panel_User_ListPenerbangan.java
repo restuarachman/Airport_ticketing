@@ -457,6 +457,14 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
         }
     }
     
+    public void clearAllText() {
+        txtHarga.setText(null);
+        txtId.setText(null);
+        txtKelas.setText(null);
+        txtKodePesawat.setText(null);
+        txtNamaPesawat.setText(null);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Panel_List_Penerbangan;

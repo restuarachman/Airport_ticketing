@@ -5,17 +5,20 @@
  */
 package model;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author ASUS
  */
-public class Admin {
+public class Admin extends User implements Login{
     private String idAdmin;
 
     public Admin() {
     }
 
-    public Admin(String idAdmin) {
+    public Admin(User user, String idAdmin) {
+        super(user);
         this.idAdmin = idAdmin;
     }
     
@@ -27,7 +30,27 @@ public class Admin {
         this.idAdmin = idAdmin;
     }
     
-    public void removeCustomer(){
+    public void addBandara() {
+        
+    }
+    public void addPesawat() {
+        
+    }
+    public void addJadwalPenerbangan() {
+        
+    }
+    public void removeBandara() {
+        
+    }
+    public void removePesawat() {
+        
+    }
+    public void removeJadwalPenerbangan() {
+        
+    }
+
+    @Override
+    public void login(User user, JFrame frame) {
         
     }
 }

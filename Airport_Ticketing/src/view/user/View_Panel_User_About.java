@@ -44,7 +44,6 @@ public class View_Panel_User_About extends javax.swing.JFrame {
         copyright3 = new javax.swing.JLabel();
         copyright4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
