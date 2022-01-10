@@ -7,7 +7,8 @@ package view.kasir.menu;
 
 import java.awt.event.MouseListener;
 import java.awt.print.PrinterException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -169,17 +170,16 @@ public class Invoice extends javax.swing.JFrame {
     
     
     public void printStruk(Booking booking, int uang) {
-        String total = "5";
-        String bayar = "5000";
-        //Date date = date.setDate(WIDTH);
-        SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd");
-        //String date = "2022-01-01";
+       
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();
         
         fieldStruk.setText(fieldStruk.getText() + "--------------------------------------------------------------------------------------------\n");
         fieldStruk.setText(fieldStruk.getText() + "\tSTRUK PEMBELIAN TIKET PESAWAT\n");
         fieldStruk.setText(fieldStruk.getText() + "--------------------------------------------------------------------------------------------\n");
-
         
+        fieldStruk.setText(fieldStruk.getText() + "\n");
+        fieldStruk.setText(fieldStruk.getText() + "Tangaal Pembayaran \t:   " + dtf.format(now) + "\n") ;
         fieldStruk.setText(fieldStruk.getText() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "Kode Booking \t\t:   #" + booking.getId() + "\n");
         fieldStruk.setText(fieldStruk.getText() + "\n");

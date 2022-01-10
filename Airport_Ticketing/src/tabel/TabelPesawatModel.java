@@ -43,7 +43,7 @@ public class TabelPesawatModel extends AbstractTableModel{
         switch(column) {
             case 0 : return "ID";
             case 1 : return "Kode Pesawat";
-            case 2 : return "Nama Bandara";
+            case 2 : return "Nama Pesawat";
             
             default : return null;
         }
