@@ -5,16 +5,13 @@
  */
 package view.user;
 
-import view.user.*;
 import java.awt.event.MouseListener;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import tabel.TabelBookingModel;
-import tabel.TabelJadwalPenebanganModel;
 import view.admin.menu.Admin_Atur_Data_Bandara;
 
 /**
@@ -194,6 +191,7 @@ public class View_Panel_User_Menu_Transaksi extends javax.swing.JFrame {
         jLabel8.setText("ID Booking");
         Panel_List_Penerbangan.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, -1, -1));
 
+        txt_id_booking.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txt_id_booking.setEnabled(false);
         txt_id_booking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,6 +206,7 @@ public class View_Panel_User_Menu_Transaksi extends javax.swing.JFrame {
         jLabel9.setText("Nama Penumpang");
         Panel_List_Penerbangan.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, -1, -1));
 
+        txt_nama_penumpang.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txt_nama_penumpang.setEnabled(false);
         txt_nama_penumpang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,6 +221,7 @@ public class View_Panel_User_Menu_Transaksi extends javax.swing.JFrame {
         jLabel10.setText("Nomor HP");
         Panel_List_Penerbangan.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, -1, -1));
 
+        txt_nomor_hp.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txt_nomor_hp.setEnabled(false);
         txt_nomor_hp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,6 +236,7 @@ public class View_Panel_User_Menu_Transaksi extends javax.swing.JFrame {
         jLabel6.setText("Jumlah Penumpang");
         Panel_List_Penerbangan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, -1, -1));
 
+        txt_jumlah_penumpang.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txt_jumlah_penumpang.setEnabled(false);
         txt_jumlah_penumpang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

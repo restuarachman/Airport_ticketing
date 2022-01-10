@@ -10,6 +10,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -198,11 +199,12 @@ public class View_Panel_User_RincianHarga extends javax.swing.JFrame {
     private void btnPergiKeKasirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPergiKeKasirMouseClicked
         // TODO add your handling code here:
 
-        //        this.setVisible(false);
+        JOptionPane.showMessageDialog(this, "Booking berhasil dibuat");
     }//GEN-LAST:event_btnPergiKeKasirMouseClicked
 
     private void btnPergiKeKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPergiKeKasirActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnPergiKeKasirActionPerformed
 
     private void txtSubTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubTotalActionPerformed

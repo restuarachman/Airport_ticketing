@@ -355,8 +355,7 @@ public class View_Panel_User extends javax.swing.JFrame {
         // TODO add your handling code here:
         
                 
-        
-//        btnAbout.setEnabled(false);
+       
     }//GEN-LAST:event_btnAboutActionPerformed
 
     private void btnHome3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome3ActionPerformed
@@ -802,8 +801,8 @@ public class View_Panel_User extends javax.swing.JFrame {
     }
     
     public void clearAllTxtUser() {
-        txt_dari.setSelectedIndex(-1);
-        txt_ke.setSelectedIndex(-1);
+        txt_dari.setSelectedIndex(0);
+        txt_ke.setSelectedIndex(0);
         txt_penumpang.setSelectedItem(1);
         txt_tanggal.setDate(null);
     }

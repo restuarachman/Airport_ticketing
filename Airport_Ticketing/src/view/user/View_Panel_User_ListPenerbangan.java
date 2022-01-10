@@ -183,7 +183,7 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
                 txtKelasActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(txtKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 330, 160, 30));
+        Panel_List_Penerbangan.add(txtKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 330, 170, 30));
 
         btnPilihPenerbangan.setBackground(new java.awt.Color(47, 54, 64));
         btnPilihPenerbangan.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 12)); // NOI18N
@@ -208,7 +208,7 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
                 txtNamaPesawatActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(txtNamaPesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 230, 160, 30));
+        Panel_List_Penerbangan.add(txtNamaPesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 230, 170, 30));
 
         jLabel9.setBackground(new java.awt.Color(48, 57, 82));
         jLabel9.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
@@ -223,7 +223,7 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
                 txtHargaActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(txtHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 280, 160, 30));
+        Panel_List_Penerbangan.add(txtHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 280, 170, 30));
 
         jLabel10.setBackground(new java.awt.Color(48, 57, 82));
         jLabel10.setFont(new java.awt.Font("Swis721 LtEx BT", 1, 14)); // NOI18N
@@ -244,7 +244,7 @@ public class View_Panel_User_ListPenerbangan extends javax.swing.JFrame {
                 txtKodePesawatActionPerformed(evt);
             }
         });
-        Panel_List_Penerbangan.add(txtKodePesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 180, 160, 30));
+        Panel_List_Penerbangan.add(txtKodePesawat, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 180, 170, 30));
 
         txtId.setForeground(new java.awt.Color(255, 255, 255));
         txtId.setText("jLabel1");

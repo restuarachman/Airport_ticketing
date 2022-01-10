@@ -157,6 +157,40 @@ public class DAOjadwalPenerbangan {
         }
         return null;
     }
+    
+    public List<JadwalPenerbangan> getJadwalPenerbangan(Date date, int pesawat_id) {
+        list = new ArrayList<>();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        try {
+            ResultSet result;
+            try (Statement stmt = Koneksi.getConnection().createStatement()) {
+                result = stmt.executeQuery("SELECT * FROM jadwalpenerbangan WHERE date='"+sqlDate+"' AND pesawat_id='"+pesawat_id+"'");
+                while (result.next()) {
+                    JadwalPenerbangan jadwal  = new JadwalPenerbangan();
+                    
+                    jadwal.setId(result.getInt(1));
+                    jadwal.setDate(result.getDate(2));
+                   
+                    Bandara bandaraAsal = daoBandara.getBandaraByKode(result.getString(3));
+                    Bandara bandaraTujuan = daoBandara.getBandaraByKode(result.getString(4));
+                    jadwal.setBandaraAsal(bandaraAsal);
+                    jadwal.setBandaraTujuan(bandaraTujuan);
+                    
+                    Pesawat pesawat = daoPesawat.getPesawat(result.getInt(5));
+                    jadwal.setPesawat(pesawat);
+                    jadwal.setKelas(result.getString(6));
+                    jadwal.setHarga(result.getInt(7));
+                    
+                    list.add(jadwal);
+                }
+            }
+            result.close();
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
    
     public List<JadwalPenerbangan> getAllJadwalPenerbangan() {
         list = new ArrayList<>();
